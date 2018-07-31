@@ -7,7 +7,7 @@
         <title>Customer Registration</title>
 
         <?php
-        include 'header.php';
+        include '../header.php';
         ?>
 
     </head>
