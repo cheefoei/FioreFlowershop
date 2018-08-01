@@ -2,28 +2,28 @@
 
 class database {
 
-    private $dbName = null, $dbHost = null, $dbPass = null, $dbUser = null;
-    private static $instance = null;
+    private $conn;
+    private $host = "localhost";
+    private $user = "root";
+    private $password = "";
+    private $db = "flower";
 
-    private function __construct($dbDetails = array()) {
+    // Connecting to database
+    public function connect() {
 
-        // Please note that this is Private Constructor
+        // Connecting to mysql database
+        $dsn = "mysql:host=$this->host;dbname=$this->db";
 
-        $this->dbName = $dbDetails['db_name'];
-        $this->dbHost = $dbDetails['db_host'];
-        $this->dbUser = $dbDetails['db_user'];
-        $this->dbPass = $dbDetails['db_pass'];
-
-        $this->dbh = new PDO('mysql:host=' . $this->dbHost . ';dbname=' . $this->dbName, $this->dbUser, $this->dbPass);
-    }
-
-    public static function connect($dbDetails = array()) {
-
-        if (self::$instance == null) {
-            self::$instance = new database($dbDetails);
+        try {
+            $this->conn = new PDO($dsn, $this->user, $this->password);
+        } catch (PDOException $ex) {
+            echo '<script language="javascript">';
+            echo 'alert("Database Error")';
+            echo '</script>';
+            exit;
         }
-
-        return self::$instance;
+        // return database object
+        return $this->conn;
     }
 
 }
