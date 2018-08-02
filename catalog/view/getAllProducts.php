@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <?php
         // put your code here
-        require_once 'connect_db.php';
+        require_once '../connect_db.php';
 
         $db = new connect_db();
         $conn = $db->connectPDO();
@@ -44,5 +44,8 @@ and open the template in the editor.
         echo "</table>";
         $db = null;
         ?>
+        <br/>
+        <br/>
+        <a href="../createProductXML.php">Download in XML</a>
     </body>
 </html>
