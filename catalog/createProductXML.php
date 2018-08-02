@@ -12,7 +12,7 @@ $query = "SELECT * FROM product";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 
-$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><products></products>');
+$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="product.xsl"?><products></products>');
 while ($row = $stmt->fetch()) {
     $track = $xml->addChild('product');
     $track->addChild('product_id', $row['product_id']);
@@ -26,6 +26,8 @@ while ($row = $stmt->fetch()) {
 }
 
 Header('Content-type: text/xml');
-header('Content-Disposition: attachment; filename="product.xml"');
-echo($xml->asXML());
+print($xml->asXML());
+//Include this 2 to initiate download
+//header('Content-Disposition: attachment; filename="product.xml"');
+//echo($xml->asXML());
 ?>

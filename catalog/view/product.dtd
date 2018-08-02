@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--
+    TODO define vocabulary identification data
+    PUBLIC ID  : -//vendor//vocabulary//EN
+    SYSTEM ID  : http://server/path/__NAME__
+-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT products (product)*>
+<!ELEMENT product (product_id , product_name, product_description, date_created, date_expired, total_stock, price, weight)>
+<!ELEMENT product_name (#PCDATA)>
+<!ELEMENT product_description (#PCDATA)>
+<!ELEMENT date_created (#PCDATA)>
+<!ELEMENT date_expired (#PCDATA)>
+<!ELEMENT total_stock (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT weight (#PCDATA)>
