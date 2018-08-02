@@ -11,9 +11,9 @@ class catalog {
     private $conn;
 
     function __construct() {
-        require_once 'connect_db.php';
-        $db = new database();
-        $this->conn = $db->connect();
+        require_once '../connect_db.php';
+        $db = database::getInstance();
+        $this->conn = $db->getConnection();
     }
 
     function getCatalog() {
