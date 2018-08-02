@@ -66,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <body class="container">
         <br/>
-        <h2>Fresh Flower Ordering</h2>
+        <h2>Fresh Flower Ordering</h2><a href="orderReportXML.php">Famous People</a>
         <br/>
         <br/>
         <?php
         $catalogArray = $catalogProduct->getCatalog();
         foreach ($catalogArray as $product) {
-            if (date('d-m-Y') <= strtotime($product['c_expiredDate'])) {
+            if (date('Y-m-d') <= $product['c_expiredDate']) {
                 echo '<h3>Catalog : ' . $product['name'] . '</h3>';
 
                 echo '<table>

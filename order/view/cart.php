@@ -36,10 +36,10 @@ require '../controller/getCatalog.php';
             $order = new manageOrder();
             $products = $order->getProduct();
             if (isset($_POST['goCart'])) {
-
+                $order->showOrderList($orderList, $products);
+            } elseif (isset($_POST['cart'])) {
                 $order->showOrderList($orderList, $products);
             }
-
             foreach ($orderList as $key => $list) {
                 if (isset($_POST['remove' . $list[1] . ''])) {
                     $order->addProductStock($list[1], $list[2]);
@@ -48,7 +48,6 @@ require '../controller/getCatalog.php';
                     $order->showOrderList($orderList, $products);
                 }
             }
-            
             $_SESSION['orderList'] = $orderList;
         }
         ?>
