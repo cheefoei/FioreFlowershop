@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <body class="container">
         <br/>
-        <h2>Fresh Flower Ordering</h2><a href="orderReportXML.php">Famous People</a>
+        <h2>Fresh Flower Ordering</h2><a href="orderReportXML.php">Sales Order Report</a>
         <br/>
         <br/>
         <?php
