@@ -1,7 +1,7 @@
 <?php
-include '../header.php';
-require 'manageOrder.php';
-require 'getCatalog.php';
+include '../../header.php';
+require '../controller/manageOrder.php';
+require '../controller/getCatalog.php';
 ?>
 <html>
     <style>

@@ -2,27 +2,28 @@
 
 class database {
 
+    private static $instance = null;
     private $conn;
-    private $host = "localhost";
-    private $user = "root";
-    private $password = "";
-    private $db = "flower";
+    private $host = 'localhost';
+    private $user = 'root';
+    private $pass = '';
+    private $name = 'flower';
 
-    // Connecting to database
-    public function connect() {
+    // The db connection is established in the private constructor.
+    private function __construct() {
+        $this->conn = new PDO("mysql:host={$this->host};
+    dbname={$this->name}", $this->user, $this->pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+    }
 
-        // Connecting to mysql database
-        $dsn = "mysql:host=$this->host;dbname=$this->db";
-
-        try {
-            $this->conn = new PDO($dsn, $this->user, $this->password);
-        } catch (PDOException $ex) {
-            echo '<script language="javascript">';
-            echo 'alert("Database Error")';
-            echo '</script>';
-            exit;
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new database();
         }
-        // return database object
+
+        return self::$instance;
+    }
+
+    public function getConnection() {
         return $this->conn;
     }
 

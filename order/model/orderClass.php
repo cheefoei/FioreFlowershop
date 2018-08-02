@@ -19,8 +19,15 @@ class Order {
         $this->total_amount = $total_amount;
         $this->status = $status;
     }
-    
-    public function getTotal_amount() {
+    public function getCustomer_id() {
+        return $this->customer_id;
+    }
+
+    public function setCustomer_id($customer_id) {
+        $this->customer_id = $customer_id;
+    }
+
+        public function getTotal_amount() {
         return $this->total_amount;
     }
 
