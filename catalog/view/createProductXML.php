@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'connect_db.php';
+require_once '../connect_db.php';
 $db = new connect_db();
 $conn = $db->connectPDO();
 $query = "SELECT * FROM product";
@@ -17,6 +17,7 @@ while ($row = $stmt->fetch()) {
     $track = $xml->addChild('product');
     $track->addChild('product_id', $row['product_id']);
     $track->addChild('product_name', $row['product_name']);
+    $track->addChild('product_type', $row['product_type']);
     $track->addChild('product_description', $row['product_description']);
     $track->addChild('date_created', $row['date_created']);
     $track->addChild('date_expired', $row['date_expired']);
@@ -26,8 +27,8 @@ while ($row = $stmt->fetch()) {
 }
 
 Header('Content-type: text/xml');
-print($xml->asXML());
+//print($xml->asXML());
 //Include this 2 to initiate download
-//header('Content-Disposition: attachment; filename="product.xml"');
-//echo($xml->asXML());
+header('Content-Disposition: attachment; filename="product.xml"');
+echo($xml->asXML());
 ?>
