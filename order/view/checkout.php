@@ -7,14 +7,37 @@ if (isset($_POST['submit'])) {
     $orderList = $_SESSION['orderList'];
 
     $order = new manageOrder();
-    $id = $order->addOrder(1, $_SESSION['total'], false);
+    $id = $order->addOrder(1, $_SESSION['total']);
 
     foreach ($orderList as $list) {
         $order->addOrderList($id, $list[1], $list[2]);
     }
 
-    unset($_SESSION['orderList']);
-}
+
+    if (isset($_POST['checkOutType'])) {
+
+        if ($_POST['checkOutType'] == "delivery") {
+            $order->addDelivery("asdasdasd", 1, $id, date('Y-m-d'), "Kuala LIm[pr", $_POST['date'], $_SESSION['total']);
+            //$order->addDelivery ($custName, $custID, $orderID, $orderDate, $deliveryAddress, $deliveredDate);
+            echo '<script language="javascript">';
+            echo 'alert("Your order is estimated to be arrived at ' . $_POST['date'] . ' on ' . $_POST['time'] . '")';
+            echo '</script>';
+        } elseif ($_POST['checkOutType'] == "pickup") {
+            $order->addPickUp("asdasdasd", 1, $id, date('Y-m-d'), $_POST['date'], $_SESSION['total']);
+            echo '<script language="javascript">';
+            echo 'alert("You can pick up your order at ' . $_POST['date'] . ' on ' . $_POST['time'] . '")';
+            echo '</script>';
+        }
+        //print_r($_SERVER['HTTP_REFERER']);
+        unset($_SESSION['total']);
+        unset($_SESSION['orderList']);
+
+        //$order->test();
+       echo '<script type="text/javascript">';
+        echo 'window.location.href = "order.php";';
+        echo '</script>';
+    }
+} 
 ?>
 <html>
     <style>
@@ -55,7 +78,7 @@ if (isset($_POST['submit'])) {
                 <label class="control-label col-sm-2">Check Out Type</label>
                 <div class="col-sm-10">
                     <label class="radio-inline">
-                        <input type="radio" name="checkOutType" checked value="pickup">Pick Up
+                        <input type="radio" name="checkOutType" value="pickup" checked="">Pick Up
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="checkOutType" value="delivery">Delivery
@@ -65,13 +88,13 @@ if (isset($_POST['submit'])) {
             <div class="form-group">
                 <label class="control-label col-sm-2">Date</label>
                 <div class="col-sm-10">
-                    <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'/>
+                    <input id="datefield" type='date' min='1899-01-01' max='2000-13-13' name="date" required=""/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2">Time</label>
                 <div class="col-sm-10">
-                    <input type="time" name="time"/>
+                    <input type="time" name="time" required=""/>
                 </div>
             </div>
             <div class="form-group"> 
@@ -80,6 +103,13 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </form>
+        <form class="form-horizontal" action="cart.php" method="POST">
 
+            <div class="form-group"> 
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" name="cart">Go to Cart</button>
+                </div>
+            </div>
+        </form>
     </body>
 </html>
