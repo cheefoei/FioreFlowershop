@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT orders (order+)>
+<!ELEMENT order (orderlist+, order_date, total_amount,status)>
+<!ATTLIST order order_id ID #REQUIRED>
+<!ELEMENT orderlist (productName,unitPrice,quantity,subtotal)>
+<!ATTLIST orderlist orderlistID ID #REQUIRED>
+<!ATTLIST orderlist productID ID #REQUIRED>
+<!ELEMENT total_amount (#PCDATA)>
+<!ELEMENT status (#PCDATA)>
+<!ELEMENT productName (#PCDATA)>
+<!ELEMENT unitPrice (#PCDATA)>
+<!ELEMENT quantity (#PCDATA)>
+<!ELEMENT subtotal (#PCDATA)>
+
+
+
+
