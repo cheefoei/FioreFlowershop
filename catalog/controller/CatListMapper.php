@@ -33,6 +33,16 @@ class CatListMapper {
         return $stmt;
     }
 
+    public function getCatList($catalog_id) {
+        $db = new connect_db();
+        $conn = $db->connectPDO();
+        // load one record from Database where id = $id
+        $query = "SELECT * FROM catalog_list WHERE catalog_id ='" . $catalog_id . "'";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+    
     public function save($newcatlist) {
         // insert new record or edit in Database
         $db = new connect_db();

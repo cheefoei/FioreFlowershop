@@ -13,22 +13,28 @@ and open the template in the editor.
     <body>
         <h1><u>Add Items into Catalog</u></h1>        
         <?php
-        require_once 'connect_db.php';
-        session_start();
+        require_once '../connect_db.php';
+        require_once '../model/catalog.php';
+        require_once '../controller/CatalogMapper.php';
+        require_once '../controller/CatListMapper.php';
+        require_once '../controller/ProductMapper.php';
+        session_start(); //to grab data from session
 
+        $catmapper = new CatalogMapper();
+        $cat = new catalog();
+        $catlistmapper = new CatListMapper();
+        
         $lastCatList_id = 0;
         $prodInTheCatalog = [];
-        $db = new connect_db();
-        $conn = $db->connectPDO();
-        $query = "SELECT * FROM catalog";
-        $stmt = $conn->prepare($query);
-        $stmt->execute();
+
+
+        $stmt = $catmapper->loadAll();
 
         echo '<form action="newCatalogItem.php" method="POST">';
         echo "<p>Catalog name:<select name = \"catalog\" id=\"catalog\">";
         while ($row = $stmt->fetch()) {
             // echo out the contents of each row into a table
-            echo '<option value="' . $row['catalog_id'] . '">' . $row['name'] . '</option>';
+            echo '<option value="' . $row['catalog_id'] . '">' . $row['catalog_id'] . " - " . $row['name'] . '</option>';
         }
         echo "</select></p>";
         echo '<button type="submit" name="add">Get Catalog Item</button></p></form>';
@@ -36,28 +42,30 @@ and open the template in the editor.
         if ((isset($_POST['catalog']))) {
             $catalog = trim($_POST['catalog']);
             $_SESSION['catalog_id'] = $catalog;
-            getCtlgList($catalog,$conn);
+            getCtlgList($catalog);
         }
-        
+
         if (isset($_POST['btnAddToCtlg'])) {
+            $newcatlist = new catalog_list();
             $product_idToAdd = trim($_POST['product_idToAdd']);
-            $query4 = "INSERT INTO catalog_list (catlist_id, catalog_id, product_id) VALUES (?, ?, ?)";
-            $stmt4 = $conn->prepare($query4);
             //$lastCatList_id = (int)$lastCatList_id;
             $lastCatList_id = (int) $_SESSION['lastCatList_id'];
             $lastCatList_id++;
-            $stmt4->bindParam(1, $lastCatList_id);
-            $stmt4->bindParam(2, $_SESSION['catalog_id']);
-            $stmt4->bindParam(3, $product_idToAdd);
-            $stmt4->execute();
-            $catalog = $_SESSION['catalog_id'] ;
-            getCtlgList($catalog,$conn);
+            $newcatlist->catlist_id = $lastCatList_id;
+            $newcatlist->catalog_id = $_SESSION['catalog_id'];
+            $newcatlist->product_id = $product_idToAdd;
+
+            $catlistmapper->save($newcatlist);
+            $catalog = $_SESSION['catalog_id'];
+            getCtlgList($catalog);
         }
-        
-        function getCtlgList($catalog,$conn){
-            $query = "SELECT * FROM catalog_list WHERE catalog_id='" . $catalog . "'";
-            $stmt = $conn->prepare($query);
-            $stmt->execute();
+
+        function getCtlgList($catalog_id) {
+            $catmapper = new CatalogMapper();
+            $catlistmapper = new CatListMapper();
+            $prodmapper = new ProductMapper();
+            $stmt = $catlistmapper->getCatList($catalog_id);
+
             echo "<table border=\"1\"><tr><th>Catalog list ID</th><th>Catalog ID</th><th>Product ID</th><th>Product Name</th><th>Description</th><th>Total Stock</th><th>Delete</th></tr>";
 
             // loop through results of database query, displaying them in the table
@@ -65,9 +73,7 @@ and open the template in the editor.
             $rows = $stmt->rowCount();
             while ($row = $stmt->fetch()) {
                 // echo out the contents of each row into a table
-                $query2 = "SELECT * FROM product WHERE product_id='" . $row['product_id'] . "'";
-                $stmt2 = $conn->prepare($query2);
-                $stmt2->execute();
+                $stmt2 = $prodmapper->load($row['product_id']);
                 $row2 = $stmt2->fetch();
                 $prodInTheCatalog[$count] = $row['product_id'];
                 echo "<tr>";
@@ -80,20 +86,17 @@ and open the template in the editor.
                 echo '<td><a href="controller/deleteCatListItem.php?id=' . $row['catlist_id'] . '">Delete</a></td>';
                 echo "</tr>";
 
-                if ($count == $rows) {                    
+                if ($count == $rows) {
                     $lastCatList_id = $row['catlist_id'];
                     $_SESSION['lastCatList_id'] = $lastCatList_id;
                 }
                 $count++;
             }
-            echo "</table>";     
+            echo "</table>";
             echo '<h1><u>Add Product Into Catalog</u></h1>'
             . '<form action="newCatalogItem.php" method="POST">';
 
-            $query3 = "SELECT * FROM product";
-            $stmt3 = $conn->prepare($query3);
-            $stmt3->execute();
-
+            $stmt3 = $prodmapper->loadAll();
             $exists = 0;
             echo "<p>Product name:<select name = \"product_idToAdd\" id=\"product\">";
             while ($row = $stmt3->fetch()) {
