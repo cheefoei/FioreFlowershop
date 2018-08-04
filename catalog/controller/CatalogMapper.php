@@ -34,6 +34,8 @@ Class CatalogMapper {
 
     public function save($newcatalog) {
         // insert new record or edit in Database
+        $db = new connect_db();
+        $conn = $db->connectPDO();
         $query = "INSERT INTO catalog (catalog_id, name, description, date_created, date_expired) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(1, $newcatalog->catalog_id);
@@ -67,6 +69,16 @@ Class CatalogMapper {
         $stmt->execute();
         echo "<p>Product deleted successfully!</p><br/>";
     }
+    
+    public function getLastRow() {
+        // delete from Database
+        $db = new connect_db();
+        $conn = $db->connectPDO();
+        $query = "SELECT * FROM catalog ORDER BY catalog_id DESC LIMIT 1";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();        
+        return $stmt;
+    }   
 
 }
 

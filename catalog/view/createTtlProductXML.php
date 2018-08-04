@@ -5,14 +5,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once 'connect_db.php';
-$db = new connect_db();
-$conn = $db->connectPDO();
-$query = "SELECT * FROM product";
-$stmt = $conn->prepare($query);
-$stmt->execute();
+require_once '../controller/ProductMapper.php';
+$prodmapper = new ProductMapper();
+$stmt = $prodmapper->loadAll();
 
-$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="totalProduct.xsl"?><products></products>');
+$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="../totalProduct.xsl"?><products></products>');
 while ($row = $stmt->fetch()) {
     $track = $xml->addChild('product');
     $track->addChild('product_id', $row['product_id']);
