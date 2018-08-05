@@ -56,11 +56,11 @@ and open the template in the editor.
                 </fieldset>
                 <fieldset>
                     <p>Date Created:</p>
-                    <input placeholder="date_created" type="date" name="date_created" tabindex="5" required>
+                    <input placeholder="date_created" type="date" name="date_created" tabindex="5" value="<?php echo date("Y-m-d");?>" required>
                 </fieldset>
                 <fieldset>
                     <p>Date Expire:</p>
-                    <input placeholder="date_expired" type="date" name="date_expired" tabindex="6" required>
+                    <input placeholder="date_expired" type="date" name="date_expired" tabindex="6" value="<?php echo date("Y-m-30");?>" required>
                 </fieldset>
                 <fieldset>
                     <p>Total stock:</p>

@@ -41,11 +41,11 @@ and open the template in the editor.
                 </fieldset>
                 <fieldset>
                     <p>Date Created:</p>
-                    <input placeholder="date_created"type="date" name="date_created" tabindex="4" required>
+                    <input placeholder="date_created"type="date" name="date_created" tabindex="4" value="<?php echo date("Y-m-d");?>" required>
                 </fieldset>
                 <fieldset>
                     <p>Date Expire:</p>
-                    <input placeholder="date_expired" type="date" name="date_expired" tabindex="5" required>
+                    <input placeholder="date_expired" type="date" name="date_expired" tabindex="5" value="<?php echo date("Y-m-30");?>" required>
                 </fieldset>
                 <fieldset>
                     <button name="submit" type="submit" id="contact-submit">Submit</button>
