@@ -18,7 +18,7 @@ and open the template in the editor.
         $catmap = new CatalogMapper();
         $stmt = $catmap->loadAll();
 
-        echo "<table border=\"1\"><tr><th>Catalog ID</th><th>Name</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Edit</th><th>Delete</th></tr>";
+        echo "<table border=\"1\"><tr><th>Catalog ID</th><th>Name</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Edit</th></tr>";
 
         // loop through results of database query, displaying them in the table
 
@@ -31,7 +31,7 @@ and open the template in the editor.
             echo '<td>' . $row['date_created'] . '</td>';
             echo '<td>' . $row['date_expired'] . '</td>';
             echo '<td><a href="editCatalog.php?id=' . $row['catalog_id'] . '">Edit</a></td>';
-            echo '<td><a href="delete.php?id=' . $row['catalog_id'] . '">Delete</a></td>';
+            //echo '<td><a href="delete.php?id=' . $row['catalog_id'] . '">Delete</a></td>';
             echo "</tr>";
         }
 

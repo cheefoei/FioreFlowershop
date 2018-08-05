@@ -56,23 +56,23 @@ and open the template in the editor.
                 </fieldset>
                 <fieldset>
                     <p>Date Created:</p>
-                    <input placeholder="date_created" type="date" name="date_created" tabindex="4" required>
+                    <input placeholder="date_created" type="date" name="date_created" tabindex="5" required>
                 </fieldset>
                 <fieldset>
                     <p>Date Expire:</p>
-                    <input placeholder="date_expired" type="date" name="date_expired" tabindex="5" required>
+                    <input placeholder="date_expired" type="date" name="date_expired" tabindex="6" required>
                 </fieldset>
                 <fieldset>
                     <p>Total stock:</p>
-                    <input placeholder="total_stock" type="text" name="total_stock" tabindex="5" required>
+                    <input placeholder="total_stock" type="text" name="total_stock" tabindex="7" required>
                 </fieldset>
                 <fieldset>
                     <p>Price:</p>
-                    <input placeholder="Price" type="text" name="price" tabindex="5" required>
+                    <input placeholder="Price" type="text" name="price" tabindex="8" required>
                 </fieldset>
                 <fieldset>
                     <p>Weight:</p>
-                    <input placeholder="weight" type="text" name="weight" tabindex="5" required>
+                    <input placeholder="weight" type="text" name="weight" tabindex="9" required>
                 </fieldset>
                 <fieldset>
                     <button name="submit" type="submit" id="contact-submit">Submit</button>

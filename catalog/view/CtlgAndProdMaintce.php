@@ -20,8 +20,14 @@ and open the template in the editor.
         <br/>
         <a href="addNewProduct.php" target="_blank">Add New Product</a><br/>
         <a href="getAllProducts.php" target="_blank">Get All Product</a><br/>
+        <hr>
+        <br/>
+        <a href="newCatalog.php" target="_blank">Add New Catalog</a><br/>
+        <a href="getAllCatalog.php" target="_blank">Get All Catalog</a><br/>
+        <hr>
+        <br/>
+        <a href="newCatalogItem.php" target="_blank">Add item into Catalog</a><br/>
         <h3>Reporting</h3>
-
         <a href="createProductXML.php" target="_blank">Product Table</a><br/>
         <a href="createTtlProductXML.php" target="_blank">Product Statistic</a><br/>
     </body>

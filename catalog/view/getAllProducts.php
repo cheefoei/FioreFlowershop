@@ -18,7 +18,7 @@ and open the template in the editor.
 
         $prodmap = new ProductMapper();
         $stmt = $prodmap->loadAll();
-        echo "<table border=\"1\"><tr><th>Product ID</th><th>Name</th><th>Type</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Total stock</th><th>Price</th><th>Weight</th><th>Edit</th><th>Delete</th></tr>";
+        echo "<table border=\"1\"><tr><th>Product ID</th><th>Name</th><th>Type</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Total stock</th><th>Price</th><th>Weight</th><th>Edit</th></tr>";
         //echo "<tr>";
         // loop through results of database query, displaying them in the table
 
@@ -34,8 +34,8 @@ and open the template in the editor.
             echo '<td>' . $row['total_stock'] . '</td>';
             echo '<td>' . $row['price'] . '</td>';
             echo '<td>' . $row['weight'] . '</td>';
-            echo '<td><a href="edit.php?id=' . $row['product_id'] . '">Edit</a></td>';
-            echo '<td><a href="delete.php?id=' . $row['product_id'] . '">Delete</a></td>';
+            echo '<td><a href="editProduct.php?id=' . $row['product_id'] . '">Edit</a></td>';
+            //echo '<td><a href="delete.php?id=' . $row['product_id'] . '">Delete</a></td>';
             echo "</tr>";
         }
 
