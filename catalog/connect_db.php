@@ -8,7 +8,7 @@ class connect_db {
     private $user = "root";
     private $password = "";
     //private $db = "floralassignment_db";
-    private $db = "flower";
+    private $db = "flowershop_db";
 
     // Connecting to database
     public function connect() {
