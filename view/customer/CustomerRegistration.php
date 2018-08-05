@@ -19,7 +19,7 @@
         <br/>
         <br/>
 
-        <form class="form-horizontal" action="doCreateCustomer">
+        <form class="form-horizontal" action="../../controller/customer/create_customer.php">
             <div class="form-group">
                 <label class="control-label col-sm-2">Customer Type</label>
                 <div class="col-sm-10">
