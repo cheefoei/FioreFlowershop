@@ -7,7 +7,7 @@ class database {
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $name = 'flower';
+    private $name = 'flowershop_db';
 
     // The db connection is established in the private constructor.
     private function __construct() {
