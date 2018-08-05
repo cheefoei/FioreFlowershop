@@ -23,18 +23,29 @@ and open the template in the editor.
         $catmapper = new CatalogMapper();
         $cat = new catalog();
         $catlistmapper = new CatListMapper();
-        
+//        $catalog = 0;
         $lastCatList_id = 0;
         $prodInTheCatalog = [];
 
 
         $stmt = $catmapper->loadAll();
 
+//        if (isset($_SESSION['red_catalog_id'])) {
+//            //Do stuff
+//            $catalog = $_SESSION['red_catalog_id'];
+//            getCtlgList($catalog);
+//            unset($_SESSION['red_catalog_id']);
+//        }
+
         echo '<form action="newCatalogItem.php" method="POST">';
         echo "<p>Catalog name:<select name = \"catalog\" id=\"catalog\">";
         while ($row = $stmt->fetch()) {
             // echo out the contents of each row into a table
-            echo '<option value="' . $row['catalog_id'] . '">' . $row['catalog_id'] . " - " . $row['name'] . '</option>';
+            echo '<option value="' . $row['catalog_id'];
+//            if ($row['catalog_id'] == $catalog) {
+//                echo 'selected';
+//            }
+            echo '">' . $row['catalog_id'] . " - " . $row['name'] . '</option>';
         }
         echo "</select></p>";
         echo '<button type="submit" name="add">Get Catalog Item</button></p></form>';
@@ -54,18 +65,18 @@ and open the template in the editor.
             $newcatlist->catlist_id = $lastCatList_id;
             $newcatlist->catalog_id = $_SESSION['catalog_id'];
             $newcatlist->product_id = $product_idToAdd;
-
             $catlistmapper->save($newcatlist);
             $catalog = $_SESSION['catalog_id'];
             getCtlgList($catalog);
         }
 
         function getCtlgList($catalog_id) {
+            //ob_end_clean();
             $catmapper = new CatalogMapper();
             $catlistmapper = new CatListMapper();
             $prodmapper = new ProductMapper();
             $stmt = $catlistmapper->getCatList($catalog_id);
-
+            $_SESSION['red_catalog_id'] = $catalog_id;
             echo "<table border=\"1\"><tr><th>Catalog list ID</th><th>Catalog ID</th><th>Product ID</th><th>Product Name</th><th>Description</th><th>Total Stock</th><th>Delete</th></tr>";
 
             // loop through results of database query, displaying them in the table
@@ -83,7 +94,7 @@ and open the template in the editor.
                 echo '<td>' . $row2['product_name'] . '</td>';
                 echo '<td>' . $row2['product_description'] . '</td>';
                 echo '<td>' . $row2['total_stock'] . '</td>';
-                echo '<td><a href="controller/deleteCatListItem.php?id=' . $row['catlist_id'] . '">Delete</a></td>';
+                echo '<td><a href="../controller/deleteCatListItem.php?id=' . $row['catlist_id'] .'">Delete</a></td>';
                 echo "</tr>";
 
                 if ($count == $rows) {

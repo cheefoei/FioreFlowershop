@@ -51,7 +51,7 @@ class CatListMapper {
         $stmt = $conn->prepare($query);
         $stmt->bindParam(1, $newcatlist->catlist_id);
         $stmt->bindParam(2, $newcatlist->catalog_id);
-        $stmt->bindParam(3, $newproduct->product_id);
+        $stmt->bindParam(3, $newcatlist->product_id);
         $stmt->execute();
     }
 

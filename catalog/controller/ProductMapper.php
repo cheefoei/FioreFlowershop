@@ -70,6 +70,16 @@ Class ProductMapper {
         echo "<p>Product deleted successfully!</p><br/>";
     }
 
+    public function getLastRow() {
+        // delete from Database
+        $db = new connect_db();
+        $conn = $db->connectPDO();
+        $query = "SELECT * FROM product ORDER BY product_id DESC LIMIT 1";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();        
+        return $stmt;
+    }
+    
 }
 
 ?>
