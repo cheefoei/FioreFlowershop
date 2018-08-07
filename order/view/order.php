@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo '<table>
             <thead>
             <td>Flower Name</td>
+            <td>Flower Type</td>
             <td>Flower Description</td>
             <td>Price (RM)</td>
             <td>Weight (G)</td>
@@ -88,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($product[$a]['total_stock'] > 1) {
                         echo '<form action="" method="post">';
                         echo '<tr><td>' . $product[$a]['product_name'] . '</td>';
+                        echo '<td>' . $product[$a]['product_type'] . '</td>';
                         echo '<td>' . $product[$a]['product_description'] . '</td>';
                         echo '<td>' . $product[$a]['price'] . '</td>';
                         echo '<td>' . $product[$a]['weight'] . '</td>';

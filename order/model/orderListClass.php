@@ -10,9 +10,9 @@
 
 class OrderList {
 
-    private $order_id;
-    private $product_id;
-    private $quantity;
+    public $order_id;
+    public $product_id;
+    public $quantity;
 
     public function __construct(int $order_id, int $product_id, int $quantity) {
         $this->product_id = $product_id;

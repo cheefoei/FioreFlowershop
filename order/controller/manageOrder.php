@@ -18,20 +18,20 @@ class manageOrder {
         $this->conn = $db->getConnection();
     }
 
-    public function addOrder($cust_id, $amount) {
+    public function addOrder($order) {
         $stmt = $this->conn->prepare("INSERT INTO floral_order(customer_id,total_amount) VALUES(?,?)");
-        $stmt->bindParam(1, $cust_id);
-        $stmt->bindParam(2, $amount);
+        $stmt->bindParam(1, $order->customer_id);
+        $stmt->bindParam(2, $order->total_amount);
         $stmt->execute();
 
         return $this->conn->lastInsertId();
     }
 
-    public function addOrderList($order_id, $product_id, $quantity) {
+    public function addOrderList($orderList) {
         $stmt = $this->conn->prepare("INSERT INTO order_list(order_id,product_id,quantity) VALUES(?,?,?)");
-        $stmt->bindParam(1, $order_id);
-        $stmt->bindParam(2, $product_id);
-        $stmt->bindParam(3, $quantity);
+        $stmt->bindParam(1, $orderList->order_id);
+        $stmt->bindParam(2, $orderList->product_id);
+        $stmt->bindParam(3, $orderList->quantity);
         $stmt->execute();
     }
 
