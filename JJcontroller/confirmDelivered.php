@@ -1,29 +1,20 @@
 <?php
 
-//include 'C:\xampp\htdocs\Assignment\model\database.php';
 include 'database2.php';
-//require '..\\JJmodel\Piclup.php';
-
-
-
 
 try {
-    if (isset($_POST['save'])) {
+    if (isset($_POST['update'])) {
         $testid = $_POST['orderID'];
-        $testdate = $_POST['pickupdate'];
-        $testdate2 = $_POST['pickupdate'];
-        $time = $_POST['pickuptime'];
-        $staffID = "A1001";
-        $newpickup = new Piclup($testdate, $testdate2, $testid, $staffID, $time);
-        //$pickupnow= new Piclup($pickupdate, $paydate, $orderID, $staffID);
+        $testdate = $_POST['deliveredDate'];
+        $testdate2 = $_POST['deliveredDate'];
+        $time = $_POST['deliveredTime'];
         //$database = new database();
         //$database = database::getInstance();
-        $database = Database::getInstance()->update($newpickup);
-        // $database3 = Database::getInstance()->update($pickupnow);
+        $newDelivery = new Delivery($testdate, $time, $testdate2, $testid);
+        $database = Database::getInstance()->updateDelivery($newDelivery);
         $database2 = Database::getInstance()->updateOrder($testid);
-        echo"Customer Pickup The Order.<br>";
-        //echo"Pickup Date change from null to";
-        //echo '<a href="..\JJview\View.php">Back to Confirm Delivered</a>';
+        echo"The Order is Delivered.<br>";
+
     }
 } catch (PDOException $e) {
     die("ERROR: Could not able to execute $sql. " . $e->getMessage());
@@ -99,4 +90,3 @@ $datesSimulator->addPickup($pickup1);
 echo "<hr />";
 $datesSimulator->updatestatus();
 ?>
-

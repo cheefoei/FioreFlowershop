@@ -21,6 +21,8 @@
                             <th>Description</th>
                             <th>Date Created</th>
                             <th>Date Expire</th>
+                            <th>Products</th>
+                            <th>Total products</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,10 +43,40 @@
                                 <td>
                                     <xsl:value-of select="date_expired" />
                                 </td>
+                                <td>
+                                    <xsl:value-of select="products" />                   
+                                </td>
+                                <td>                                  
+                                    <xsl:value-of select="total_product" />
+                                </td>
                             </tr>
                         </xsl:for-each>
                     </tbody>
-                </table>       
+                </table>
+                <xsl:variable name="latest">
+                    <xsl:for-each select="catalogs/catalog">
+                        <xsl:sort select="date_created" order="descending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="date_created"/>&#160;with product id:
+                            <xsl:value-of select="catalog_id"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+               <xsl:variable name="expired">
+                    <xsl:for-each select="catalogs/catalog">
+                        <xsl:sort select="date_expired" order="descending" />
+                        <xsl:if test="position() = 1">
+                            <xsl:value-of select="date_expired"/>&#160;with product id:
+                            <xsl:value-of select="catalog_id"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:variable>
+                <p>
+                    Total of catalog in database is <xsl:value-of select="count(//catalog)"/> item(s).
+                    <br/>
+                    Latest created item is <xsl:value-of select="$latest"/>  .<br/>
+                    The latest item is expired is <xsl:value-of select="$expired"/>  .<br/>
+                </p>     
             </body>
         </html>
     </xsl:template>
