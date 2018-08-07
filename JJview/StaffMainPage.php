@@ -11,7 +11,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Welcome to Flora Flowershop</title>
 
-      
+        <?php
+        include '../header.php';
+        ?>
 
     </head>
 
