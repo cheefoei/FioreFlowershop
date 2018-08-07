@@ -9,7 +9,7 @@ include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
         <title></title>
     </head>
     <body>
-        <table>
+        <table border="1">
             <tr>
                 <th>Order ID</th>
                 <th>Order Date</th>
