@@ -1,4 +1,4 @@
-SET time_zone = "+08:00"
+SET time_zone = "+08:00";
 
 CREATE TABLE customer (
 	customer_id 			int NOT NULL AUTO_INCREMENT,
