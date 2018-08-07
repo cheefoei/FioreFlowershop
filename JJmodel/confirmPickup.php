@@ -1,7 +1,8 @@
 <?php
 
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
-include 'C:\xampp\htdocs\Assignment\JJmodel\database2.php';
+include 'database2.php';
+//require '..\\JJmodel\Piclup.php';
 
 
 
@@ -12,9 +13,13 @@ try {
         $testdate = $_POST['pickupdate'];
         $testdate2 = $_POST['pickupdate'];
         $time=$_POST['pickuptime'];
+        $staffID="A1001";
+        $newpickup = new Piclup($testdate,$testdate2,$testid,$staffID,$time);
+        //$pickupnow= new Piclup($pickupdate, $paydate, $orderID, $staffID);
         //$database = new database();
         //$database = database::getInstance();
-        $database = Database::getInstance()->update($testdate,$testdate2,$testid,$time);
+        $database = Database::getInstance()->update($newpickup);
+       // $database3 = Database::getInstance()->update($pickupnow);
         $database2 = Database::getInstance()->updateOrder($testid);
         echo"Customer Pickup The Order.<br>";
         echo"Pickup Date $testdate";

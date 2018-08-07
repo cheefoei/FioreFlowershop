@@ -10,7 +10,8 @@ try {
         $time=$_POST['deliveredTime'];
         //$database = new database();
         //$database = database::getInstance();
-        $database = Database::getInstance()->updateDelivery($testdate,$testdate2,$testid,$time);
+        $newDelivery = new Delivery($testdate, $time, $testdate2, $testid);
+        $database = Database::getInstance()->updateDelivery($newDelivery);
         $database2 = Database::getInstance()->updateOrder($testid);
         echo"The Order is Delivered.<br>";
         echo"Pickup Date $testdate <br>";

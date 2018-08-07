@@ -1,5 +1,8 @@
 <?php
 
+require 'Piclup.php';
+require 'Delivery.php';
+
 class Database {
 
     private static $instance = null;
@@ -78,13 +81,22 @@ class Database {
         return $result;
     }
 
-    public function update($testdate, $testdate2, $id, $time) {
-        $query = "UPDATE self_pickup SET pickupDate= '$testdate', paymentDate= '$testdate2', payTime= '$time', status='$this->status' where orderID='$id'";
+    public function update($newPickup) {
+        //$newpickup = new Piclup();
+        $newstaffID = $newPickup->staffID;
+        $newdate = $newPickup->paydate;
+        $newid = $newPickup->orderID;
+        $time=$newPickup->time;
+        $query = "UPDATE self_pickup SET pickupDate= '$newdate', paymentDate= '$newdate', payTime= '$time', status='$this->status' where orderID='$newid'";
         $this->_query = $this->conn->prepare($query);
         $this->_query->execute();
     }
 
-    public function updateDelivery($testdate, $testdate2, $id, $time) {
+    public function updateDelivery($newDelivery) {
+        $testdate=$newDelivery->Ddate;
+        $testdate2=$newDelivery->paytime;
+        $time=$newDelivery->Dtime;
+        $id=$newDelivery->orderID;
         $query = "UPDATE delivery SET deliveredDate= '$testdate', paymentDate= '$testdate2', payTime= '$time', status='$this->deliverystatus' where orderID='$id'";
         $this->_query = $this->conn->prepare($query);
         $this->_query->execute();

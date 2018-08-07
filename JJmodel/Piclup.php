@@ -1,21 +1,15 @@
 <?php
 
-abstract class Piclup{
-    private $status;
-    private $paydate;
-    private $orderID;
-    private $custID;
-    private $staffID;
-    
-    public function __construct($status, $paydate, $orderID, $custID, $staffID) {
-        $this->status = $status;
-        $this->paydate = $paydate;
-        $this->orderID = $orderID;
-        $this->custID = $custID;
-        $this->staffID = $staffID;
-    }
-    function getStatus() {
-        return $this->status;
+class Piclup {
+
+    public $pickupdate;
+    public $paydate;
+    public $orderID;
+    public $staffID;
+    public $time;
+
+    function getPickupdate() {
+        return $this->pickupdate;
     }
 
     function getPaydate() {
@@ -26,16 +20,12 @@ abstract class Piclup{
         return $this->orderID;
     }
 
-    function getCustID() {
-        return $this->custID;
-    }
-
     function getStaffID() {
         return $this->staffID;
     }
 
-    function setStatus($status) {
-        $this->status = $status;
+    function setPickupdate($pickupdate) {
+        $this->pickupdate = $pickupdate;
     }
 
     function setPaydate($paydate) {
@@ -46,16 +36,18 @@ abstract class Piclup{
         $this->orderID = $orderID;
     }
 
-    function setCustID($custID) {
-        $this->custID = $custID;
-    }
-
     function setStaffID($staffID) {
         $this->staffID = $staffID;
     }
 
+    function __construct($pickupdate, $paydate, $orderID, $staffID, $time) {
+        $this->pickupdate = $pickupdate;
+        $this->paydate = $paydate;
+        $this->orderID = $orderID;
+        $this->staffID = $staffID;
+        $this->time = $time;
+    }
 
-
-    
 }
+
 ?>
