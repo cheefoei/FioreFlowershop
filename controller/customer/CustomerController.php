@@ -28,7 +28,10 @@ class CustomerController {
 
     function AuthCustomer($customer) {
 
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
         if ($customer instanceof Customer) {
 
             //Check email and password from database
@@ -37,6 +40,7 @@ class CustomerController {
 
             if ($stmt->rowCount() == 1) {
                 $_SESSION['customer'] = $customer;
+                header("Location: ../../view/customer/CustomerMainPage.php");
             } else {
                 $_SESSION['customer_login_error'] = "Your username or password is not correct.";
             }
@@ -80,9 +84,22 @@ class CustomerController {
             }
         }
 
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $_SESSION['customer_reg'] = $response;
     }
 
+    function CustomerLogout() {
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (session_destroy()) {
+            header("Location: ../../index.php");
+        }
+    }
+
 }
+
 ?>

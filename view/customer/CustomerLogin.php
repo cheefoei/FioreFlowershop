@@ -15,8 +15,18 @@ Name: Leong Chee Foei
         include '../../header.php';
         require_once '../../controller/customer/CustomerController.php';
 
-        $CustomerController = new CustomerController();
+        // Check any user already log in
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION['customer'])) {
+            header("Location: CustomerMainPage.php");
+        }
+        if (isset($_SESSION['staff'])) {
+            header("Location: ../../JJview/StaffMainPage.php");
+        }
 
+        $CustomerController = new CustomerController();
         if (isset($_POST['login'])) {
 
             $email = $CustomerController->test_input($_POST['email']);

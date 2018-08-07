@@ -15,6 +15,17 @@ Name: Leong Chee Foei
         include '../../header.php';
         require_once '../../controller/customer/CustomerController.php';
 
+        // Check any user already log in
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION['customer'])) {
+            header("Location: CustomerMainPage.php");
+        }
+        if (isset($_SESSION['staff'])) {
+            header("Location: ../../JJview/StaffMainPage.php");
+        }
+
         $CustomerController = new CustomerController();
         $password_error = '';
 

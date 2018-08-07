@@ -12,6 +12,20 @@ CREATE TABLE customer (
     	customer_password 		varchar(255) NOT NULL,
     	PRIMARY KEY(customer_id)
 )
+INSERT INTO `customer` (`customer_id`, `customer_type`, `customer_fname`, `customer_lname`, `customer_email`, `customer_phone_number`, `customer_address`, `customer_monthly_credit_limit`, `customer_password`) VALUES
+(1, 'Corporate', 'Chris', 'Evans', 'chris@email.com', '01113366644', '20, Jalan 14/27b, Desa Setapak, 53300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur', '1000.00', '1234');
+
+CREATE TABLE `user` (
+	user_id 			int NOT NULL AUTO_INCREMENT,
+	user_type 			varchar(10) NOT NULL DEFAULT 'staff',
+    	user_name 			varchar(255) NOT NULL,
+    	user_status 			varchar(255) NOT NULL,
+    	user_password                   varchar(255) NOT NULL,
+    	PRIMARY KEY(user_id)
+)
+INSERT INTO `user` (`user_type`, `user_name`, `user_status`, `user_password`) VALUES 
+('staff', 'Lim Jun Kit', 'dont know', '1234'),
+('admin', 'Nimda', 'dont know', '1234')
 
 CREATE TABLE floral_order (
   	id	 	int(11) NOT NULL AUTO_INCREMENT,
