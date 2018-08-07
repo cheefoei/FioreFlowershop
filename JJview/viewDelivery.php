@@ -53,7 +53,7 @@ include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
                     echo "<td>$time</td>";
                     echo "<td>$staffID</td>";
                     echo "<td>$status</td>";
-                    echo '<td><a href="JJview/ConfirmDelivery.php?update=' . $row['orderID'] . '">Confirm Delivered</a></td>';
+                    echo '<td><a href="ConfirmDelivery.php?update=' . $row['orderID'] . '">Confirm Delivered</a></td>';
                    
                     echo "</tr>";
                 }

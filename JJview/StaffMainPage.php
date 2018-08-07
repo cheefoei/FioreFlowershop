@@ -26,14 +26,14 @@ and open the template in the editor.
             <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-body" style="text-align: center">
-                        <a href="JJview/View.php">Update Pick Up</a>
+                        <a href="View.php">Update Pick Up</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-body" style="text-align: center">
-                        <a href="JJview/viewDelivery.php">Update Delivery</a>
+                        <a href="viewDelivery.php">Update Delivery</a>
                     </div>
                 </div>
             </div>
