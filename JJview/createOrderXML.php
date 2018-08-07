@@ -1,5 +1,5 @@
 <?php
-include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
+include '../JJcontroller\database2.php';
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="Order2_XSL.xsl"?><Orders></Orders>');
 $result = Database::getInstance()->query5();
 $pickupDate = trim(date("Y-m-d"));

@@ -1,6 +1,6 @@
 <?php
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
-include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
+include '../JJcontroller/database2.php';
 //require_once 'C:\xampp\htdocs\Assignment\JJmodel\Delivery.php';
 ?>
 <html>
