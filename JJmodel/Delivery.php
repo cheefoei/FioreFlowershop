@@ -1,25 +1,49 @@
 <?php
-
-class Delivery {
-
-    private $deliverydate;
-
-    function __construct($status, $paydate, $orderID, $custID, $staffID, $deliverydate) {
-        parent::__construct($status, $paydate, $orderID, $custID, $staffID);
-        $this->deliverydate = $deliverydate;
+class Delivery{
+    
+    public $Ddate;
+    public $Dtime;
+    public $paytime;
+    public $orderID;
+    function getDdate() {
+        return $this->Ddate;
     }
 
-    public function set($name, $value) {
-        if (property_exists($this, $name))
-            $this->$name = $value;
-        else
-            parent::__set($name, $value);
+    function getDtime() {
+        return $this->Dtime;
     }
 
-    public function get($name) {
-        return $this->$name;
+    function getPaytime() {
+        return $this->paytime;
+    }
+
+    function getOrderID() {
+        return $this->orderID;
+    }
+
+    function setDdate($Ddate) {
+        $this->Ddate = $Ddate;
+    }
+
+    function setDtime($Dtime) {
+        $this->Dtime = $Dtime;
+    }
+
+    function setPaytime($paytime) {
+        $this->paytime = $paytime;
+    }
+
+    function setOrderID($orderID) {
+        $this->orderID = $orderID;
+    }
+
+    function __construct($Ddate, $Dtime, $paytime, $orderID) {
+        $this->Ddate = $Ddate;
+        $this->Dtime = $Dtime;
+        $this->paytime = $paytime;
+        $this->orderID = $orderID;
     }
 
 }
-?>
 
+?>

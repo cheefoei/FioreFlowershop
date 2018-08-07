@@ -18,20 +18,20 @@ class manageOrder {
         $this->conn = $db->getConnection();
     }
 
-    public function addOrder($cust_id, $amount) {
+    public function addOrder($order) {
         $stmt = $this->conn->prepare("INSERT INTO floral_order(customer_id,total_amount) VALUES(?,?)");
-        $stmt->bindParam(1, $cust_id);
-        $stmt->bindParam(2, $amount);
+        $stmt->bindParam(1, $order->customer_id);
+        $stmt->bindParam(2, $order->total_amount);
         $stmt->execute();
 
         return $this->conn->lastInsertId();
     }
 
-    public function addOrderList($order_id, $product_id, $quantity) {
+    public function addOrderList($orderList) {
         $stmt = $this->conn->prepare("INSERT INTO order_list(order_id,product_id,quantity) VALUES(?,?,?)");
-        $stmt->bindParam(1, $order_id);
-        $stmt->bindParam(2, $product_id);
-        $stmt->bindParam(3, $quantity);
+        $stmt->bindParam(1, $orderList->order_id);
+        $stmt->bindParam(2, $orderList->product_id);
+        $stmt->bindParam(3, $orderList->quantity);
         $stmt->execute();
     }
 
@@ -97,32 +97,6 @@ class manageOrder {
         }
     }
 
-    public function addDelivery($custName, $custID, $orderID, $orderDate, $deliveryAddress, $deliveredDate, $payment) {
-        $status = "Pending";
-        $stmt = $this->conn->prepare("INSERT INTO delivery(custName,custID,status,orderID, orderDate, deliveryAddress, deliveredDate,Payment) VALUES(?,?,?,?,?,?,?,?)");
-        $stmt->bindParam(1, $custName);
-        $stmt->bindParam(2, $custID);
-        $stmt->bindParam(3, $status);
-        $stmt->bindParam(4, $orderID);
-        $stmt->bindParam(5, $orderDate);
-        $stmt->bindParam(6, $deliveryAddress);
-        $stmt->bindParam(7, $deliveredDate);
-        $stmt->bindParam(8, $payment);
-        $stmt->execute();
-    }
-
-    public function addPickUp($custName, $custID, $orderID, $orderDate, $pickupDate, $payment) {
-        $status = "Pending";
-        $stmt = $this->conn->prepare("INSERT INTO self_pickup(custName,custID,status,OrderID, orderDate, pickupDate,Payment) VALUES(?,?,?,?,?,?,?)");
-        $stmt->bindParam(1, $custName);
-        $stmt->bindParam(2, $custID);
-        $stmt->bindParam(3, $status);
-        $stmt->bindParam(4, $orderID);
-        $stmt->bindParam(5, $orderDate);
-        $stmt->bindParam(6, $pickupDate);
-        $stmt->bindParam(7, $payment);
-        $stmt->execute();
-    }
     
     public function test(){
         $stmt = $this->conn->prepare("SELECT * FROM floral_order");

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+date_default_timezone_set("Asia/Kuala_Lumpur");
 $pickupDate = trim(date("Y-m-d"));
 $time = trim(date('H:i:s'));
 if (isset($_GET['edit'])) {

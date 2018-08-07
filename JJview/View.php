@@ -52,7 +52,7 @@ include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
                     echo "<td>$time</td>";
                     echo "<td>$staffID</td>";
                     echo "<td>$status</td>";
-                    echo '<td><a href="JJview/ConfirmPickup.php?edit=' . $row['OrderID'] . '">Confirm Pickup</a></td>';
+                    echo '<td><a href="ConfirmPickup.php?edit=' . $row['OrderID'] . '">Confirm Pickup</a></td>';
                     echo "</tr>";
                 }
             }

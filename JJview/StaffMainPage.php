@@ -1,9 +1,9 @@
-<?php
-//include_once 'C:\xampp\htdocs\FioreFlowershop\JJcontroller\controller.php';
-//$controller = new controller();
-//$controller->invoke();
-?>
-
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
 
     <head>
@@ -11,16 +11,14 @@
         <meta charset="UTF-8">
         <title>Welcome to Flora Flowershop</title>
 
-        <?php
-        include 'header.php';
-        ?>
+      
 
     </head>
 
     <body class="container">
 
         <br/>
-        <h2>Welcome to Flora Flowershop</h2>
+        <h2>Staff Main Pages</h2>
         <br/>
         <br/>
 
@@ -28,14 +26,14 @@
             <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-body" style="text-align: center">
-                        <a href="view/customer/CustomerLogin.php">Customer</a>
+                        <a href="View.php">Update Pick Up</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-body" style="text-align: center">
-                        <a href="view/customer/CustomerLogin.php">Staff</a>
+                        <a href="viewDelivery.php">Update Delivery</a>
                     </div>
                 </div>
             </div>

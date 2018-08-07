@@ -22,7 +22,7 @@ class catalog {
         //$stmt = $this->conn->prepare("SELECT * from product");
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $stmt = $this->conn->prepare("SELECT c.catalog_id, p.product_id, p.product_name, p.product_description, p.date_expired, p.total_stock, p.price, p.weight, cl.catlist_id FROM product p, catalog c, catalog_list cl WHERE p.product_id = cl.product_id AND cl.catalog_id = c.catalog_id");
+        $stmt = $this->conn->prepare("SELECT c.catalog_id, p.product_id, p.product_type, p.product_name, p.product_description, p.date_expired, p.total_stock, p.price, p.weight, cl.catlist_id FROM product p, catalog c, catalog_list cl WHERE p.product_id = cl.product_id AND cl.catalog_id = c.catalog_id");
         $stmt->execute();
         $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
