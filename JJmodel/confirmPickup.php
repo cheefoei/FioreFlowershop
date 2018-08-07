@@ -2,6 +2,7 @@
 
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
 include 'database2.php';
+include'Observer.php';
 //require '..\\JJmodel\Piclup.php';
 
 
@@ -24,6 +25,16 @@ try {
         echo"Customer Pickup The Order.<br>";
         //echo"Pickup Date change from null to";
         //echo '<a href="..\JJview\View.php">Back to Confirm Delivered</a>';
+        $datesSimulator = new dateSimulator();
+
+        $pickup1 = new Pound('Pending');
+//$currency2 = new Yen(122);
+
+        $datesSimulator->addPickup($pickup1);
+//$priceSimulator->addCurrency($currency2);
+
+        echo "<hr />";
+        $datesSimulator->updatestatus();
     }
 } catch (PDOException $e) {
     die("ERROR: Could not able to execute $sql. " . $e->getMessage());
@@ -79,24 +90,15 @@ class Pound implements Pickup {
     public function getPickup() {
         return return_date();
     }
-
-}
-
-function return_date() {
+    
+    function return_date() {
     date_default_timezone_set("Asia/Kuala_Lumpur");
     $testdate2 = trim(date("Y-m-d"));
     return $testdate2;
 }
 
-$datesSimulator = new dateSimulator();
+}
 
-$pickup1 = new Pound('Pending');
-//$currency2 = new Yen(122);
 
-$datesSimulator->addPickup($pickup1);
-//$priceSimulator->addCurrency($currency2);
-
-echo "<hr />";
-$datesSimulator->updatestatus();
 ?>
 
