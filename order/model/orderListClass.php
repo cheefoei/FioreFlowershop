@@ -20,24 +20,4 @@ class OrderList {
         $this->order_id = $order_id;
     }
 
-    public function getQuantity() {
-        return $this->quantity;
-    }
-
-    public function getOrder_id() {
-        return $this->order_id;
-    }
-
-    public function getProduct_id() {
-        return $this->product_id;
-    }
-
-    public function setQuantity(int $quantity) {
-        $this->quantity = $quantity;
-    }
-    
-    public function addQuantity(int $quantity) {
-        $this->quantity = $this->quantity + $quantity;
-    }
-
 }
