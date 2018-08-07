@@ -3,6 +3,7 @@ include '../../header.php';
 require '../controller/manageOrder.php';
 require '../model/orderClass.php';
 require '../model/orderListClass.php';
+require '../controller/shippingClass.php';
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
@@ -21,15 +22,19 @@ if (isset($_POST['submit'])) {
 
 
     if (isset($_POST['checkOutType'])) {
-
+            $shipping = new Shipping;
         if ($_POST['checkOutType'] == "delivery") {
-            $orderHelper->addDelivery("asdasdasd", 1, $id, date('Y-m-d h:i:s'), "Kuala LIm[pr", $_POST['date'], $_SESSION['total']);
+            $shipping->shipping("delivery");
+            $test = $shipping->getShippingMethod();
+            $test->addDelivery("asdasdasd", 1, $id, date('Y-m-d h:i:s'), "Kuala LIm[pr", $_POST['date'], $_SESSION['total']);
             //$order->addDelivery ($custName, $custID, $orderID, $orderDate, $deliveryAddress, $deliveredDate);
             echo '<script language="javascript">';
             echo 'alert("Your order '.date('Y-m-d h:i:s').' is estimated to be arrived at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '")';
             echo '</script>';
         } elseif ($_POST['checkOutType'] == "pickup") {
-            $orderHelper->addPickUp("asdasdasd", 1, $id, date('Y-m-d h:i:s'), $_POST['date'], $_SESSION['total']);
+            $shipping->shipping("pickup");
+            $test = $shipping->getShippingMethod();
+            $test->addPickUp("asdasdasd", 1, $id, date('Y-m-d h:i:s'), $_POST['date'], $_SESSION['total']);
             echo '<script language="javascript">';
             echo 'alert("You can '.date('Y-m-d h:i:s').' pick up your order at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '")';
             echo '</script>';
