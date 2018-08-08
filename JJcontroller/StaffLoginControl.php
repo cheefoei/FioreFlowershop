@@ -25,8 +25,11 @@ class StaffLoginControl {
             $stmt->execute(array(':user_id' => $user->getId(), ':user_password' => $user->getPassword()));
 
             if ($stmt->rowCount() == 1) {
+                while ($row = $stmt->fetch()){
+                $user->setType($row['user_type']);
                 $_SESSION['staff'] = $user;
                 header("Location: ../JJview/StaffMainPage.php");
+                }
             } else {
                 $_SESSION['staff_login_error'] = "Your user ID or password is not correct.";
             }

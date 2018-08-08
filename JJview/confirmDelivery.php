@@ -6,11 +6,11 @@ $time = trim(date('H:i:s'));
 if (isset($_GET['update'])) {
     $id = $_GET['update'];
     //require_once 'C:\xampp\htdocs\Assignment\model\Delivery.php';
-    include '../JJcontroller/database2.php';
+    include '../JJcontroller/DeliveryDatabase.php';
 }
 ?>
 <?php
-$result = Database::getInstance()->query4($id);
+$result = DeliveryDatabase::getInstance()->query4($id);
 foreach ($result as $row) {
     $name = $row['custName'];
     $custid = $row['custID'];

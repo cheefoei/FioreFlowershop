@@ -1,6 +1,6 @@
 <?php
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
-include '../JJcontroller/database2.php';
+include '../JJcontroller/DeliveryDatabase.php';
 //require_once 'C:\xampp\htdocs\Assignment\JJmodel\Delivery.php';
 ?>
 <html>
@@ -25,7 +25,7 @@ include '../JJcontroller/database2.php';
             </tr>
 
             <?php
-            $result = Database::getInstance()->query2();
+            $result = DeliveryDatabase::getInstance()->query2();
             foreach ($result as $row) {
                 if ($row['status'] == "Pending") {
                     $orderDate = $row['orderDate'];
@@ -58,7 +58,8 @@ include '../JJcontroller/database2.php';
                     echo "</tr>";
                 }
             }
-            // print_r($result); //print whole array
+            session_start();
+            session_destroy();
             ?>
     </table>
         

@@ -1,6 +1,8 @@
 <?php
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
-include '../JJcontroller\database2.php';
+include_once '../JJcontroller/PickupDatabase.php';
+//include_once '../JJcontroller/Facade.php'; 
+
 ?>
 <html>
     <head>
@@ -26,7 +28,9 @@ include '../JJcontroller\database2.php';
             <?php
             //$database = new database();
             //$database->createconnection();
-            $result = Database::getInstance()->query();
+            //$class = new Facade();
+            $result = PickupDatabase::getInstance()->query();
+            //$result=$class->getAllpickup();
             foreach ($result as $row) {
                 if ($row['status'] == "Pending") {
                     $orderDate = $row['orderDate'];
@@ -57,6 +61,7 @@ include '../JJcontroller\database2.php';
                 }
             }
             // print_r($result); //print whole array
+        
             ?>
     </table>
         
