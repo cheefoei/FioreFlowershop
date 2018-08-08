@@ -79,7 +79,7 @@
                             <xsl:if test="@type = 'Corporate'">
                                 <tr>
                                     <th class="col-sm-4">
-                                        <strong>Monthly Credit Limit</strong>
+                                        <strong>Monthly Credit Limit (RM)</strong>
                                     </th>
                                     <td class="col-sm-4">
                                         <xsl:value-of select="monthlyCreditLimit" />

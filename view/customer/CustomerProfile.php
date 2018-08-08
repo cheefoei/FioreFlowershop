@@ -1,7 +1,7 @@
 <?php
 
-require_once '../../controller/customer/CustomerController.php';
+require_once '../../controller/CustomerServicer.php';
 
-$CustomerController = new CustomerController();
-$CustomerController->CreateCustomerXML();
+$CustomerServicer = new CustomerServicer();
+$CustomerServicer->CreateCustomerXML();
 

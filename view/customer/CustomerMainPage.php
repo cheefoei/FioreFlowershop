@@ -12,7 +12,7 @@ Name: Leong Chee Foei
 
         <?php
         include '../../header.php';
-        require_once '../../controller/customer/CustomerController.php';
+        require_once '../../controller/CustomerServicer.php';
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -21,9 +21,9 @@ Name: Leong Chee Foei
             header("Location: ../../index.php");
         }
 
-        $CustomerController = new CustomerController();
+        $CustomerServicer = new CustomerServicer();
         if (isset($_GET['logout'])) {
-            $CustomerController->CustomerLogout();
+            $CustomerServicer->CustomerLogout();
         }
         ?>
     </head>

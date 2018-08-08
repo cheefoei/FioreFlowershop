@@ -13,7 +13,7 @@ Name: Leong Chee Foei
 
         <?php
         include '../../header.php';
-        require_once '../../controller/customer/CustomerController.php';
+        require_once '../../controller/CustomerServicer.php';
 
         // Check any user already log in
         if (session_status() == PHP_SESSION_NONE) {
@@ -30,20 +30,20 @@ Name: Leong Chee Foei
 
         if (isset($_POST['update'])) {
 
-            $CustomerController = new CustomerController();
+            $CustomerServicer = new CustomerServicer();
 
-            $fname = $CustomerController->test_input($_POST['fname']);
-            $lname = $CustomerController->test_input($_POST['lname']);
-            $address = $CustomerController->test_input($_POST['address']);
-            $phone = $CustomerController->test_input($_POST['phone']);
-            $email = $CustomerController->test_input($_POST['email']);
+            $fname = $CustomerServicer->test_input($_POST['fname']);
+            $lname = $CustomerServicer->test_input($_POST['lname']);
+            $address = $CustomerServicer->test_input($_POST['address']);
+            $phone = $CustomerServicer->test_input($_POST['phone']);
+            $email = $CustomerServicer->test_input($_POST['email']);
 
             $customer->setFname($fname);
             $customer->setLname($lname);
             $customer->setAddress($address);
             $customer->setPhone_number($phone);
             $customer->setEmail($email);
-            $CustomerController->UpdateCustomerProfile($customer);
+            $CustomerServicer->UpdateCustomerProfile($customer);
         }
         ?>
 
