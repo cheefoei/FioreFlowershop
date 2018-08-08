@@ -8,7 +8,7 @@ CREATE TABLE customer (
     	customer_email 			varchar(255) NOT NULL,
     	customer_phone_number 		varchar(13) NOT NULL,
     	customer_address 		varchar(255) NOT NULL,
-    	customer_monthly_credit_limit 	decimal(10,2) DEFAULT 1000.00,
+    	customer_monthly_credit_limit 	decimal(10,2) NOT NULL,
     	customer_password 		varchar(255) NOT NULL,
     	PRIMARY KEY(customer_id)
 )

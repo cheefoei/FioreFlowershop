@@ -100,6 +100,42 @@ class CustomerController {
         }
     }
 
-}
+    function CreateCustomerXML() {
 
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $customer = $_SESSION['customer'];
+
+        if ($customer instanceof Customer) {
+
+            $stmt = $this->conn->prepare("SELECT * FROM customer WHERE customer_email = :customer_email");
+            $stmt->execute(array(':customer_email' => $customer->getEmail()));
+
+            $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?>'
+                    . '<?xml-stylesheet type="text/xsl" href="../../resources/Customer.xsl"?>'
+                    . '<customers></customers>');
+
+            while ($row = $stmt->fetch()) {
+                $track = $xml->addChild('customer');
+                $track->addAttribute('customerID', $row['customer_id']);
+                $track->addAttribute('type', $row['customer_type']);
+                $track->addChild('name');
+                $track->addChild('fname', $row['customer_fname']);
+                $track->addChild('lname', $row['customer_lname']);
+                $track->addChild('email', $row['customer_email']);
+                $track->addChild('phone', $row['customer_phone_number']);
+                $track->addChild('address', $row['customer_address']);
+
+                if (strcmp($row['customer_type'], 'corporate')) {
+                    $track->addChild('monthlyCreditLimit', $row['customer_monthly_credit_limit']);
+                }
+            }
+
+            Header('Content-type: text/xml');
+            print($xml->asXML());
+        }
+    }
+
+}
 ?>
