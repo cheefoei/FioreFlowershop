@@ -73,8 +73,5 @@ and open the template in the editor.
                 </fieldset>
             </form>
         </div>
-
-        <?php
-        ?>
     </body>
 </html>

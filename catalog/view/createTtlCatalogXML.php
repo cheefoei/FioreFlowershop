@@ -6,11 +6,7 @@
  * and open the template in the editor.
  */
 require_once '../controller/CatalogMaker.php';
-require_once '../controller/ProductMapper.php';
-require_once '../controller/CatListMapper.php';
 $catmaker = new CatalogMaker();
-$prodmapper = new ProductMapper();
-$catlistmapper = new CatListMapper();
 $stmt = $catmaker->getAllcatalog();
 $totalProduct = 0;
 
@@ -23,7 +19,7 @@ while ($row = $stmt->fetch()) {
     $catalog->addChild('description', $row['description']);
     $catalog->addChild('date_created', $row['date_created']);
     $catalog->addChild('date_expired', $row['date_expired']);
-    $stmt2 = $catlistmapper->getCatList($row['catalog_id']);
+    $stmt2 = $catmaker->getCatListByCatalogID($row['catalog_id']);
     $product = $catalog->addChild('products');
 
     $prodid='';

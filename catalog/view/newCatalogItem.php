@@ -15,12 +15,10 @@ and open the template in the editor.
         <?php
         require_once '../model/catalog.php';
         require_once '../controller/CatalogMaker.php';
-        require_once '../controller/CatListMapper.php';
         session_start(); //to grab data from session
 
         $catmaker = new CatalogMaker();
         $cat = new catalog();
-        $catlistmapper = new CatListMapper();
 //        $catalog = 0;
         $lastCatList_id = 0;
         $prodInTheCatalog = [];
@@ -63,7 +61,7 @@ and open the template in the editor.
             $newcatlist->catlist_id = $lastCatList_id;
             $newcatlist->catalog_id = $_SESSION['catalog_id'];
             $newcatlist->product_id = $product_idToAdd;
-            $catlistmapper->save($newcatlist);
+            $catmaker->addCatList($newcatlist);
             $catalog = $_SESSION['catalog_id'];
             getCtlgList($catalog);
         }
@@ -72,7 +70,7 @@ and open the template in the editor.
             //ob_end_clean();
             $catmaker = new CatalogMaker();
             $catlistmapper = new CatListMapper();
-            $stmt = $catlistmapper->getCatList($catalog_id);
+            $stmt = $catmaker->getCatListByCatalogID($catalog_id);
             $_SESSION['red_catalog_id'] = $catalog_id;
             echo "<table border=\"1\"><tr><th>Catalog list ID</th><th>Catalog ID</th><th>Product ID</th><th>Product Name</th><th>Description</th><th>Total Stock</th><th>Delete</th></tr>";
 
