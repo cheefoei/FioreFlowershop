@@ -23,7 +23,7 @@ and open the template in the editor.
         $catmaker = new CatalogMaker();
         $stmt = $catmaker->getAllcatalog();
         
-        echo "<table border=\"1\"><tr><th>Catalog ID</th><th>Name</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Edit</th></tr>";
+        echo "<table border=\"1\"><thead><tr><th>Catalog ID</th><th>Name</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Edit</th></tr></thead>";
 
         // loop through results of database query, displaying them in the table
 

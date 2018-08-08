@@ -9,6 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>All products</title>
     </head>
+    <link rel="stylesheet" href="css/table.css"/>
     <body>
         <?php
         // put your code here
@@ -17,7 +18,8 @@ and open the template in the editor.
 
         $catmaker = new CatalogMaker();
         $stmt = $catmaker->getAllProduct();
-        echo "<table border=\"1\"><tr><th>Product ID</th><th>Name</th><th>Type</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Total stock</th><th>Price</th><th>Weight</th><th>Edit</th></tr>";
+        echo '<h3 style="text-align:center">All Products table</h3>';
+        echo "<table border=\"1\"><tr><th>Product ID</th><th>Name</th><th>Type</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Total stock</th><th>Price</th><th>Weight</th><th>Edit</th></tr><tbody>";
         //echo "<tr>";
         // loop through results of database query, displaying them in the table
 
@@ -38,7 +40,7 @@ and open the template in the editor.
             echo "</tr>";
         }
 
-        echo "</table>";
+        echo "</tbody></table>";
         $db = null;
         ?>
         <br/>
