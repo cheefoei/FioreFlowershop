@@ -62,7 +62,7 @@ Name: Leong Chee Foei
             <div class="col-sm-6">
                 <div class="panel panel-info">
                     <div class="panel-heading" style="text-align: center">
-                        <a href="">Profile</a>
+                        <a href="CustomerProfile.php">Profile</a>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,6 @@ Name: Leong Chee Foei
                 </div>
             </div>
         </div>
-        <?php $CustomerController->CreateCustomerXML(); ?>
     </body>
 
 </html>

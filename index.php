@@ -15,7 +15,9 @@
         include 'header.php';
 
         // Check any user already log in
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         if (isset($_SESSION['customer'])) {
             header("Location: view/customer/CustomerMainPage.php");
         }

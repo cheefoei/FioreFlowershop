@@ -114,15 +114,16 @@ class CustomerController {
 
             $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?>'
                     . '<?xml-stylesheet type="text/xsl" href="../../resources/Customer.xsl"?>'
+                    . '<!DOCTYPE customers SYSTEM "../../resources/Customer.dtd">'
                     . '<customers></customers>');
 
             while ($row = $stmt->fetch()) {
                 $track = $xml->addChild('customer');
                 $track->addAttribute('customerID', $row['customer_id']);
                 $track->addAttribute('type', $row['customer_type']);
-                $track->addChild('name');
-                $track->addChild('fname', $row['customer_fname']);
-                $track->addChild('lname', $row['customer_lname']);
+                $name = $track->addChild('name');
+                $name->addChild('fname', $row['customer_fname']);
+                $name->addChild('lname', $row['customer_lname']);
                 $track->addChild('email', $row['customer_email']);
                 $track->addChild('phone', $row['customer_phone_number']);
                 $track->addChild('address', $row['customer_address']);
@@ -132,6 +133,7 @@ class CustomerController {
                 }
             }
 
+            
             Header('Content-type: text/xml');
             print($xml->asXML());
         }
