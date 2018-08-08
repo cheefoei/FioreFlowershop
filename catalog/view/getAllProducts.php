@@ -12,12 +12,11 @@ and open the template in the editor.
     <body>
         <?php
         // put your code here
-        require_once '../connect_db.php';
         require_once '../model/product.php';
-        require_once '../controller/ProductMapper.php';
+        require_once '../controller/CatalogMaker.php';
 
-        $prodmap = new ProductMapper();
-        $stmt = $prodmap->loadAll();
+        $catmaker = new CatalogMaker();
+        $stmt = $catmaker->getAllProduct();
         echo "<table border=\"1\"><tr><th>Product ID</th><th>Name</th><th>Type</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Total stock</th><th>Price</th><th>Weight</th><th>Edit</th></tr>";
         //echo "<tr>";
         // loop through results of database query, displaying them in the table

@@ -13,11 +13,16 @@ and open the template in the editor.
         <?php
         // put your code here
         require_once '../model/catalog.php';
-        require_once '../controller/CatalogMapper.php';
+//        require_once '../controller/CatalogMapper.php';
+//
+//        $catmap = new CatalogMapper();
+//        $stmt = $catmap->loadAll();
 
-        $catmap = new CatalogMapper();
-        $stmt = $catmap->loadAll();
+        require_once '../controller/CatalogMaker.php';
 
+        $catmaker = new CatalogMaker();
+        $stmt = $catmaker->getAllcatalog();
+        
         echo "<table border=\"1\"><tr><th>Catalog ID</th><th>Name</th><th width=\"200\">Description</th><th>Date Created</th><th>Date Expire</th><th>Edit</th></tr>";
 
         // loop through results of database query, displaying them in the table

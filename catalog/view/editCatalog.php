@@ -14,9 +14,9 @@ and open the template in the editor.
         <?php
         // put your code here
         require_once '../model/catalog.php';
-        require_once '../controller/CatalogMapper.php';
+        require_once '../controller/CatalogMaker.php';
 
-        $catmapper = new CatalogMapper();
+        $catmaker = new CatalogMaker();
         $cat = new catalog();
 
         if ((isset($_POST['catalog_id']))) {
@@ -26,7 +26,7 @@ and open the template in the editor.
             $cat->date_created = trim($_POST['date_created']);
             $cat->date_expired = trim($_POST['date_expired']);
 
-            $catmapper->update($cat);
+            $catmaker->addCatalog($cat);
             echo "<font color=\"white\"><b>Catalog update success</b></font>";
             echo '<script>window.location.href = "getAllCatalog.php";</script>';
         }
@@ -34,7 +34,7 @@ and open the template in the editor.
 
         $id = intval($_GET['id']);
         //$id = 200001;
-        $stmt = $catmapper->load($id);
+        $stmt = $catmaker->getCatalogByID($id);
 
         $row = $stmt->fetch();
 

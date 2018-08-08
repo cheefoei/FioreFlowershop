@@ -30,5 +30,7 @@ and open the template in the editor.
         <h3>Reporting</h3>
         <a href="createProductXML.php" target="_blank">Product Table</a><br/>
         <a href="createTtlProductXML.php" target="_blank">Product Statistic</a><br/>
+        <a href="createTtlCatalogXML.php.php" target="_blank">Catalog Statistic</a><br/>
+        <a href="createCatalogXML.php" target="_blank">Catalog Table</a><br/>
     </body>
 </html>

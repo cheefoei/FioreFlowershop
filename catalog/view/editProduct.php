@@ -14,9 +14,9 @@ and open the template in the editor.
         <?php
         // put your code here
         require_once '../model/product.php';
-        require_once '../controller/ProductMapper.php';
+        require_once '../controller/CatalogMaker.php';
 
-        $prodmapper = new ProductMapper();
+        $catmaker = new CatalogMaker();
         $prod = new product();
 
         if ((isset($_POST['product_id']))) {
@@ -30,15 +30,15 @@ and open the template in the editor.
             $prod->price = trim($_POST['price']);
             $prod->weight = trim($_POST['weight']);
 
-            $prodmapper->update($prod);
+            $catmaker->updateProduct($prod);
             //echo "<font color=\"white\"><b>Product update success</b></font>";
-            echo '<script>window.location.href = "getAllCatalog.php";</script>';
+            echo '<script>window.location.href = "getAllProducts.php";</script>';
         }
 
 
         $id = intval($_GET['id']);
         //$id = 100002;
-        $stmt = $prodmapper->load($id);
+        $stmt = $catmaker->getProductByID($id);
 
         $row = $stmt->fetch();
 

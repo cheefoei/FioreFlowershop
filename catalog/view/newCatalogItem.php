@@ -13,14 +13,12 @@ and open the template in the editor.
     <body>
         <h1><u>Add Items into Catalog</u></h1>        
         <?php
-        require_once '../connect_db.php';
         require_once '../model/catalog.php';
-        require_once '../controller/CatalogMapper.php';
+        require_once '../controller/CatalogMaker.php';
         require_once '../controller/CatListMapper.php';
-        require_once '../controller/ProductMapper.php';
         session_start(); //to grab data from session
 
-        $catmapper = new CatalogMapper();
+        $catmaker = new CatalogMaker();
         $cat = new catalog();
         $catlistmapper = new CatListMapper();
 //        $catalog = 0;
@@ -28,7 +26,7 @@ and open the template in the editor.
         $prodInTheCatalog = [];
 
 
-        $stmt = $catmapper->loadAll();
+        $stmt = $catmaker->getAllcatalog();
 
 //        if (isset($_SESSION['red_catalog_id'])) {
 //            //Do stuff
@@ -72,9 +70,8 @@ and open the template in the editor.
 
         function getCtlgList($catalog_id) {
             //ob_end_clean();
-            $catmapper = new CatalogMapper();
+            $catmaker = new CatalogMaker();
             $catlistmapper = new CatListMapper();
-            $prodmapper = new ProductMapper();
             $stmt = $catlistmapper->getCatList($catalog_id);
             $_SESSION['red_catalog_id'] = $catalog_id;
             echo "<table border=\"1\"><tr><th>Catalog list ID</th><th>Catalog ID</th><th>Product ID</th><th>Product Name</th><th>Description</th><th>Total Stock</th><th>Delete</th></tr>";
@@ -84,7 +81,7 @@ and open the template in the editor.
             $rows = $stmt->rowCount();
             while ($row = $stmt->fetch()) {
                 // echo out the contents of each row into a table
-                $stmt2 = $prodmapper->load($row['product_id']);
+                $stmt2 = $catmaker->getProductByID($row['product_id']);
                 $row2 = $stmt2->fetch();
                 $prodInTheCatalog[$count] = $row['product_id'];
                 echo "<tr>";
@@ -107,7 +104,7 @@ and open the template in the editor.
             echo '<h1><u>Add Product Into Catalog</u></h1>'
             . '<form action="newCatalogItem.php" method="POST">';
 
-            $stmt3 = $prodmapper->loadAll();
+            $stmt3 = $catmaker->getAllProduct();
             $exists = 0;
             echo "<p>Product name:<select name = \"product_idToAdd\" id=\"product\">";
             while ($row = $stmt3->fetch()) {

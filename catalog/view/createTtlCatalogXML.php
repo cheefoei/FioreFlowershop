@@ -5,13 +5,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once '../controller/CatalogMapper.php';
+require_once '../controller/CatalogMaker.php';
 require_once '../controller/ProductMapper.php';
 require_once '../controller/CatListMapper.php';
-$catmapper = new CatalogMapper();
+$catmaker = new CatalogMaker();
 $prodmapper = new ProductMapper();
 $catlistmapper = new CatListMapper();
-$stmt = $catmapper->loadAll();
+$stmt = $catmaker->getAllcatalog();
 $totalProduct = 0;
 
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="../totalCatalog.xsl"?> <catalogs></catalogs>');

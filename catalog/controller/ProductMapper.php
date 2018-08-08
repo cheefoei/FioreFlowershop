@@ -50,9 +50,9 @@ Class ProductMapper {
         $conn = $db->connectPDO();
         try {
             $query = "UPDATE product SET product_name='$prod->product_name',product_type='$prod->product_type',"
-                    . "product_description='$prod->product_description',date_created='$prod->date_created,"
-                    . "date_expired='$prod->date_expired,total_stock='$prod->total_stock,price='$prod->price',"
-                    . "weight='$prod->weight WHERE product_id='$prod->product_id'";
+                    . "product_description='$prod->product_description',date_created='$prod->date_created',"
+                    . "date_expired='$prod->date_expired',total_stock='$prod->total_stock',price='$prod->price',"
+                    . "weight='$prod->weight' WHERE product_id='$prod->product_id'";
             $stmt = $conn->prepare($query);
             $result = $stmt->execute();
         } catch (Exception $e) {

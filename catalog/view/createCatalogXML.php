@@ -5,9 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once '../controller/CatalogMapper.php';
-$catmapper = new CatalogMapper();
-$stmt = $catmapper->loadAll();
+require_once '../controller/CatalogMaker.php';
+$catmaker = new CatalogMaker();
+$stmt = $catmaker->getAllcatalog();
 
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="../catalog.xsl"?><catalogs></catalogs>');
 while ($row = $stmt->fetch()) {
