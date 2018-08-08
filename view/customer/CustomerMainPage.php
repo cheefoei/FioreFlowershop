@@ -21,8 +21,8 @@ Name: Leong Chee Foei
             header("Location: ../../index.php");
         }
 
+        $CustomerController = new CustomerController();
         if (isset($_GET['logout'])) {
-            $CustomerController = new CustomerController();
             $CustomerController->CustomerLogout();
         }
         ?>
@@ -74,7 +74,7 @@ Name: Leong Chee Foei
                 </div>
             </div>
         </div>
-
+        <?php $CustomerController->CreateCustomerXML(); ?>
     </body>
 
 </html>

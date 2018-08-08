@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE customers SYSTEM 'Customer.dtd'>
+<customers>
+    <customer customerID="C001" type="corporate">
+        <name>
+            <fname>Chris</fname>
+            <lname>Evans</lname>
+        </name>
+        <email>cap@email.com</email>
+        <phone>013-5647895</phone>
+        <address>7, Jalan Malinja 2, Taman Bunga Raya, 53000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</address>
+        <monthlyCreditLimit>1000.00</monthlyCreditLimit>
+    </customer>
+</customers>
