@@ -1,7 +1,7 @@
 <?php
 
-require 'Piclup.php';
-require 'Delivery.php';
+require '../JJmodel/Piclup.php';
+require '../JJmodel/Delivery.php';
 
 class Database {
 

@@ -1,6 +1,6 @@
 <?php
 
-include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
+include 'database2.php';
 
 try {
     if (isset($_POST['update'])) {

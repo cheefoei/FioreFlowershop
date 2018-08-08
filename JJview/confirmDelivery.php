@@ -6,7 +6,7 @@ $time = trim(date('H:i:s'));
 if (isset($_GET['update'])) {
     $id = $_GET['update'];
     //require_once 'C:\xampp\htdocs\Assignment\model\Delivery.php';
-    include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
+    include '../JJcontroller/database2.php';
 }
 ?>
 <?php
@@ -23,7 +23,7 @@ foreach ($result as $row) {
         <link rel="stylesheet" type="text/css" href="../formCSS.css">
     </head>
     <body>
-        <form method="post" action="../JJmodel/confirmDelivered.php" >
+        <form method="post" action="../JJcontroller/confirmDelivered.php" >
             <div class="input-group">
                 <label>Customer Name</label>
                 <input type="text" name="custName" value="<?php echo $name?>" readonly=><br>

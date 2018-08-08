@@ -5,7 +5,7 @@ $pickupDate = trim(date("Y-m-d"));
 $time = trim(date('H:i:s'));
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
-    include 'C:\xampp\htdocs\FioreFlowershop\JJmodel\database2.php';
+    include '../JJcontroller/database2.php';
 }
 ?>
 <?php
@@ -22,7 +22,7 @@ foreach($result as $row){
         <link rel="stylesheet" type="text/css" href="../formCSS.css">
     </head>
     <body>
-        <form method="post" action="../JJmodel/confirmPickup.php" >
+        <form method="post" action="../JJcontroller/confirmPickup.php" >
             <div class="input-group">
                 <label>Customer Name</label>
                 <input type="text" name="custName" value="<?php echo $name?>" readonly=""><br>

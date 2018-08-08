@@ -13,6 +13,15 @@
 
         <?php
         include 'header.php';
+
+        // Check any user already log in
+        session_start();
+        if (isset($_SESSION['customer'])) {
+            header("Location: view/customer/CustomerMainPage.php");
+        }
+        if (isset($_SESSION['staff'])) {
+            header("Location: JJview/StaffMainPage.php");
+        }
         ?>
 
     </head>
@@ -35,7 +44,7 @@
             <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-body" style="text-align: center">
-                        <a href="view/customer/CustomerLogin.php">Staff</a>
+                        <a href="JJview/StaffLogin.php">Staff</a>
                     </div>
                 </div>
             </div>
