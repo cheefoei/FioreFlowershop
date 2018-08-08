@@ -68,6 +68,24 @@
                                     <xsl:value-of select="address" />
                                 </td>
                             </tr>
+                            <tr>
+                                <th class="col-sm-4">
+                                    <strong>Customer Type</strong>
+                                </th>
+                                <td class="col-sm-4">
+                                    <xsl:value-of select="@type" />
+                                </td>
+                            </tr>
+                            <xsl:if test="@type = 'Corporate'">
+                                <tr>
+                                    <th class="col-sm-4">
+                                        <strong>Monthly Credit Limit</strong>
+                                    </th>
+                                    <td class="col-sm-4">
+                                        <xsl:value-of select="monthlyCreditLimit" />
+                                    </td>
+                                </tr>
+                            </xsl:if>
                         </xsl:for-each>
                     </tbody>
                 </table>
@@ -77,8 +95,12 @@
              
                 <div class="row">
                     <div class="col-sm-4"></div>
-                    <div class="col-sm-2"><a href="CustomerUpdateProfile.php">Update Info</a> </div>
-                    <div class="col-sm-2"><a href="CustomerUpdatePassword.php">Change Password</a> </div>
+                    <div class="col-sm-2">
+                        <a href="CustomerUpdateProfile.php">Update Info</a> 
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="CustomerUpdatePassword.php">Change Password</a> 
+                    </div>
                     <div class="col-sm-4"></div>
                 </div>
             </body>

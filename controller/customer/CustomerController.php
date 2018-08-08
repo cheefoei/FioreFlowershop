@@ -39,6 +39,14 @@ class CustomerController {
             $stmt->execute(array(':customer_email' => $customer->getEmail(), ':customer_password' => $customer->getPassword()));
 
             if ($stmt->rowCount() == 1) {
+                while ($row = $stmt->fetch()) {
+                    $customer->setId($row['customer_id']);
+                    $customer->setFname($row['customer_fname']);
+                    $customer->setLname($row['customer_lname']);
+                    $customer->setPhone_number($row['customer_phone_number']);
+                    $customer->setAddress($row['customer_address']);
+                    $customer->setPassword(null);
+                }
                 $_SESSION['customer'] = $customer;
                 header("Location: ../../view/customer/CustomerMainPage.php");
             } else {
@@ -90,6 +98,41 @@ class CustomerController {
         $_SESSION['customer_reg'] = $response;
     }
 
+    function UpdateCustomerProfile($customer) {
+
+        $response = array();
+        $response["success"] = false;
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (isset($_SESSION['customer'])) {
+
+            $customer = $_SESSION['customer'];
+            if ($customer instanceof Customer) {
+
+                $customer_array = array(
+                    ':customer_fname' => $customer->getFname(),
+                    ':customer_lname' => $customer->getLname(),
+                    ':customer_email' => $customer->getEmail(),
+                    ':customer_phone_number' => $customer->getPhone_number(),
+                    ':customer_address' => $customer->getAddress(),
+                    ':customer_id' => $customer->getId()
+                );
+
+                $stmt = $this->conn->prepare("UPDATE customer SET customer_fname=:customer_fname, customer_lname=:customer_lname, customer_email=:customer_email, customer_phone_number=:customer_phone_number,customer_address=:customer_address  WHERE customer_id=:customer_id;");
+                if ($stmt->execute($customer_array)) {
+                    $response["success"] = true;
+                    $response["msg"] = 'Your profile is updated successfully.';
+                } else {
+                    $response["msg"] = "Error occured.";
+                }
+            }
+        }
+        $_SESSION['customer_update_profile'] = $response;
+    }
+
     function CustomerLogout() {
 
         if (session_status() == PHP_SESSION_NONE) {
@@ -133,11 +176,12 @@ class CustomerController {
                 }
             }
 
-            
+
             Header('Content-type: text/xml');
             print($xml->asXML());
         }
     }
 
 }
+
 ?>
