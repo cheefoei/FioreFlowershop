@@ -13,7 +13,7 @@ if (isset($_GET['update'])) {
 $newclass = new Facade();
 $result = $newclass->SelectDelivery($id);
 foreach ($result as $row) {
-    //$name = $row['custName'];
+    $name = $row['custName'];
     $custid = $row['custID'];
 }
 ?>
@@ -25,7 +25,10 @@ foreach ($result as $row) {
     </head>
     <body>
         <form method="post" action="../JJcontroller/confirmDelivered.php" >
-
+            <div class="input-group">
+                <label>Customer Name</label>
+                <input type="text" name="custID" value="<?php echo $name ?>"readonly=><br>
+            </div><br>
             <div class="input-group">
                 <label>Customer ID</label>
                 <input type="text" name="custID" value="<?php echo $custid ?>"readonly=><br>

@@ -56,7 +56,7 @@
                     </xsl:for-each>
                 </table>   
                 <p>
-                    Total of order for today is <xsl:value-of select="count(//Orders)"/> item(s).
+                    Total of order for today is <xsl:value-of select="count(//Order)"/> item(s).
                     <br/>
                     Total amount for today order is RM<xsl:value-of select="sum(//Order[amount]/amount)"/>
                     

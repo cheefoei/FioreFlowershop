@@ -26,7 +26,7 @@ class PickupDatabase {
     }
 
     public function query3($id) {
-        $query = "SELECT custID FROM self_pickup WHERE orderID='$id'";
+        $query = "SELECT custID,custName FROM self_pickup WHERE orderID='$id'";
         if ($this->_query = $this->conn->prepare($query)) {
             if ($this->_query->execute()) {
                 $result = $this->_query->fetchAll(PDO::FETCH_ASSOC);

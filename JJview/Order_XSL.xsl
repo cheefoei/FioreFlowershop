@@ -72,6 +72,8 @@
                     <p>
                     Total of Pickup for today is <xsl:value-of select="count(//PICKUP)"/> item(s).
                     <br/>
+                     
+                    Total amount for today Pickup is RM<xsl:value-of select="sum(//Pick_up[Payment]/Payment)"/>
                     </p>
             </body>
         

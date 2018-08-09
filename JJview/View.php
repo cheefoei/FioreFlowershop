@@ -16,7 +16,7 @@ require_once '../JJcontroller/Facade.php';
                 <th>Order Date</th>
                 <th>Payment</th>
                 <th>Payment Data</th>
-                
+                <th>Customer Name</th>
                 <th>Customer ID</th>
                 <th>Pickup Date</th>
                 <th>Pickup Time</th>
@@ -36,7 +36,7 @@ require_once '../JJcontroller/Facade.php';
                     $orderDate = $row['orderDate'];
                     $orderID = $row['OrderID'];
                     $custID = $row['custID'];
-                    //$custName = $row['custName'];
+                    $custName = $row['custName'];
                     $pickupdate = $row['pickupDate'];
                     $time=$row['payTime'];
                     $status = $row['status'];
@@ -50,7 +50,7 @@ require_once '../JJcontroller/Facade.php';
                     echo "<td>$orderDate</td>";
                     echo "<td>$payment</td>";
                     echo "<td>$paymentdate</td>";
-                    //echo "<td>$custName</td>";
+                    echo "<td>$custName</td>";
                     echo "<td>$custID</td>";
                     echo "<td>$pickupdate</td>";
                     echo "<td>$time</td>";

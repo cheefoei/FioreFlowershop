@@ -11,11 +11,7 @@ class Database {
     private $dbName = 'JunKit';
     private $dbuser = 'root';
     private $dbpassword = '';
-    private $status = "Done";
-    private $deliverystatus = "Delivered";
-    private $orderStatus = "Paid";
 
-    // The db connection is established in the private constructor.
     private function __construct() {
         try {
             $this->conn = new PDO("mysql:host={$this->host};
@@ -40,5 +36,37 @@ class Database {
     public function getConnection() {
         return $this->conn;
     }
+
+    public function query() {
+        $query = "SELECT * FROM self_pickup";
+        if ($this->_query = $this->conn->prepare($query)) {
+            if ($this->_query->execute()) {
+                $result = $this->_query->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+        return $result;
+    }
+
+    public function query5() {
+        $query = "SELECT * FROM floral_order";
+        if ($this->_query = $this->conn->prepare($query)) {
+            if ($this->_query->execute()) {
+                $result = $this->_query->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+        return $result;
+    }
+    
+        public function query2() {
+        $query = "SELECT * FROM delivery";
+        if ($this->_query = $this->conn->prepare($query)) {
+            if ($this->_query->execute()) {
+                $result = $this->_query->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+        return $result;
+    }
+
 }
-    ?>
+
+?>

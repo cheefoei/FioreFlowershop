@@ -26,7 +26,7 @@ class DeliveryDatabase {
     }
 
     public function query4($id) {
-        $query = "SELECT custID FROM delivery WHERE orderID='$id'";
+        $query = "SELECT custID,custName FROM delivery WHERE orderID='$id'";
         if ($this->_query = $this->conn->prepare($query)) {
             if ($this->_query->execute()) {
                 $result = $this->_query->fetchAll(PDO::FETCH_ASSOC);

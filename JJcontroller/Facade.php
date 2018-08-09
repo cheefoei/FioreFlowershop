@@ -5,7 +5,7 @@ require_once 'PickupDatabase.php';
 
 class Facade {
 
-//put your code here
+
     private $Order;
     private $Delivery;
     private $Pickup;
@@ -53,5 +53,3 @@ class Facade {
     }
 
 }
-
-?>
