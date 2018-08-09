@@ -1,5 +1,8 @@
 <?php
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if (isset($_SESSION['staff'])) {
     /*
      * To change this license header, choose License Headers in Project Properties.
@@ -37,8 +40,8 @@ if (isset($_SESSION['staff'])) {
 //Include this 2 to initiate download
 //header('Content-Disposition: attachment; filename="catalog.xml"');
 //echo($xml->asXML());
-}
-else{
-    echo "No privilege to access this page!";
+} else {
+    echo "No privilege to access this page!<br/>";
+    echo '<a href="../../JJview/StaffLogin.php">Go to Staff Login</a>';
 }
 ?>

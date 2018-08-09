@@ -11,8 +11,7 @@
             </head>
             <link rel="stylesheet" href="css/table.css"/>            
             <body>
-                <h1 style="text-align:center">Catalog's database</h1>
-        
+                <h1 style="text-align:center">Catalog's database</h1>        
                 <table border="1">
                     <thead>
                         <tr>
@@ -71,7 +70,7 @@
                         </xsl:if>
                     </xsl:for-each>
                 </xsl:variable>
-                <p>
+                <p style="text-align:center">
                     Total of catalog in database is <xsl:value-of select="count(//catalog)"/> item(s).
                     <br/>
                     Latest created item is <xsl:value-of select="$latest"/>  .<br/>
