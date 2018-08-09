@@ -58,8 +58,7 @@ include '../JJcontroller/DeliveryDatabase.php';
                     echo "</tr>";
                 }
             }
-            session_start();
-            session_destroy();
+            
             ?>
     </table>
         

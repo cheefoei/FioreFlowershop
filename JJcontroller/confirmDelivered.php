@@ -34,6 +34,7 @@ try {
 interface Observer {
 
     public function addPickup(Pickup $pickup);
+    public function updatestatus();
 }
 
 class dateSimulator implements Observer {
@@ -63,7 +64,7 @@ interface Pickup {
     public function getPickup();
 }
 
-class Pound implements Pickup {
+class Date implements Pickup {
 
     private $p;
 
@@ -92,7 +93,7 @@ function return_date() {
 
 $datesSimulator = new dateSimulator();
 
-$pickup1 = new Pound('Pending');
+$pickup1 = new Date('Pending');
 //$currency2 = new Yen(122);
 
 $datesSimulator->addPickup($pickup1);
