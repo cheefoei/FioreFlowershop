@@ -9,8 +9,8 @@ class StaffLoginControl {
 
     function __construct() {
 
-        $db = new connect_db();
-        $this->conn = $db->connect();
+        $db = connect_db::getDatabaseInstance();
+        $this->conn = $db->getConnection();
     }
 
     function UserLogin($user) {
