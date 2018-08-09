@@ -90,11 +90,11 @@ CREATE TABLE floral_order (
   	FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 );
 INSERT INTO `floral_order` (`id`, `customer_id`, `date`, `total_amount`, `status`) VALUES
-(1, 1, '2018-08-02 00:00:00', 115, '0'),
-(2, 1, '2018-08-02 00:00:00', 360, '0'),
-(3, 1, '2018-08-02 00:00:00', 90, '0'),
-(4, 1, '2018-08-02 00:00:00', 90, '0'),
-(5, 1, '2018-08-02 00:00:00', 29, '0'),
+(1, 1, '2018-07-02 00:00:00', 115, '0'),
+(2, 1, '2018-07-10 00:00:00', 360, '0'),
+(3, 1, '2018-07-15 00:00:00', 90, '0'),
+(4, 1, '2018-07-20 00:00:00', 90, '0'),
+(5, 1, '2018-07-20 00:00:00', 29, '0'),
 (6, 1, '2018-08-02 00:00:00', 29, '0'),
 (7, 1, '2018-08-02 00:00:00', 29, '0'),
 (8, 1, '2018-08-02 00:00:00', 90, '0'),
@@ -156,6 +156,27 @@ INSERT INTO `order_list` (`id`, `order_id`, `product_id`, `quantity`) VALUES
 (27, 25, 100002, 4),
 (28, 26, 100001, 2),
 (29, 26, 100002, 2);
+
+CREATE TABLE invoice (
+	invoice_id		int(11) NOT NULL AUTO_INCREMENT,
+	customer_id             int(11) NOT NULL,
+        invoice_month    	int(2) NOT NULL,
+	invoice_year    	int(4) NOT NULL,
+	date_created            datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  	invoice_total_amount	double NOT NULL,
+  	invoice_isPaid  	int(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (invoice_id),
+  	FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+
+CREATE TABLE invoice_list (
+	invoice_list_id		int(11) NOT NULL AUTO_INCREMENT,
+	invoice_id		int(11) NOT NULL,
+	order_id                int(11) NOT NULL,
+	PRIMARY KEY (invoice_list_id),
+	FOREIGN KEY (invoice_id) REFERENCES invoice(invoice_id),
+	FOREIGN KEY (order_id) REFERENCES floral_order(id)
+);
 
 CREATE TABLE `delivery` (
     `orderID`           varchar(10) NOT NULL,

@@ -7,13 +7,16 @@
  */
 
 require_once 'CustomerController.php';
+require_once 'InvoiceController.php';
 
 class CustomerServicer {
 
     private $CustomerController;
+    private $InvoiceController;
 
     function __construct() {
         $this->CustomerController = new CustomerController();
+        $this->InvoiceController = new InvoiceController();
     }
 
     function test_input($data) {
@@ -46,6 +49,14 @@ class CustomerServicer {
 
     function CreateCustomerXML() {
         $this->CustomerController->CreateCustomerXML();
+    }
+    
+    function CreateInvoiceXML() {
+        $this->CustomerController->CreateInvoiceXML();
+    }
+    
+    function prepareInvoice($month, $year){
+        $this->InvoiceController->PrepareInvoice($month, $year);
     }
 
 }
