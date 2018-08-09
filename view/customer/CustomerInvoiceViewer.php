@@ -1,5 +1,10 @@
-<?php
 
+<!-- 
+Name: Leong Chee Foei
+ Group: G6
+-->
+
+<?php
 require_once '../../controller/CustomerServicer.php';
 
 if (session_status() == PHP_SESSION_NONE) {
