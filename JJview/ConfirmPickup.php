@@ -5,11 +5,12 @@ $pickupDate = trim(date("Y-m-d"));
 $time = trim(date('H:i:s'));
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
-    include '../JJcontroller/database2.php';
+    include '../JJcontroller/PickupDatabase.php';
 }
 ?>
 <?php
-$result = Database::getInstance()->query3($id);
+//$result = Database::getInstance()->query3($id);
+$result= PickupDatabase::getInstance()->query3($id);
 foreach($result as $row){
     $name=$row['custID'];
     $custid=$row['custID'];

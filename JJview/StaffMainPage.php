@@ -39,6 +39,13 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
+              <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-body" style="text-align: center">
+                        <a href="adminReport.php">View Report</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

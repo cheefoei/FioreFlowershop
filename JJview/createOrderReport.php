@@ -1,6 +1,6 @@
 <?php
 
-include '../JJcontroller\database2.php';
+include '../JJcontroller/database2.php';
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="Order_XSL.xsl"?><Pick_Up></Pick_Up>');
 $result = Database::getInstance()->query();
 $pickupDate = trim(date("Y-m-d"));

@@ -5,6 +5,7 @@ class Delivery{
     public $Dtime;
     public $paytime;
     public $orderID;
+    public $staffID;
     function getDdate() {
         return $this->Ddate;
     }
@@ -37,11 +38,12 @@ class Delivery{
         $this->orderID = $orderID;
     }
 
-    function __construct($Ddate, $Dtime, $paytime, $orderID) {
+    function __construct($Ddate, $Dtime, $paytime, $orderID,$staffID) {
         $this->Ddate = $Ddate;
         $this->Dtime = $Dtime;
         $this->paytime = $paytime;
         $this->orderID = $orderID;
+        $this->staffID=$staffID;
     }
 
 }

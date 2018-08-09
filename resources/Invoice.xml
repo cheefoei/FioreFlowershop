@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE invoices SYSTEM 'Invoice.dtd'>
+
+<invoices>
+    <invoice invoiceID="I001">
+        <orderID>O001</orderID>
+        <month>January</month>
+        <year>2018</year>
+        <customerID>C001</customerID>
+        <createdDate>01 Februry 2018</createdDate>
+        <totalAmount>1000.00</totalAmount>
+    </invoice>
+    <invoice invoiceID="I002">
+        <orderID>O002</orderID>
+        <orderID>O003</orderID>
+        <month>March</month>
+        <year>2018</year>
+        <customerID>C002</customerID>
+        <createdDate>01 April 2018</createdDate>
+        <totalAmount>1500.00</totalAmount>
+    </invoice>
+</invoices>

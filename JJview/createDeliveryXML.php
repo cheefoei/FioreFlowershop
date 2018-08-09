@@ -1,8 +1,8 @@
 <?php
 
-include '../JJcontroller/database2.php';
+include '../JJcontroller/DeliveryDatabase.php';
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="Delivery_XSL.xsl"?><Deliverys></Deliverys>');
-$result = Database::getInstance()->query2();
+$result = DeliveryDatabase::getInstance()->query2();
 $pickupDate = trim(date("Y-m-d"));
 
 foreach ($result as $row) {

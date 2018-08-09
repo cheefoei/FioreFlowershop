@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT customers (customer+)>
+<!ELEMENT customer (name, email, phone, address, monthlyCreditLimit?)>
+<!ATTLIST customer customerID ID #REQUIRED>
+<!ATTLIST customer type (Consumer | Corporate ) #REQUIRED>
+<!ELEMENT name (fname,lname)>
+<!ELEMENT fname (#PCDATA)>
+<!ELEMENT lname (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT monthlyCreditLimit (#PCDATA)>
+
+

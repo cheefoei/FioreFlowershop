@@ -8,12 +8,12 @@ CREATE TABLE customer (
     	customer_email 			varchar(255) NOT NULL,
     	customer_phone_number 		varchar(13) NOT NULL,
     	customer_address 		varchar(255) NOT NULL,
-    	customer_monthly_credit_limit 	decimal(10,2) DEFAULT 1000.00,
+    	customer_monthly_credit_limit 	decimal(10,2) NOT NULL,
     	customer_password 		varchar(255) NOT NULL,
     	PRIMARY KEY(customer_id)
-)
+);
 INSERT INTO `customer` (`customer_id`, `customer_type`, `customer_fname`, `customer_lname`, `customer_email`, `customer_phone_number`, `customer_address`, `customer_monthly_credit_limit`, `customer_password`) VALUES
-(1, 'Corporate', 'Chris', 'Evans', 'chris@email.com', '01113366644', '20, Jalan 14/27b, Desa Setapak, 53300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur', '1000.00', '1234');
+(1, 'Corporate', 'Chris', 'Evans', 'chris@email.com', '01113366644', '20, Jalan 14/27b, Desa Setapak, 53300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur', '1000.00', '81DC9BDB52D04DC20036DBD8313ED055');
 
 CREATE TABLE `user` (
 	user_id 			int NOT NULL AUTO_INCREMENT,
@@ -22,7 +22,7 @@ CREATE TABLE `user` (
     	user_status 			varchar(255) NOT NULL,
     	user_password                   varchar(255) NOT NULL,
     	PRIMARY KEY(user_id)
-)
+);
 INSERT INTO `user` (`user_type`, `user_name`, `user_status`, `user_password`) VALUES 
 ('staff', 'Lim Jun Kit', 'dont know', '1234'),
 ('admin', 'Nimda', 'dont know', '1234')

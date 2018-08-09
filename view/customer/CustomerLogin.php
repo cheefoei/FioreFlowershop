@@ -13,7 +13,7 @@ Name: Leong Chee Foei
 
         <?php
         include '../../header.php';
-        require_once '../../controller/customer/CustomerController.php';
+        require_once '../../controller/CustomerServicer.php';
 
         // Check any user already log in
         if (session_status() == PHP_SESSION_NONE) {
@@ -26,16 +26,16 @@ Name: Leong Chee Foei
             header("Location: ../../JJview/StaffMainPage.php");
         }
 
-        $CustomerController = new CustomerController();
+        $CustomerServicer = new CustomerServicer();
         if (isset($_POST['login'])) {
 
-            $email = $CustomerController->test_input($_POST['email']);
-            $password = $CustomerController->test_input($_POST['pwd']);
+            $email = $CustomerServicer->test_input($_POST['email']);
+            $password = $CustomerServicer->test_input($_POST['pwd']);
 
             $customer = new Customer();
             $customer->setEmail($email);
             $customer->setPassword($password);
-            $CustomerController->AuthCustomer($customer);
+            $CustomerServicer->AuthCustomer($customer);
         }
         ?>
 
@@ -61,8 +61,10 @@ Name: Leong Chee Foei
                     <input type="password" class="form-control" id="pwd" name="pwd" placeholder="********" required="required">
                 </div>
             </div>
+            <br/>
             <div class="form-group"> 
-                <div class="col-sm-offset-7 col-sm-5">
+                <a href="CustomerRegistration.php" class="col-sm-offset-1 col-sm-6">Register account</a>
+                <div class="col-sm-5">
                     <button type="submit" class="btn btn-primary" name="login">Login</button>
                 </div>
             </div>

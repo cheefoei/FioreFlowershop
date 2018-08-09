@@ -87,7 +87,8 @@ class Database {
         $newdate = $newPickup->paydate;
         $newid = $newPickup->orderID;
         $time=$newPickup->time;
-        $query = "UPDATE self_pickup SET pickupDate= '$newdate', paymentDate= '$newdate', payTime= '$time', status='$this->status' where orderID='$newid'";
+        $id=$newPickup->staffID;
+        $query = "UPDATE self_pickup SET pickupDate= '$newdate', paymentDate= '$newdate', payTime= '$time', staffID='$id',status='$this->status' where orderID='$newid'";
         $this->_query = $this->conn->prepare($query);
         $this->_query->execute();
     }
@@ -97,7 +98,8 @@ class Database {
         $testdate2=$newDelivery->paytime;
         $time=$newDelivery->Dtime;
         $id=$newDelivery->orderID;
-        $query = "UPDATE delivery SET deliveredDate= '$testdate', paymentDate= '$testdate2', payTime= '$time', status='$this->deliverystatus' where orderID='$id'";
+        $staffid=$newDelivery->staffID;
+        $query = "UPDATE delivery SET deliveredDate= '$testdate', paymentDate= '$testdate2', payTime= '$time', status='$this->deliverystatus',StaffID='$staffid' where orderID='$id'";
         $this->_query = $this->conn->prepare($query);
         $this->_query->execute();
     }

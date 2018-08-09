@@ -1,16 +1,27 @@
 <?php
 
 include 'database2.php';
+require_once '../JJmodel/User.php';
 
 try {
     if (isset($_POST['update'])) {
+          $staffID;
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        } 
+         if (isset($_SESSION['staff'])){
+             $user=$_SESSION['staff'];
+             if ($user instanceof User){
+                 $staffID=$user->getId();
+             }
+         }
         $testid = $_POST['orderID'];
         $testdate = $_POST['deliveredDate'];
         $testdate2 = $_POST['deliveredDate'];
         $time = $_POST['deliveredTime'];
         //$database = new database();
         //$database = database::getInstance();
-        $newDelivery = new Delivery($testdate, $time, $testdate2, $testid);
+        $newDelivery = new Delivery($testdate, $time, $testdate2, $testid,$staffID);
         $database = Database::getInstance()->updateDelivery($newDelivery);
         $database2 = Database::getInstance()->updateOrder($testid);
         echo"The Order is Delivered.<br>";
@@ -23,6 +34,7 @@ try {
 interface Observer {
 
     public function addPickup(Pickup $pickup);
+    public function updatestatus();
 }
 
 class dateSimulator implements Observer {
@@ -52,7 +64,7 @@ interface Pickup {
     public function getPickup();
 }
 
-class Pound implements Pickup {
+class Date implements Pickup {
 
     private $p;
 
@@ -81,7 +93,7 @@ function return_date() {
 
 $datesSimulator = new dateSimulator();
 
-$pickup1 = new Pound('Pending');
+$pickup1 = new Date('Pending');
 //$currency2 = new Yen(122);
 
 $datesSimulator->addPickup($pickup1);
