@@ -36,7 +36,7 @@ CREATE TABLE `catalog` (
     	PRIMARY KEY(catalog_id)
 );
 INSERT INTO `catalog` (`catalog_id`, `name`, `description`, `date_created`, `date_expired`) VALUES
-(200001, 'Fathers day test', 'Suitable for all the couples who are celebrating valentines day.', '2018-08-03', '2018-08-23'),
+(200001, 'Fathers day', 'Suitable for all the couples who are celebrating valentines day.', '2018-08-03', '2018-08-23'),
 (200002, 'Mothers day', 'For all the lovely mums', '2018-08-01', '2018-08-31'),
 (200003, 'Valentine', 'Just buy one', '2018-08-16', '2018-08-15'),
 (200004, 'Valentine special', 'asdasdasd', '2018-08-15', '2018-08-23'),
