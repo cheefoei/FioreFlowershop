@@ -13,4 +13,6 @@ Steps to deploy
 3. Run the "flowershop_db.sql" file that placed under root path of this project in MYSQL server.
 4. In your browser, enter the localhost and port number (default is 80) to run this website.
 
-Thanks for using Flora Flowershop system.
+
+Thanks for using Flore Flowershop system
+Have a nice day :)
