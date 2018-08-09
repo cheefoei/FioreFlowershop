@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Welcome to Flora Flowershop</title>
 
-        <?php
+        <?php 
         include '../header.php';
         session_start();
         if (isset($_SESSION['staff'])) {
@@ -79,7 +79,7 @@ and open the template in the editor.
 
                             <form id="contact" action="StaffMainPage.php" method="post">
                                 <fieldset>
-                                    <button name="logout" type="submit" id="contact-submit">Logout</button>
+                                    <button name="logout" type="submit">Logout</button>
                                 </fieldset>
                             </form>
 
