@@ -24,16 +24,31 @@ and open the template in the editor.
                 <h3>Add new Catalog form</h3>
                 <h4>Insert all the fields</h4>
                 <?php
-                if ((isset($_POST['catalog_id']))) {
-                    $newcatalog->catalog_id = trim($_POST['catalog_id']);
-                    $newcatalog->name = trim($_POST['name']);
-                    $newcatalog->description = trim($_POST['description']);
-                    $newcatalog->date_created = trim($_POST['date_created']);
-                    $newcatalog->date_expired = trim($_POST['date_expired']);
-                    //echo $product_id . $product_name . $product_description . $date_created . $date_expired . $total_stock . $price . $weight . "<br/>";
+                if ($_POST) {
+                    $errors = array();
+                    if (!preg_match_all('/^[A-Za-z -]+$/', $_POST['name'])) {
+                        $errors['product_name'] = "Your product_name must made up of a-z characters";
+                    }
+                    if (!preg_match_all('/^[A-Za-z -]+$/', $_POST['description'])) {
+                        $errors['product_name'] = "Your description must made up of a-z characters";
+                    } 
+                    $totalerror = '';
+                    foreach ($errors as $error) {
+                        $totalerror = $totalerror . $error . ' ';
+                    }
+                    if ($totalerror != '') {
+                        echo '<p class="copyright" >Error occured:  ' . $totalerror . ' Unable to proceed!</p>';
+                    } else {
+                        $newcatalog->catalog_id = trim($_POST['catalog_id']);
+                        $newcatalog->name = trim($_POST['name']);
+                        $newcatalog->description = trim($_POST['description']);
+                        $newcatalog->date_created = trim($_POST['date_created']);
+                        $newcatalog->date_expired = trim($_POST['date_expired']);
+                        //echo $product_id . $product_name . $product_description . $date_created . $date_expired . $total_stock . $price . $weight . "<br/>";
 
-                    $catmaker->addCatalog($newcatalog);
-                    echo '<p class="copyright" >Catalog '.$newcatalog->catalog_id.' added successfully!</p>';
+                        $catmaker->addCatalog($newcatalog);
+                        echo '<p class="copyright" >Catalog ' . $newcatalog->catalog_id . ' added successfully!</p>';
+                    }
                 }
                 $stmt = $catmaker->getCatalogLastRow();
                 $row = $stmt->fetch();

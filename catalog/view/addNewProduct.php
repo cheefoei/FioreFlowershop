@@ -18,28 +18,54 @@ and open the template in the editor.
 
         $prod = new product();
         $catmaker = new CatalogMaker();
+
         //SELECT * FROM product ORDER BY ID DESC LIMIT 1
+        function is_valid_name($input_name) {
+            return preg_match_all('/^[A-Za-z]+$/', $input_name) ? TRUE : FALSE;
+        }
         ?>
         <div class="container">  
             <form id="contact" action="addNewProduct.php" method="post">
                 <h3>Add new product form</h3>
                 <h4>Insert all the fields</h4>
                 <?php
-                if ((isset($_POST['product_id']))) {
-                    $prod->product_id = trim($_POST['product_id']);
-                    $prod->product_name = trim($_POST['product_name']);
-                    $prod->product_type = trim($_POST['product_type']);
-                    $prod->product_description = trim($_POST['product_description']);
-                    $prod->date_created = trim($_POST['date_created']);
-                    $prod->date_expired = trim($_POST['date_expired']);
-                    $prod->total_stock = trim($_POST['total_stock']);
-                    $prod->price = trim($_POST['price']);
-                    $prod->weight = trim($_POST['weight']);
+                if ($_POST) {
+                    $errors = array();
+                    if (!preg_match_all('/^[A-Za-z -]+$/', $_POST['product_name'])) {
+                        $errors['product_name'] = "Your product_name must made up of a-z characters";
+                    }
+                    if (!is_numeric($_POST['total_stock'])) {
+                        $errors['total_stock'] = "total_stock must made up of numerics characters<br/>";
+                    }
+                    if (!is_numeric($_POST['price'])) {
+                        $errors['price'] = "price must made up of numerics characters<br/>";
+                    }  
+                    if (!is_numeric($_POST['weight'])) {
+                        $errors['weight'] = "weight must made up of numerics characters<br/>";
+                    }                 
 
-                    $catmaker->addProduct($prod);
-                    echo '<p class="copyright" >Product '.$prod->product_id.' added successfully!</p>';
+                    
+                    $totalerror = '';
+                    foreach ($errors as $error) {
+                        $totalerror = $totalerror . $error . ' ';
+                    }
+                    if ($totalerror != '') {
+                        echo '<p class="copyright" >Error occured:  ' . $totalerror . ' Unable to proceed!</p>';
+                    } else {
+                        //all verified
+                        $prod->product_id = trim($_POST['product_id']);
+                        $prod->product_name = trim($_POST['product_name']);
+                        $prod->product_type = trim($_POST['product_type']);
+                        $prod->product_description = trim($_POST['product_description']);
+                        $prod->date_created = trim($_POST['date_created']);
+                        $prod->date_expired = trim($_POST['date_expired']);
+                        $prod->total_stock = trim($_POST['total_stock']);
+                        $prod->price = trim($_POST['price']);
+                        $prod->weight = trim($_POST['weight']);
+                        $catmaker->addProduct($prod);
+                        echo '<p class="copyright" >Product ' . $prod->product_id . ' added successfully!</p>';
+                    }
                 }
-
                 $stmt = $catmaker->getProductLastRow();
                 $row = $stmt->fetch();
                 $lastProduct_id = (int) $row['product_id'];

@@ -19,35 +19,49 @@ and open the template in the editor.
         $catmaker = new CatalogMaker();
         $cat = new catalog();
 
-        if ((isset($_POST['catalog_id']))) {
-            $cat->catalog_id = trim($_POST['catalog_id']);
-            $cat->name = trim($_POST['name']);
-            $cat->description = trim($_POST['description']);
-            $cat->date_created = trim($_POST['date_created']);
-            $cat->date_expired = trim($_POST['date_expired']);
-
-            $catmaker->addCatalog($cat);
-            echo "<font color=\"white\"><b>Catalog update success</b></font>";
-            echo '<script>window.location.href = "getAllCatalog.php";</script>';
-        }
-
-
         $id = intval($_GET['id']);
         //$id = 200001;
-        $stmt = $catmaker->getCatalogByID($id);
-
-        $row = $stmt->fetch();
-
-        $cat->catalog_id = $row['catalog_id'];
-        $cat->name = $row['name'];
-        $cat->description = $row['description'];
-        $cat->date_created = $row['date_created'];
-        $cat->date_expired = $row['date_expired'];
         ?>
         <div class="container">  
             <form id="contact" action="editCatalog.php?id=<?php echo $id; ?>" method="post">
                 <h3>Catalog update form</h3>
                 <h4>Insert the latest fields</h4>
+                <?php
+                if ($_POST) {
+                    $errors = array();
+                    if (!preg_match_all('/^[A-Za-z -]+$/', $_POST['name'])) {
+                        $errors['product_name'] = "Your product_name must made up of a-z characters";
+                    }
+                    if (!preg_match_all('/^[A-Za-z -]+$/', $_POST['description'])) {
+                        $errors['product_name'] = "Your description must made up of a-z characters";
+                    }
+                    $totalerror = '';
+                    foreach ($errors as $error) {
+                        $totalerror = $totalerror . $error . ' ';
+                    }
+                    if ($totalerror != '') {
+                        echo '<p class="copyright" >Error occured:  ' . $totalerror . ' Unable to proceed!</p>';
+                    } else {
+                        $cat->catalog_id = trim($_POST['catalog_id']);
+                        $cat->name = trim($_POST['name']);
+                        $cat->description = trim($_POST['description']);
+                        $cat->date_created = trim($_POST['date_created']);
+                        $cat->date_expired = trim($_POST['date_expired']);
+                        //echo $product_id . $product_name . $product_description . $date_created . $date_expired . $total_stock . $price . $weight . "<br/>";
+
+                        $catmaker->updateCatalog($cat);
+                        echo '<p class="copyright" >Catalog ' . $cat->catalog_id . ' update successfully!</p>';
+                        //echo '<script>window.location.href = "getAllCatalog.php";</script>';
+                    }
+                }
+                $stmt = $catmaker->getCatalogByID($id);
+                $row = $stmt->fetch();
+                $cat->catalog_id = $row['catalog_id'];
+                $cat->name = $row['name'];
+                $cat->description = $row['description'];
+                $cat->date_created = $row['date_created'];
+                $cat->date_expired = $row['date_expired'];
+                ?>
                 <fieldset>
                     <p>Catalog ID:</p>
                     <input placeholder="Catalog ID" type="text" name="catalog_id" value="<?php echo $cat->catalog_id; ?>" tabindex="1" readonly required autofocus>
