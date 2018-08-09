@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : Order_XSL.xsl
-    Created on : August 2, 2018, 4:17 PM
+    Document   : Delivery_XSL.xsl
+    Created on : August 2, 2018, 10:55 PM
     Author     : JJzaii
     Description:
         Purpose of transformation follows.
@@ -14,14 +14,13 @@
     <!-- TODO customize transformation rules 
          syntax recommendation http://www.w3.org/TR/xslt 
     -->
-
     <xsl:template match="/">
         <html>
             <head>
-                <title>Order_XSL.xsl</title>
+                <title>PICKUP_XSL.xsl</title>
             </head>
             <body>
-                <h1>Today Pickup Record </h1>
+                <h1>Today PICKUP Record </h1>
                 
                 <table border="1">
                     <tr>
@@ -29,11 +28,12 @@
                         <th>Order Date</th>
                         <th>Customer ID</th>
                         <th>Customer Name</th>
-                        <th>Pick Up Date</th>
+                        <th>PickUp Date</th>
                         <th>Payment(RM)</th>
                         <th>Payment Date</th>
-                        <th>Pick Up Time</th>
+                        <th>PickUp Time</th>
                         <th>Staff ID</th>
+                        
                         
                     </tr>
           
@@ -55,7 +55,7 @@
                                 <xsl:value-of select="pickupDate" />
                             </td>
                             <td>
-                                <xsl:value-of select="Payment" />
+                                <xsl:value-of select="Payment2" />
                             </td>
                             <td>
                                 <xsl:value-of select="paymentDate" />
@@ -69,14 +69,13 @@
                         </tr>
                     </xsl:for-each>
                 </table>    
-                    <p>
-                    Total of Pickup for today is <xsl:value-of select="count(//PICKUP)"/> item(s).
+                <p>
+                    Total of Delivery for today is <xsl:value-of select="count(//PICKUP)"/> item(s).
                     <br/>
-                     
-                    Total amount for today Pickup is RM<xsl:value-of select="sum(//Pick_up[Payment]/Payment)"/>
-                    </p>
+                    Total amount for today Delivery is RM<xsl:value-of select="sum(//PICKUP[Payment2]/Payment2)"/>
+                    <br/>
+                </p>
             </body>
-        
         </html>
     </xsl:template>
 

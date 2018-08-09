@@ -12,7 +12,7 @@ foreach ($result as $row) {
         $track->addChild('Order_ID', $row['orderID']);
         $track->addChild('orderDate', $row['orderDate']);
         $track->addChild('custID', $row['custID']);
-        //$track->addChild('custName', $row['custName']);
+        $track->addChild('custName', $row['custName']);
         $track->addChild('pickupDate', $row['deliveredDate']);
         $track->addChild('Payment', $row['Payment']);
         $track->addChild('paymentDate', $row['paymentDate']);

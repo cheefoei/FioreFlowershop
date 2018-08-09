@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Orders (Order)*>
+<!ELEMENT product (Order_ID , orderDate, custID, status, amount)>
+<!ELEMENT Order_ID (#PCDATA)>
+<!ELEMENT orderDate (#PCDATA)>
+<!ELEMENT custID (#PCDATA)>
+<!ELEMENT status (#PCDATA)>
+<!ELEMENT amount (#PCDATA)>
+
+

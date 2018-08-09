@@ -8,7 +8,7 @@ class Database {
     private static $instance = null;
     private $conn;
     private $host = 'localhost';
-    private $dbName = 'JunKit';
+    private $dbName = 'flowershop_db';
     private $dbuser = 'root';
     private $dbpassword = '';
 

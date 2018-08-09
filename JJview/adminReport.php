@@ -15,7 +15,7 @@ if (isset($_SESSION['staff'])) {
 
 if (strcmp($type, $usertype) == 0) {
     echo ' <h2>Staff Main Pages</h2>';
-    echo '<a href="XML1.php">Display the Delivery Report</a></br>';
+    echo '<a href="createDeliveryXML.php">Display the Delivery Report</a></br>';
     echo '<a href="createOrderReport.php">Display the Pick Up Report</a></br>';
     echo '<a href="createOrderXML.php">Display the Order Report</a></br>';
 }
