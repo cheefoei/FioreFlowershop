@@ -12,6 +12,13 @@ $products = $order->getProduct();
 
 session_start();
 //session_destroy();
+if (!isset($_SESSION['customer'])) {
+    echo '<script language="javascript">';
+    echo 'alert("You have to login as customer to access this page");';
+    echo 'window.location.href = "../../view/customer/CustomerLogin.php";';
+    echo '</script>';
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
