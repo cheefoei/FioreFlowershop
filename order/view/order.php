@@ -15,7 +15,7 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
-    
+
     if (isset($_SESSION['orderList'])) {
         $orderList = $_SESSION['orderList'];
     }
@@ -65,17 +65,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </head>
 
     <body class="container">
+
         <br/>
-        <h2>Fresh Flower Ordering</h2>
+        <a href="../../view/customer/CustomerMainPage.php">Home</a>
         <br/>
         <br/>
+        <div class="row">
+            <h2 class="pull-left">Fresh Flower Ordering</h2>
+            <br/>
+            <form action="cart.php" method="post">
+                <button type="submit" class="btn btn-primary pull-right" name="goCart">Go to Cart</button>
+            </form>
+        </div>
+        <br/>
+
         <?php
         $catalogArray = $catalogProduct->getCatalog();
         foreach ($catalogArray as $product) {
             if (date('Y-m-d') <= $product['c_expiredDate']) {
-                echo '<h3>Catalog : ' . $product['name'] . '</h3>';
+                echo '<h4>Catalog : ' . $product['name'] . '</h4>';
 
-                echo '<table>
+                echo '<table class="table table-bordered" style="font-size:16">
             <thead>
             <td>Flower Name</td>
             <td>Flower Type</td>
@@ -93,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo '<td>' . $product[$a]['product_description'] . '</td>';
                         echo '<td>' . $product[$a]['price'] . '</td>';
                         echo '<td>' . $product[$a]['weight'] . '</td>';
-                        echo '<td><input type="number" min="1" max="' . $product[$a]['total_stock'] . '" name="quantity' . $product[$a]['product_id'] . '"' . $product[$a]['product_id'] . '" required/>(Stock Left: ' . $product[$a]['total_stock'] . ')</td>';
-                        echo '<td><button type="submit" name="add' . $product[$a]['product_id'] . '" class="btn btn-primary">Add to Cart</button></td>';
+                        echo '<td><input type="number" min="1" max="' . $product[$a]['total_stock'] . '" name="quantity' . $product[$a]['product_id'] . '"' . $product[$a]['product_id'] . '" required/><br/>(Stock Left: ' . $product[$a]['total_stock'] . ')</td>';
+                        echo '<td><button type="submit" name="add' . $product[$a]['product_id'] . '" class="btn btn-success">Add to Cart</button></td>';
                         echo '</tr>';
                         echo '</form>';
                     }
@@ -106,12 +116,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br/>
         <br/>
         <br/>
-        <form action="cart.php" method="post">
-            <button type="submit" class="btn btn-primary" name="goCart">Go to Cart</button>
-        </form>
-        <form action="/FioreFlowershop/view/customer/CustomerMainPage.php" method="post">
-            <button type="submit" class="btn btn-primary" name="goCart">Back to Menu</button>
-        </form>
+
+        <!--        <form action="/FioreFlowershop/view/customer/CustomerMainPage.php" method="post">
+                    <button type="submit" class="btn btn-primary" name="goCart">Back to Menu</button>
+                </form>-->
 
 
     </body>

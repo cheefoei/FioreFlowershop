@@ -1,10 +1,9 @@
-
-<!-- 
-Name: Leong Chee Foei
- Group: G6
--->
-
 <?php
+
+/*
+ * Name: Leong Chee Foei
+ * Group: G6
+ */
 
 require_once '../../controller/CustomerServicer.php';
 
