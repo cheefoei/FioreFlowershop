@@ -21,9 +21,10 @@ class manageOrder {
     }
 
     public function addOrder($order) {
-        $stmt = $this->conn->prepare("INSERT INTO floral_order(customer_id,total_amount) VALUES(?,?)");
+        $stmt = $this->conn->prepare("INSERT INTO floral_order(customer_id,total_amount, status) VALUES(?,?,?)");
         $stmt->bindParam(1, $order->getCustomer_id());
         $stmt->bindParam(2, $order->getTotal_amount());
+        $stmt->bindParam(3, $order->getStatus());
         $stmt->execute();
 
         return $this->conn->lastInsertId();
@@ -60,6 +61,7 @@ class manageOrder {
     <thead>
     <td>Flower Name</td>
     <td>Flower Description</td>
+    <td>Flower Description</td>
     <td>Unit Price (RM)</td>
     <td>Quantity</td>
     <td>Subtotal (RM)</td>
@@ -75,6 +77,7 @@ class manageOrder {
                         $total += $product['price'] * $list[2];
                         echo '<tr>
         <td>' . $product['product_name'] . '</td>
+            <td>' . $product['product_type'] . '</td>
         <td>' . $product['product_description'] . '</td>
         <td>' . $product['price'] . '</td>
         <td>' . $list[2] . '</td>
@@ -86,7 +89,7 @@ class manageOrder {
                     }
                 }
             }
-            echo '<tr><td></td><td></td><td></td><td>Total :</td><td>' . $total . '</td></tr>';
+            echo '<tr><td></td><td></td><td></td><td></td><td>Total :</td><td>' . $total . '</td></tr>';
             echo '</table>';
             echo '<br/>
         <br/>

@@ -21,7 +21,7 @@ $stmt3->execute();
 $order = $stmt3->fetchAll(PDO::FETCH_ASSOC);
 $orderList = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 $products = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE trainers SYSTEM "order.dtd"><?xml-stylesheet type="text/xsl" href="order.xsl"?><orders></orders>');
+$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE orders SYSTEM "order.dtd"><?xml-stylesheet type="text/xsl" href="order.xsl"?><orders></orders>');
 foreach ($order as $key) {
     if ($key['customer_id'] == $_SESSION['customer']->getId()) {
         $track = $xml->addChild('order');

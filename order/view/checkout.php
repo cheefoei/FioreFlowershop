@@ -9,62 +9,69 @@ require_once '../../model/Customer.php';
 date_default_timezone_set('Asia/Kuala_Lumpur');
 
 session_start();
-$customer = $_SESSION['customer'];
-$orderList = $_SESSION['orderList'];
-$orderHelper = new manageOrder();
-$order = new Order($customer->getId(), $_SESSION['total']);
 
 
-$id = $orderHelper->addOrder($order);
+/* print_r($order->getTotal_amount());
+  echo "<br/>";
+  print_r($customer->getMonthly_credit_limit());
+  echo "<br/>";
+  print_r("asdkjhasd" . $different); */
 
-//print_r($customer->getId());
-//print_r($customer->getType());
-//print_r($customer->getMonthly_credit_limit());
-if (isset($_POST['checkOut'])) {
-
-    if ($customer->getType() == "Corporate" && $customer->getMonthly_credit_limit() >= $order->getTotal_amount()) {
-        $customer->setMonthly_credit_limit($customer->getMonthly_credit_limit() - $order->getTotal_amount());
-        $orderHelper->reduceCredit($customer->getMonthly_credit_limit(), $customer->getId());
-    } else {
-        echo '<script type="text/javascript">';
-        echo 'alert("No sufficient balance. Please reduce cart item. Lacking ' . $order->getTotal_amount() - $customer->getMonthly_credit_limit() . '");';
-        //echo 'window.location.href = "order.php";';
-        echo '</script>';
-    }
-}
 
 if (isset($_POST['submit'])) {
+    $customer = $_SESSION['customer'];
+    $orderList = $_SESSION['orderList'];
+    $orderHelper = new manageOrder();
 
-
+    $order = new Order($customer->getId(), $_SESSION['total']);
+    $different = $order->getTotal_amount() - $customer->getMonthly_credit_limit();
+    $order->setStatus("unpaid");
+    $tempAmount = $order->getTotal_amount();
+    
+    if ($customer->getType() == "Corporate" && $different <= 0.00) {
+        print_r("enough credit");
+        $customer->setMonthly_credit_limit(abs($different));
+        $order->setStatus("paid");
+        $tempAmount = 0;
+    } elseif ($customer->getType() == "Corporate" && $different > 0.00) {
+        print_r("not enough credit");
+       $tempAmount = $different;
+        $customer->setMonthly_credit_limit(0);
+    }
+    $id = $orderHelper->addOrder($order);
+    
     foreach ($orderList as $list) {
         $orderItem = new OrderList($id, $list[1], $list[2]);
         $orderHelper->addOrderList($orderItem);
     }
     $customerFullName = $customer->getFname() . " " . $customer->getLname();
+    
     if (isset($_POST['checkOutType'])) {
-
+        if ($customer->getType() == "Corporate") {
+            $orderHelper->reduceCredit($customer->getMonthly_credit_limit(), $customer->getId());
+        }
         $shipping = new Shipping;
         if ($_POST['checkOutType'] == "delivery") {
 
             $shipping->shipping("delivery");
             $test = $shipping->getShippingMethod();
-            $test->addDelivery($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $customer->getAddress(), $_POST['date'], $_SESSION['total']);
+            $test->addDelivery($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $customer->getAddress(), $_POST['date'], $tempAmount);
             //$order->addDelivery ($custName, $custID, $orderID, $orderDate, $deliveryAddress, $deliveredDate);
             echo '<script language="javascript">';
-            echo 'alert("Your order ' . date('Y-m-d h:i:s') . ' is estimated to be arrived at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '")';
+            echo 'alert("Your order ' . date('Y-m-d h:i:s') . ' is estimated to be arrived at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '. Please prepare RM '.$tempAmount.'")';
             echo '</script>';
         } elseif ($_POST['checkOutType'] == "pickup") {
             $shipping->shipping("pickup");
             $test = $shipping->getShippingMethod();
-            $test->addPickUp($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $_POST['date'], $_SESSION['total']);
+            $test->addPickUp($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $_POST['date'], $tempAmount);
             echo '<script language="javascript">';
-            echo 'alert("You can ' . date('Y-m-d h:i:s') . ' pick up your order at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '")';
+            echo 'alert("You can ' . date('Y-m-d h:i:s') . ' pick up your order at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '. Please prepare RM '.$tempAmount.'")';
             echo '</script>';
         }
         //print_r($_SERVER['HTTP_REFERER']);
         unset($_SESSION['total']);
         unset($_SESSION['orderList']);
-
+        $_SESSION['customer'] = $customer;
         //$order->test();
         echo '<script type="text/javascript">';
         echo 'window.location.href = "order.php";';

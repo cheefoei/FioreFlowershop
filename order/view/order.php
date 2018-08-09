@@ -10,11 +10,12 @@ $catalogProduct = new catalog();
 $order = new manageOrder();
 $products = $order->getProduct();
 
-//session_start();
+session_start();
 //session_destroy();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
+    
     if (isset($_SESSION['orderList'])) {
         $orderList = $_SESSION['orderList'];
     }
@@ -105,12 +106,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br/>
         <br/>
         <br/>
-        <form action="/FioreFlowershop/view/customer/CustomerMainPage.php" method="post">
-            <button type="submit" class="btn btn-primary" name="goCart">Back to Menu</button>
-        </form>
         <form action="cart.php" method="post">
             <button type="submit" class="btn btn-primary" name="goCart">Go to Cart</button>
         </form>
+        <form action="/FioreFlowershop/view/customer/CustomerMainPage.php" method="post">
+            <button type="submit" class="btn btn-primary" name="goCart">Back to Menu</button>
+        </form>
+
 
     </body>
 

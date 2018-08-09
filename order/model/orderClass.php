@@ -4,16 +4,17 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- 
 
-*/
+
+ */
+
 class Order {
 
     private $customer_id;
     private $total_amount;
+    private $status;
 
-    
-     function __construct($customer_id, $total_amount) {
+    function __construct($customer_id, $total_amount) {
         $this->customer_id = $customer_id;
         $this->total_amount = $total_amount;
     }
@@ -34,6 +35,12 @@ class Order {
         $this->total_amount = $total_amount;
     }
 
+    function getStatus() {
+        return $this->status;
+    }
+
+    function setStatus($status) {
+        $this->status = $status;
+    }
 
 }
-    
