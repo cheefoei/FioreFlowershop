@@ -1,10 +1,16 @@
+fds<?php
+$xml=new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="Delivery_XSL.xsl"?><Deliverys></Deliverys>');
+?>
 <?php
 
-include '../JJcontroller/DeliveryDatabase.php';
-$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="Delivery_XSL.xsl"?><Deliverys></Deliverys>');
-$result = DeliveryDatabase::getInstance()->query2();
+//$new_str = str_replace(' ', '', $xml);
+require_once'../JJcontroller/Facade.php';
+$d=new Facade();
+$result = $d->RetrieveDelivery();
 $pickupDate = trim(date("Y-m-d"));
 
+
+//print_r($pickupDate);
 foreach ($result as $row) {
     if ($row['status'] == "Delivered" && $row['deliveredDate']==$pickupDate) {
         $track = $xml->addChild('Delivery');
@@ -20,9 +26,9 @@ foreach ($result as $row) {
         $track->addChild('address',$row['deliveryAddress']);
     }
 }
-
 Header('Content-type: text/xml');
 print($xml->asXML());
 
-?>
+
+
 

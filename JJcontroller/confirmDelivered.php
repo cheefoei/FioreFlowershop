@@ -1,6 +1,6 @@
 <?php
 
-include 'database2.php';
+require_once 'Facade.php';
 require_once '../JJmodel/User.php';
 
 try {
@@ -22,8 +22,10 @@ try {
         //$database = new database();
         //$database = database::getInstance();
         $newDelivery = new Delivery($testdate, $time, $testdate2, $testid,$staffID);
-        $database = Database::getInstance()->updateDelivery($newDelivery);
-        $database2 = Database::getInstance()->updateOrder($testid);
+        //$updateDeliver=new DeliveryDatabase();
+        $newfacede =new Facade();
+        $database = $newfacede->UpdateDelivery($newDelivery);
+        $database2 = $newfacede->UpdateOrder($testid);
         echo"The Order is Delivered.<br>";
 
     }

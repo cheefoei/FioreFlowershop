@@ -1,6 +1,6 @@
 <?php
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
-include '../JJcontroller/DeliveryDatabase.php';
+require_once '../JJcontroller/Facade.php';
 //require_once 'C:\xampp\htdocs\Assignment\JJmodel\Delivery.php';
 ?>
 <html>
@@ -15,7 +15,7 @@ include '../JJcontroller/DeliveryDatabase.php';
                 <th>Order Date</th>
                 <th>Payment</th>
                 <th>Payment Data</th>
-                <th>Customer Name</th>
+              
                 <th>Customer ID</th>
                 <th>Delivered Date</th>
                 <th>Delivered Time</th>
@@ -25,13 +25,14 @@ include '../JJcontroller/DeliveryDatabase.php';
             </tr>
 
             <?php
-            $result = DeliveryDatabase::getInstance()->query2();
+            $f=new Facade();
+            $result = $f->RetrieveDelivery();
             foreach ($result as $row) {
                 if ($row['status'] == "Pending") {
                     $orderDate = $row['orderDate'];
                     $orderID = $row['orderID'];
                     $custID = $row['custID'];
-                    $custName = $row['custName'];
+                    //$custName = $row['custName'];
                     $DeliveredDate = $row['deliveredDate'];
                     $status = $row['status'];
                     $staffID = $row['StaffID'];
@@ -47,7 +48,7 @@ include '../JJcontroller/DeliveryDatabase.php';
                     echo "<td>$orderDate</td>";
                     echo "<td>$payment</td>";
                     echo "<td>$paymentdate</td>";
-                    echo "<td>$custName</td>";
+                    //echo "<td>$custName</td>";
                     echo "<td>$custID</td>";
                     echo "<td>$DeliveredDate</td>";
                     echo "<td>$time</td>";

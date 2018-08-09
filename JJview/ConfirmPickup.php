@@ -5,15 +5,15 @@ $pickupDate = trim(date("Y-m-d"));
 $time = trim(date('H:i:s'));
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
-    include '../JJcontroller/PickupDatabase.php';
+    require_once'../JJcontroller/Facade.php';
 }
 ?>
 <?php
 //$result = Database::getInstance()->query3($id);
-$result= PickupDatabase::getInstance()->query3($id);
-foreach($result as $row){
-    $name=$row['custID'];
-    $custid=$row['custID'];
+$facde2 = new Facade();
+$result = $facde2->SelectPickup($id);
+foreach ($result as $row) {
+    $custid = $row['custID'];
 }
 ?>
 <html>
@@ -25,12 +25,8 @@ foreach($result as $row){
     <body>
         <form method="post" action="../JJcontroller/confirmPickup.php" >
             <div class="input-group">
-                <label>Customer Name</label>
-                <input type="text" name="custName" value="<?php echo $name?>" readonly=""><br>
-            </div><br>
-            <div class="input-group">
                 <label>Customer ID</label>
-                <input type="text" name="custID" value="<?php echo $custid?>" readonly=><br>
+                <input type="text" name="custID" value="<?php echo $custid ?>" readonly=><br>
             </div><br>
             <div class="input-group">
                 <label>Order ID</label>
@@ -40,7 +36,7 @@ foreach($result as $row){
                 <label>Pickup Date</label>
                 <input type="text" name="pickupdate" value="<?php echo $pickupDate; ?>"><br>
             </div><br>
-             <div class="input-group">
+            <div class="input-group">
                 <label>Pickup Time</label>
                 <input type="text" name="pickuptime" value="<?php echo $time; ?>"><br>
             </div><br>
