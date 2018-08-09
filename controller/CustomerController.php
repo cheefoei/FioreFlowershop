@@ -38,6 +38,7 @@ class CustomerController {
                     $customer->setPhone_number($row['customer_phone_number']);
                     $customer->setAddress($row['customer_address']);
                     $customer->setMonthly_credit_limit($row['customer_monthly_credit_limit']);
+                    $customer->setType($row['customer_type']);
                     $customer->setPassword(null);
                 }
                 $_SESSION['customer'] = $customer;
