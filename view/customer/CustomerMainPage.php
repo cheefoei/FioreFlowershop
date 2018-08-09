@@ -53,7 +53,7 @@ Name: Leong Chee Foei
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="text-align: center">
-                        <a href="view/customer/CustomerLogin.php">Invoice</a>
+                        <a href="CustomerInvoiceSelector.php.php">Invoice</a>
                     </div>
                 </div>
             </div>

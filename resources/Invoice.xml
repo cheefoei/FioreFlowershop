@@ -3,20 +3,26 @@
 
 <invoices>
     <invoice invoiceID="I001">
-        <orderID>O001</orderID>
+        <order>        
+            <orderID>O001</orderID>
+            <orderDate>O001</orderDate>
+            <productName>O001</productName>
+            <price>O001</price>
+            <quantity>O001</quantity>
+            <totalAmount>O001</totalAmount>
+        </order>
+        <order>        
+            <orderID>O001</orderID>
+            <orderDate>O001</orderDate>
+            <productName>O001</productName>
+            <price>O001</price>
+            <quantity>O001</quantity>
+            <totalAmount>O001</totalAmount>
+        </order>
         <month>January</month>
         <year>2018</year>
         <customerID>C001</customerID>
         <createdDate>01 Februry 2018</createdDate>
-        <totalAmount>1000.00</totalAmount>
-    </invoice>
-    <invoice invoiceID="I002">
-        <orderID>O002</orderID>
-        <orderID>O003</orderID>
-        <month>March</month>
-        <year>2018</year>
-        <customerID>C002</customerID>
-        <createdDate>01 April 2018</createdDate>
-        <totalAmount>1500.00</totalAmount>
+        <invoiceTotalAmount>1000.00</invoiceTotalAmount>
     </invoice>
 </invoices>

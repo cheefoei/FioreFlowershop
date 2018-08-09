@@ -194,7 +194,7 @@ class CustomerController {
                 $track->addChild('phone', $row['customer_phone_number']);
                 $track->addChild('address', $row['customer_address']);
 
-                if (strcmp($row['customer_type'], 'corporate')) {
+                if (strcmp($row['customer_type'], 'Corporate') == 0) {
                     $track->addChild('monthlyCreditLimit', $row['customer_monthly_credit_limit']);
                 }
             }
