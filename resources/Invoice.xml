@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="Invoice.xsl" ?>
+<!DOCTYPE invoices SYSTEM 'Invoice.dtd'>
+<invoices>
+    <invoice invoiceID="1">
+        <order>        
+            <orderID>1</orderID>
+            <orderDate>02 July 2018</orderDate>
+            <productName>Rose</productName>
+            <price>28.80</price>
+            <quantity>4</quantity>
+            <totalAmount>115.20</totalAmount>
+        </order>
+        <order>        
+            <orderID>2</orderID>
+            <orderDate>10 July 2018</orderDate>
+            <productName>Hibiscus</productName>
+            <price>89.90</price>
+            <quantity>4</quantity>
+            <totalAmount>359.60</totalAmount>
+        </order>
+        <month>July</month>
+        <year>2018</year>
+        <customerID>1</customerID>
+        <createdDate>2018-08-10 02:07:11</createdDate>
+        <invoiceTotalAmount>474.80</invoiceTotalAmount>
+    </invoice>
+</invoices>

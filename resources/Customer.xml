@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="Customer.xsl" ?>
+<!DOCTYPE customers SYSTEM "Customer.dtd">
+<customers>
+    <customer customerID="1" type="Corporate">
+        <name>
+            <fname>Chris</fname>
+            <lname>Evans</lname>
+        </name>
+        <email>chris@email.com</email>
+        <phone>01113366644</phone>
+        <address>20, Jalan 14/27b, Desa Setapak, 53300 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur</address>
+        <monthlyCreditLimit>1000.00</monthlyCreditLimit>
+    </customer>
+</customers>
