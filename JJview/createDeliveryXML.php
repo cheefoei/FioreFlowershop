@@ -26,4 +26,3 @@ Header('Content-type: text/xml');
 print($xml->asXML());
 
 ?>
-
