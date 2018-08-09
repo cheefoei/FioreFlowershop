@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT invoices (invoice*)>
-<!ELEMENT invoice (order+, customerID, month, year, createdDate, invoiceTotalAmount)>
-<!ATTLIST invoice invoiceID ID #REQUIRED>
-<!ELEMENT order (orderID, orderDate, productName, price, quantity, totalAmount)+>
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!ELEMENT invoices (invoice)*>
+<!ELEMENT invoice (order+, month, year, customerID, createdDate, invoiceTotalAmount, status)>
+<!ATTLIST invoice invoiceID CDATA #IMPLIED>
+<!ELEMENT order (orderID, orderDate, productName, price, quantity, totalAmount)>
 <!ELEMENT orderID (#PCDATA)>
 <!ELEMENT orderDate (#PCDATA)>
 <!ELEMENT productName (#PCDATA)>
 <!ELEMENT price (#PCDATA)>
 <!ELEMENT quantity (#PCDATA)>
 <!ELEMENT totalAmount (#PCDATA)>
-<!ELEMENT customerID (#PCDATA)>
 <!ELEMENT month (#PCDATA)>
 <!ELEMENT year (#PCDATA)>
+<!ELEMENT customerID (#PCDATA)>
 <!ELEMENT createdDate (#PCDATA)>
 <!ELEMENT invoiceTotalAmount (#PCDATA)>
-
-
+<!ELEMENT status (#PCDATA)>
