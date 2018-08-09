@@ -98,6 +98,11 @@ class manageOrder {
             $_SESSION['total'] = $total;
         }
     }
+    
+    public function reduceCredit($credit,$id){
+        $stmt = $this->conn->prepare('UPDATE customer SET customer_monthly_credit_limit = '.$credit.' WHERE customer_id = ' . $id . '');
+        $stmt->execute();
+    }
 
     
     public function test(){
