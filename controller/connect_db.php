@@ -6,7 +6,7 @@ class connect_db {
     private $host = "localhost";
     private $user = "root";
     private $password = "";
-    private $db = "JunKit";
+    private $db = "flowershop_db";
 
     public function connect() {
 

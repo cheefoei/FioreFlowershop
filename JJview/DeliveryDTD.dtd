@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!--
+    TODO define vocabulary identification data
+    PUBLIC ID  : -//vendor//vocabulary//EN
+    SYSTEM ID  : http://server/path/__NAME__
+-->
+
+<!-- TODO define your own vocabulary/syntax. Example follows:  -->
+<!ELEMENT Deliverys (Delivery)*>
+<!ELEMENT Delivery (Order_ID , orderDate, custID, custName, pickupDate, Payment, paymentDate, payTime, staffID, address)>
+<!ELEMENT Order_ID (#PCDATA)>
+<!ELEMENT orderDate (#PCDATA)>
+<!ELEMENT custID (#PCDATA)>
+<!ELEMENT custName (#PCDATA)>
+<!ELEMENT pickupDate (#PCDATA)>
+<!ELEMENT Payment (#PCDATA)>
+<!ELEMENT paymentDate (#PCDATA)>
+<!ELEMENT payTime (#PCDATA)>
+<!ELEMENT staffID (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+
+
