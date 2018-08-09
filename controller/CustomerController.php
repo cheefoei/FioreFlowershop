@@ -37,6 +37,7 @@ class CustomerController {
                     $customer->setLname($row['customer_lname']);
                     $customer->setPhone_number($row['customer_phone_number']);
                     $customer->setAddress($row['customer_address']);
+                    $customer->setMonthly_credit_limit($row['customer_monthly_credit_limit']);
                     $customer->setPassword(null);
                 }
                 $_SESSION['customer'] = $customer;

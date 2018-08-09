@@ -46,21 +46,14 @@ Name: Leong Chee Foei
             <div class="col-sm-4">
                 <div class="panel panel-info">
                     <div class="panel-heading" style="text-align: center">
-                        <a href="view/customer/CustomerLogin.php">Invoice</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align: center">
-                        <a href="../../order/view/orderReportXML.php">Report</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="text-align: center">
                         <a href="../../order/view/orderReportXML.php">Order History</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align: center">
+                        <a href="view/customer/CustomerLogin.php">Invoice</a>
                     </div>
                 </div>
             </div>

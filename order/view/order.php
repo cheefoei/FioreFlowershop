@@ -112,10 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit" class="btn btn-primary" name="goCart">Go to Cart</button>
         </form>
 
-
-    </tbody>
-</table>
-</body>
+    </body>
 
 </html>
 

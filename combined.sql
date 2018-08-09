@@ -25,30 +25,70 @@ CREATE TABLE `user` (
 );
 INSERT INTO `user` (`user_type`, `user_name`, `user_status`, `user_password`) VALUES 
 ('staff', 'Lim Jun Kit', 'dont know', '1234'),
-('admin', 'Nimda', 'dont know', '1234')
+('admin', 'Nimda', 'dont know', '1234');
+
+CREATE TABLE `catalog` (
+        `catalog_id`        int(11) NOT NULL AUTO_INCREMENT,
+        `name`              varchar(80) NOT NULL,
+        `description`       varchar(500) NOT NULL,
+        `date_created`      date NOT NULL,
+        `date_expired`      date NOT NULL,
+    	PRIMARY KEY(catalog_id)
+);
+INSERT INTO `catalog` (`catalog_id`, `name`, `description`, `date_created`, `date_expired`) VALUES
+(200001, 'Fathers day test', 'Suitable for all the couples who are celebrating valentines day.', '2018-08-03', '2018-08-23'),
+(200002, 'Mothers day', 'For all the lovely mums', '2018-08-01', '2018-08-31'),
+(200003, 'Valentine', 'Just buy one', '2018-08-16', '2018-08-15'),
+(200004, 'Valentine special', 'asdasdasd', '2018-08-15', '2018-08-23'),
+(200005, 'Graduation day', 'sdasdasd', '2018-08-01', '2018-08-02'),
+(200006, 'Valentine', 'For all the lovers', '2018-08-01', '2018-08-31');
+
+CREATE TABLE `product` (
+        `product_id`            int(11) NOT NULL AUTO_INCREMENT,
+        `product_name`          varchar(80) DEFAULT NULL,
+        `product_type`          varchar(50) DEFAULT NULL,
+        `product_description`   varchar(500) DEFAULT NULL,
+        `date_created`          date DEFAULT NULL,
+        `date_expired`          date DEFAULT NULL,
+        `total_stock`           int(11) DEFAULT NULL,
+        `price`                 double DEFAULT NULL,
+        `weight`                double DEFAULT NULL,
+    	PRIMARY KEY(product_id)
+);
+INSERT INTO `product` (`product_id`, `product_name`, `product_type`, `product_description`, `date_created`, `date_expired`, `total_stock`, `price`, `weight`) VALUES
+(100001, 'Rose', 'fresh_flower', 'Perfectly red in color', '2018-07-03', '2018-07-25', 10, 28.8, 800.5),
+(100002, 'Hibiscus', 'bouquet', 'As pretty as your face.', '2018-07-03', '2018-07-24', 10, 89.9, 150.2),
+(100003, 'rose', 'seasonal\r\npromotion item', 'Perfect in color for all those couples', '2018-07-02', '2018-07-28', 11, 198.2, 160.4),
+(100005, 'Rose Slvar', 'bouquet,', 'pretty flower suitable for all occasions', '2018-08-14', '2018-08-31', 2, 11, 22),
+(100006, 'Trinity Box-Red', 'Seasonal Item', 'An elegant box specially handcrafted by our artisan florist. Each rose bud is highlighted with a beautiful crystal gem to symbolise everlasting love. The box is accentuated with a classic ribbon and a drawer which holds 16 pieces of Ferrero Rocher chocolates perfectly.', '2018-08-03', '2018-08-31', 20, 59.9, 22),
+(100007, 'Just For You', 'Seasonal Item', 'pretty flower suitable for all occasions', '2018-08-09', '2018-08-23', 20, 59.9, 22),
+(100008, 'Rose Slvar', 'Seasonal Item', 'pretty flower suitable for all occasions', '2018-08-09', '2018-08-01', 2, 59.9, 22),
+(100009, 'Pink Blush', 'bouquet', 'Beautiful Pink rose', '2018-08-01', '2018-08-31', 20, 59.9, 22),
+(100010, 'Red Blush', 'floral_arrangements', 'Red color roses', '2018-08-01', '2018-08-31', 2, 59.9, 22);
+
+CREATE TABLE `catalog_list` (
+        `catlist_id`    int(11) NOT NULL AUTO_INCREMENT,
+        `catalog_id`    int(11) DEFAULT NULL,
+        `product_id`    int(11) DEFAULT NULL,
+        FOREIGN KEY (catalog_id) REFERENCES `catalog`(catalog_id),
+        FOREIGN KEY (product_id) REFERENCES product(product_id),
+    	PRIMARY KEY(catlist_id)
+);
+INSERT INTO `catalog_list` (`catlist_id`, `catalog_id`, `product_id`) VALUES
+(300002, 200001, 100001),
+(300003, 200001, 100002),
+(300004, 200001, 100003),
+(300005, 200001, 100005);
 
 CREATE TABLE floral_order (
   	id	 	int(11) NOT NULL AUTO_INCREMENT,
   	customer_id 	int(11) NOT NULL,
-  	date		datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `date`          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   	total_amount	double NOT NULL,
   	status		varchar(6) NOT NULL DEFAULT 'unpaid',
   	PRIMARY KEY (id),
   	FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
-)
-
-CREATE TABLE order_list (
-	id		int(11) NOT NULL AUTO_INCREMENT,
-	order_id 	int(11) NOT NULL,
-	product_id 	int(11) NOT NULL,
-	quantity 	int(11) NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (order_id) REFERENCES floral_order(id)
-)
-
-INSERT INTO `customer` (`customer_id`, `customer_type`, `customer_name`, `customer_email`, `customer_phone_number`, `customer_address`, `customer_monthly_credit_limit`) VALUES 
-(NULL, 'consumer', 'Chris Evans', 'chris@email.com', '012-5483987', '7, Jalan Malinja 2, Taman Bunga Raya, 53000 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur', '0.00');
-
+);
 INSERT INTO `floral_order` (`id`, `customer_id`, `date`, `total_amount`, `status`) VALUES
 (1, 1, '2018-08-02 00:00:00', 115, '0'),
 (2, 1, '2018-08-02 00:00:00', 360, '0'),
@@ -77,6 +117,15 @@ INSERT INTO `floral_order` (`id`, `customer_id`, `date`, `total_amount`, `status
 (25, 1, '2018-08-02 21:33:58', 359.6, 'unpaid'),
 (26, 1, '2018-08-03 01:32:59', 237.4, 'unpaid');
 
+CREATE TABLE order_list (
+	id		int(11) NOT NULL AUTO_INCREMENT,
+	order_id 	int(11) NOT NULL,
+	product_id 	int(11) NOT NULL,
+	quantity 	int(11) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (order_id) REFERENCES floral_order(id),
+	FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
 INSERT INTO `order_list` (`id`, `order_id`, `product_id`, `quantity`) VALUES
 (1, 1, 100001, 4),
 (2, 2, 100002, 4),
@@ -107,3 +156,4 @@ INSERT INTO `order_list` (`id`, `order_id`, `product_id`, `quantity`) VALUES
 (27, 25, 100002, 4),
 (28, 26, 100001, 2),
 (29, 26, 100002, 2);
+
