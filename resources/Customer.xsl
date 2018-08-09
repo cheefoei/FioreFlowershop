@@ -31,7 +31,7 @@
                 <br/>
                 <br/>
             
-                <table class="table table-striped table-condensed">
+                <table class="table table-striped table-condensed" style="font-size:16">
                     <tbody>
                         <xsl:for-each select="customers/customer">
                             <tr>

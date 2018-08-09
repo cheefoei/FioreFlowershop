@@ -23,8 +23,10 @@ class InvoiceController {
         // Get customer ID
         $customer = $_SESSION['customer'];
         $customer_id = null;
+        $customer_name = null;
         if ($customer instanceof Customer) {
             $customer_id = $customer->getId();
+            $customer_name = $customer->getFname() . " " . $customer->getLname();
         }
 
         //Check invoice available
@@ -80,41 +82,45 @@ class InvoiceController {
                 . '<?xml-stylesheet type="text/xsl" href="../../resources/Invoice.xsl"?>'
                 . '<!DOCTYPE customers SYSTEM "../../resources/Invoice.dtd">'
                 . '<invoices></invoices>');
-    }
+        $track = $xml->addChild('invoice');
 
-    function CreateCustomerXML() {
+        $invoice_id = null;
+        while ($row = $invoice_stmt->fetch()) {
+            $invoice_id = $row['invoice_id'];
+            $track->addAttribute('invoiceID', $row['invoice_id']);
+            $track->addChild('month', date('F', mktime(0, 0, 0, $row['invoice_month'], 10)));
+            $track->addChild('year', $row['invoice_year']);
+            $track->addChild('customerID', $row['customer_id']);
+            $track->addChild('customerName', $customer_name);
+            $track->addChild('createdDate', $row['date_created']);
+            $track->addChild('invoiceTotalAmount', number_format((float) $row['invoice_total_amount'], 2, '.', ''));
 
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        $customer = $_SESSION['customer'];
-
-        if ($customer instanceof Customer) {
-
-            $stmt = $this->conn->prepare("SELECT * FROM customer WHERE customer_email = :customer_email");
-            $stmt->execute(array(':customer_email' => $customer->getEmail()));
-
-
-            while ($row = $stmt->fetch()) {
-                $track = $xml->addChild('customer');
-                $track->addAttribute('customerID', $row['customer_id']);
-                $track->addAttribute('type', $row['customer_type']);
-                $name = $track->addChild('name');
-                $name->addChild('fname', $row['customer_fname']);
-                $name->addChild('lname', $row['customer_lname']);
-                $track->addChild('email', $row['customer_email']);
-                $track->addChild('phone', $row['customer_phone_number']);
-                $track->addChild('address', $row['customer_address']);
-
-                if (strcmp($row['customer_type'], 'Corporate') == 0) {
-                    $track->addChild('monthlyCreditLimit', $row['customer_monthly_credit_limit']);
-                }
+            if ($row['invoice_isPaid'] == 0) {
+                $track->addChild('status', "Unpaid");
+            } else {
+                $track->addChild('status', "Paid");
             }
-
-
-            Header('Content-type: text/xml');
-            print($xml->asXML());
         }
+
+        //Get order content
+        $order_stmt = $this->conn->prepare("SELECT floral_order.id, DATE_FORMAT(floral_order.date, '%d %M %Y') AS 'order_date', product.product_name, product.price, order_list.quantity,  (product.price * order_list.quantity) AS 'total_amount' 
+            FROM floral_order, order_list, product, invoice_list 
+            WHERE order_list.order_id = floral_order.id AND invoice_list.order_id = floral_order.id AND order_list.product_id = product.product_id AND invoice_list.invoice_id = :invoice_id AND YEAR(`date`) = :year AND MONTH(`date`) = :month  
+            ORDER BY `order_date` ASC");
+        $order_stmt->execute(array(':invoice_id' => $invoice_id, ':month' => $month, ':year' => $year));
+
+        while ($row = $order_stmt->fetch()) {
+            $order = $track->addChild('order');
+            $order->addChild('orderID', $row['id']);
+            $order->addChild('orderDate', $row['order_date']);
+            $order->addChild('productName', $row['product_name']);
+            $order->addChild('price', number_format((float) $row['price'], 2, '.', ''));
+            $order->addChild('quantity', $row['quantity']);
+            $order->addChild('totalAmount', number_format((float) $row['total_amount'], 2, '.', ''));
+        }
+
+        Header('Content-type: text/xml');
+        print($xml->asXML());
     }
 
 }

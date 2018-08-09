@@ -1,8 +1,4 @@
-<?php
-include '../../header.php';
-require '../controller/manageOrder.php';
-require '../controller/getCatalog.php';
-?>
+
 <html>
     <style>
         table, th, td {
@@ -15,6 +11,11 @@ require '../controller/getCatalog.php';
     <head>
         <meta charset="UTF-8">
         <title>Cart</title>
+        <?php
+        include '../../header.php';
+        require '../controller/manageOrder.php';
+        require '../controller/getCatalog.php';
+        ?>
     </head>
 
     <body class="container">
