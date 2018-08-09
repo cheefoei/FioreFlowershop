@@ -39,7 +39,7 @@ Name: Leong Chee Foei
             <div class="col-sm-4">
                 <div class="panel panel-warning">
                     <div class="panel-heading" style="text-align: center">
-                        <a href="">Order</a>
+                        <a href="../../order/view/order.php">Order</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,14 @@ Name: Leong Chee Foei
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="text-align: center">
-                        <a href="view/customer/CustomerLogin.php">Report</a>
+                        <a href="../../order/view/orderReportXML.php">Report</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align: center">
+                        <a href="../../order/view/orderReportXML.php">Order History</a>
                     </div>
                 </div>
             </div>

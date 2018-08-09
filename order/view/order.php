@@ -2,6 +2,7 @@
 include '../../header.php';
 require '../controller/manageOrder.php';
 require '../controller/getCatalog.php';
+require_once '../../model/Customer.php';
 
 
 
@@ -12,10 +13,8 @@ $products = $order->getProduct();
 //session_start();
 //session_destroy();
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
-
     if (isset($_SESSION['orderList'])) {
         $orderList = $_SESSION['orderList'];
     }
@@ -32,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 //print_r($orderList);
             } else {
                 for ($a = 0; $a < count($orderList); $a++) {
-                    if ( $orderList[$a][1] == $tempID) {
+                    if ($orderList[$a][1] == $tempID) {
                         $orderList[$a][2] = $_POST['quantity' . $tempID . ''] + $orderList[$a][2];
                         break;
                     } elseif ($a == count($orderList) - 1) {
@@ -46,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
     $_SESSION['orderList'] = $orderList;
-    print_r($orderList);
+    //print_r($orderList);
 }
 ?>
 <html>
@@ -66,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <body class="container">
         <br/>
-        <h2>Fresh Flower Ordering</h2><a href="orderReportXML.php">Sales Order Report</a>
+        <h2>Fresh Flower Ordering</h2>
         <br/>
         <br/>
         <?php
@@ -106,6 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br/>
         <br/>
         <br/>
+        <form action="/FioreFlowershop/view/customer/CustomerMainPage.php" method="post">
+            <button type="submit" class="btn btn-primary" name="goCart">Back to Menu</button>
+        </form>
         <form action="cart.php" method="post">
             <button type="submit" class="btn btn-primary" name="goCart">Go to Cart</button>
         </form>

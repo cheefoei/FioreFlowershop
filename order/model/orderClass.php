@@ -9,12 +9,28 @@
 */
 class Order {
 
-    public $customer_id;
-    public $total_amount;
+    private $customer_id;
+    private $total_amount;
 
     
-    public function __construct($customer_id, $total_amount) {
+     function __construct($customer_id, $total_amount) {
         $this->customer_id = $customer_id;
+        $this->total_amount = $total_amount;
+    }
+
+    function getCustomer_id() {
+        return $this->customer_id;
+    }
+
+    function getTotal_amount() {
+        return $this->total_amount;
+    }
+
+    function setCustomer_id($customer_id) {
+        $this->customer_id = $customer_id;
+    }
+
+    function setTotal_amount($total_amount) {
         $this->total_amount = $total_amount;
     }
 

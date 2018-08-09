@@ -10,14 +10,38 @@
 
 class OrderList {
 
-    public $order_id;
-    public $product_id;
-    public $quantity;
+    private $order_id;
+    private $product_id;
+    private $quantity;
 
-    public function __construct(int $order_id, int $product_id, int $quantity) {
+    function __construct(int $order_id, int $product_id, int $quantity) {
         $this->product_id = $product_id;
         $this->quantity = $quantity;
         $this->order_id = $order_id;
+    }
+
+    function getOrder_id() {
+        return $this->order_id;
+    }
+
+    function getProduct_id() {
+        return $this->product_id;
+    }
+
+    function getQuantity() {
+        return $this->quantity;
+    }
+
+    function setOrder_id($order_id) {
+        $this->order_id = $order_id;
+    }
+
+    function setProduct_id($product_id) {
+        $this->product_id = $product_id;
+    }
+
+    function setQuantity($quantity) {
+        $this->quantity = $quantity;
     }
 
 }

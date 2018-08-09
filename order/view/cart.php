@@ -30,7 +30,11 @@ require '../controller/getCatalog.php';
          */
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+
             session_start();
+            if (!isset($_SESSION['orderList'])) {
+                $_SESSION['orderList'] = array();
+            }
             $orderList = $_SESSION['orderList'];
 
             $order = new manageOrder();

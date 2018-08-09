@@ -6,6 +6,9 @@
  * and open the template in the editor.
  */
 require_once '../connect_db.php';
+require_once '../../model/Customer.php';
+
+session_start();
 $db = database::getInstance();
 $conn = $db->getConnection();
 $query = "SELECT * FROM product";
@@ -20,7 +23,7 @@ $orderList = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 $products = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE trainers SYSTEM "order.dtd"><?xml-stylesheet type="text/xsl" href="order.xsl"?><orders></orders>');
 foreach ($order as $key) {
-    //if([$key['status'] == "paid"]) {
+    if ($key['customer_id'] == $_SESSION['customer']->getId()) {
         $track = $xml->addChild('order');
         $track->addChild('order_id', $key['id']);
         $track->addChild('order_date', $key['date']);
@@ -37,7 +40,7 @@ foreach ($order as $key) {
                         $track2->addChild('productName', $key3['product_name']);
                         $track2->addChild('unitPrice', $key3['price']);
                         $track2->addChild('subtotal', $key3['price'] * $key2['quantity']);
-                    //}
+                    }
                 }
             }
         }

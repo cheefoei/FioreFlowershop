@@ -7,6 +7,8 @@
 
 
  */
+@error_reporting(E_ALL ^ E_NOTICE);  
+
 
 class manageOrder {
 
@@ -20,8 +22,8 @@ class manageOrder {
 
     public function addOrder($order) {
         $stmt = $this->conn->prepare("INSERT INTO floral_order(customer_id,total_amount) VALUES(?,?)");
-        $stmt->bindParam(1, $order->customer_id);
-        $stmt->bindParam(2, $order->total_amount);
+        $stmt->bindParam(1, $order->getCustomer_id());
+        $stmt->bindParam(2, $order->getTotal_amount());
         $stmt->execute();
 
         return $this->conn->lastInsertId();
@@ -29,9 +31,9 @@ class manageOrder {
 
     public function addOrderList($orderList) {
         $stmt = $this->conn->prepare("INSERT INTO order_list(order_id,product_id,quantity) VALUES(?,?,?)");
-        $stmt->bindParam(1, $orderList->order_id);
-        $stmt->bindParam(2, $orderList->product_id);
-        $stmt->bindParam(3, $orderList->quantity);
+        $stmt->bindParam(1, $orderList->getOrder_id());
+        $stmt->bindParam(2, $orderList->getProduct_id());
+        $stmt->bindParam(3, $orderList->getQuantity());
         $stmt->execute();
     }
 

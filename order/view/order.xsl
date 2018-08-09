@@ -6,9 +6,9 @@
 
   <xsl:template match="/">
     <html>
-      <head><title>Sales Order Report</title></head>
+      <head><title>Order History</title></head>
       <body>
-        <h1>Sales Order Report</h1>
+        <h1>Order History</h1>
         
         <xsl:for-each select="orders/order">
         
@@ -17,7 +17,7 @@
         <h4>Order Amount : <xsl:value-of select="total_amount" /></h4>
         <h4>Status : <xsl:value-of select="status" /></h4>
         <table border="1">
-          <tr><th>Order List ID</th><th>Product ID</th><th>Product Name</th><th>Unit Price</th><th>Quantity</th><th>Subtotal</th></tr>
+          <tr><th>Order List ID</th><th>Flower ID</th><th>Flower Name</th><th>Unit Price</th><th>Quantity</th><th>Subtotal</th></tr>
           
           <xsl:for-each select="orderlist">
             <tr>
