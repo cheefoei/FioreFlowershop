@@ -13,7 +13,7 @@ Name: Leong Chee Foei
 
         <?php
         include '../../header.php';
-        require_once '../../controller/customer/CustomerController.php';
+        require_once '../../controller/CustomerServicer.php';
 
         // Check any user already log in
         if (session_status() == PHP_SESSION_NONE) {
@@ -26,22 +26,22 @@ Name: Leong Chee Foei
             header("Location: ../../JJview/StaffMainPage.php");
         }
 
-        $CustomerController = new CustomerController();
+        $CustomerServicer = new CustomerServicer();
         $password_error = '';
 
         if (isset($_POST['register'])) {
 
-            $password = $CustomerController->test_input($_POST['pwd']);
-            $cpassword = $CustomerController->test_input($_POST['cpwd']);
+            $password = $CustomerServicer->test_input($_POST['pwd']);
+            $cpassword = $CustomerServicer->test_input($_POST['cpwd']);
 
             if (strcmp($password, $cpassword) == 0) {
 
-                $type = $CustomerController->test_input($_POST['custType']);
-                $fname = $CustomerController->test_input($_POST['fname']);
-                $lname = $CustomerController->test_input($_POST['lname']);
-                $address = $CustomerController->test_input($_POST['address']);
-                $phone = $CustomerController->test_input($_POST['phone']);
-                $email = $CustomerController->test_input($_POST['email']);
+                $type = $CustomerServicer->test_input($_POST['custType']);
+                $fname = $CustomerServicer->test_input($_POST['fname']);
+                $lname = $CustomerServicer->test_input($_POST['lname']);
+                $address = $CustomerServicer->test_input($_POST['address']);
+                $phone = $CustomerServicer->test_input($_POST['phone']);
+                $email = $CustomerServicer->test_input($_POST['email']);
 
                 $customer = new Customer();
                 $customer->setType($type);
@@ -51,7 +51,7 @@ Name: Leong Chee Foei
                 $customer->setPhone_number($phone);
                 $customer->setEmail($email);
                 $customer->setPassword($password);
-                $CustomerController->CreateCustomer($customer);
+                $CustomerServicer->CreateCustomer($customer);
             } else {
                 $password_error = 'Password and confirm password are not match.';
             }

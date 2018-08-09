@@ -2,7 +2,7 @@
 <!ELEMENT customers (customer+)>
 <!ELEMENT customer (name, email, phone, address, monthlyCreditLimit?)>
 <!ATTLIST customer customerID ID #REQUIRED>
-<!ATTLIST customer type (consumer | corporate ) #REQUIRED>
+<!ATTLIST customer type (Consumer | Corporate ) #REQUIRED>
 <!ELEMENT name (fname,lname)>
 <!ELEMENT fname (#PCDATA)>
 <!ELEMENT lname (#PCDATA)>

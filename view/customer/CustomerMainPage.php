@@ -12,7 +12,7 @@ Name: Leong Chee Foei
 
         <?php
         include '../../header.php';
-        require_once '../../controller/customer/CustomerController.php';
+        require_once '../../controller/CustomerServicer.php';
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -21,9 +21,9 @@ Name: Leong Chee Foei
             header("Location: ../../index.php");
         }
 
-        $CustomerController = new CustomerController();
+        $CustomerServicer = new CustomerServicer();
         if (isset($_GET['logout'])) {
-            $CustomerController->CustomerLogout();
+            $CustomerServicer->CustomerLogout();
         }
         ?>
     </head>
@@ -62,7 +62,7 @@ Name: Leong Chee Foei
             <div class="col-sm-6">
                 <div class="panel panel-info">
                     <div class="panel-heading" style="text-align: center">
-                        <a href="">Profile</a>
+                        <a href="CustomerProfile.php">Profile</a>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,6 @@ Name: Leong Chee Foei
                 </div>
             </div>
         </div>
-        <?php $CustomerController->CreateCustomerXML(); ?>
     </body>
 
 </html>
