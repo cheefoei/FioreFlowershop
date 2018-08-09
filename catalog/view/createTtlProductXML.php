@@ -24,9 +24,9 @@ if (isset($_SESSION['staff'])) {
 
     Header('Content-type: text/xml');
     print($xml->asXML());
-//Include this 2 to initiate download
-//header('Content-Disposition: attachment; filename="product.xml"');
-//echo($xml->asXML());
+    //Include this 2 to initiate download
+//    header('Content-Disposition: attachment; filename="product.xml"');
+//    echo($xml->asXML());
 } else {
     echo "No privilege to access this page!<br/>";
     echo '<a href="../../JJview/StaffLogin.php">Go to Staff Login</a>';

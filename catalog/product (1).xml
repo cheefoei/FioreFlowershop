@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../totalProduct.xsl"?>
+<products>
+    <product>
+        <product_id>100001</product_id>
+        <product_name>Rose</product_name>
+        <product_type>fresh_flower</product_type>
+        <product_description>Perfectly red in color</product_description>
+        <date_created>2018-07-03</date_created>
+        <date_expired>2018-07-25</date_expired>
+        <total_stock>10</total_stock>
+        <price>28.8</price>
+        <weight>800.5</weight>
+    </product>
+    <product>
+        <product_id>100002</product_id>
+        <product_name>Hibiscus</product_name>
+        <product_type>bouquet</product_type>
+        <product_description>As pretty as your face.</product_description>
+        <date_created>2018-07-03</date_created>
+        <date_expired>2018-07-24</date_expired>
+        <total_stock>10</total_stock>
+        <price>89.9</price>
+        <weight>150.2</weight>
+    </product>
+    <product>
+        <product_id>100003</product_id>
+        <product_name>rose</product_name>
+        <product_type>seasonal&#13;
+            promotion item</product_type>
+        <product_description>Perfect in color for all those couples</product_description>
+        <date_created>2018-07-02</date_created>
+        <date_expired>2018-07-28</date_expired>
+        <total_stock>11</total_stock>
+        <price>198.2</price>
+        <weight>160.4</weight>
+    </product>    
+</products>

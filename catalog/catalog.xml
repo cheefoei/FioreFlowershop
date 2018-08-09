@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../totalCatalog.xsl"?>
+<catalogs>
+    <catalog>
+        <catalog_id>200001</catalog_id>
+        <name>Fathers day test</name>
+        <description>Suitable for all the couples who are celebrating valentines day.</description>
+        <date_created>2018-08-03</date_created>
+        <date_expired>2018-08-23</date_expired>
+        <products>
+            <product_id>100001, 100002, 100003, 100005</product_id>
+        </products>
+        <total_product>4</total_product>
+    </catalog>
+    <catalog>
+        <catalog_id>200002</catalog_id>
+        <name>Mothers day</name>
+        <description>For all the lovely mums</description>
+        <date_created>2018-08-01</date_created>
+        <date_expired>2018-08-31</date_expired>
+        <products>
+            <product_id/>
+        </products>
+        <total_product>0</total_product>
+    </catalog>
+    <catalog>
+        <catalog_id>200003</catalog_id>
+        <name>Valentine</name>
+        <description>Just buy one</description>
+        <date_created>2018-08-16</date_created>
+        <date_expired>2018-08-15</date_expired>
+        <products>
+            <product_id/>
+        </products>
+        <total_product>0</total_product>
+    </catalog>    
+</catalogs>

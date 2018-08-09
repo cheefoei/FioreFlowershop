@@ -79,7 +79,7 @@
                     <br/>
                     Total of item in low stock is  <xsl:value-of select="count($lowstock)"/> item(s). 
                     <br/>
-                    Total of item in low stock is  <xsl:value-of select="sum(//product[price]/price)"/> ringgit(s).
+                    
                 </p>        
             </body>
         </html>

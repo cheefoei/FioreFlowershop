@@ -74,7 +74,7 @@
                     Total of catalog in database is <xsl:value-of select="count(//catalog)"/> item(s).
                     <br/>
                     Latest created item is <xsl:value-of select="$latest"/>  .<br/>
-                    The latest item is expired is <xsl:value-of select="$expired"/>  .<br/>
+                    The latest item to expired is <xsl:value-of select="$expired"/>  .<br/>
                 </p>     
             </body>
         </html>
