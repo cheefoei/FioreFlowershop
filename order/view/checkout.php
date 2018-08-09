@@ -27,7 +27,7 @@ if (isset($_POST['checkOut'])) {
         $orderHelper->reduceCredit($customer->getMonthly_credit_limit(), $customer->getId());
     } else {
         echo '<script type="text/javascript">';
-        echo 'alert("No sufficient balance. Please reduce cart item. Lacking ' . $order->getTotal_amount() - $order->getTotal_amount() . '");';
+        echo 'alert("No sufficient balance. Please reduce cart item. Lacking ' . $order->getTotal_amount() - $customer->getMonthly_credit_limit() . '");';
         //echo 'window.location.href = "order.php";';
         echo '</script>';
     }
