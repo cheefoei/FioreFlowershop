@@ -19,10 +19,6 @@ and open the template in the editor.
         $prod = new product();
         $catmaker = new CatalogMaker();
 
-        //SELECT * FROM product ORDER BY ID DESC LIMIT 1
-        function is_valid_name($input_name) {
-            return preg_match_all('/^[A-Za-z]+$/', $input_name) ? TRUE : FALSE;
-        }
         ?>
         <div class="container">  
             <form id="contact" action="addNewProduct.php" method="post">

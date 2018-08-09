@@ -1,10 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 require_once '../controller/CatalogMaker.php';
 $catmaker = new CatalogMaker();
 $stmt = $catmaker->getAllProduct();
@@ -13,7 +7,8 @@ $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesh
 while ($row = $stmt->fetch()) {
     $track = $xml->addChild('product');
     $track->addChild('product_id', $row['product_id']);
-    $track->addChild('product_name', $row['product_name']);
+    $track->addChild('product_name', htmlspecialchars($row['product_name']));
+    $track->addChild('product_type', htmlspecialchars($row['product_type']));
     $track->addChild('product_description', $row['product_description']);
     $track->addChild('date_created', $row['date_created']);
     $track->addChild('date_expired', $row['date_expired']);
