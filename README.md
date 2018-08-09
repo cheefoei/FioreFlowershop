@@ -4,7 +4,7 @@ BAIT3173 Integrative Programming Assignment 052018
 Before deployment
 =================
 1. Download and install XAMMP server.
-2. A browser that support HTML 5, CSS, and JavaScript.
+2. A browser that supports HTML 5, CSS, and JavaScript.
 
 Steps to deploy
 ===============
