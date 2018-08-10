@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
 
+Description of totalCatalog.xsl
+description: Allow user to get design for catalog table 
+author: Loo Jia Wei
+
+-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 version="1.0">
     <xsl:output method="html"/>

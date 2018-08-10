@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Description of delteCatListItem.php
+ *The function of deleting catlist's item and redirect back to newCatalogItem.php after deletion executed.
+ * @author Loo Jia Wei
+ */
 require_once '../controller/CatListMapper.php';
 $catlistmap = new CatListMapper();
 

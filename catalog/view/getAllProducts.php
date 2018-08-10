@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+
+Description of getAllProducts.php
+description: Allow user to retrieve all product row from database
+author: Loo Jia Wei
+
 -->
 <html>
     <head>
@@ -72,7 +74,7 @@ and open the template in the editor.
 
                 echo "</tbody></table>";
                 $db = null;
-                echo ' <a href="../createProductXML.php">Download in XML</a>';
+                //echo ' <a href="../createProductXML.php">Download in XML</a>';
             }
             ?>
             <br/>

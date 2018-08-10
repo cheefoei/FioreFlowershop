@@ -1,4 +1,9 @@
 <?php
+/**
+ * Description of ProductMapper.php
+ *All the functions from view that access product in database will be available here
+ * @author Loo Jia Wei
+ */
 
 require_once '../connect_db.php';
 require_once '../model/product.php';

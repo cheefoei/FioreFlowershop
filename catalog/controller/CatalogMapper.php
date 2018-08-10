@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Description of CatalogMapper
- *
- * @author jiaweiloo
+ * Description of CatalogMapper.php
+ *All the functions from view and related to catalog in database will be executed here
+ * @author Loo Jia Wei
  */
 require_once '../connect_db.php';
 require_once '../model/catalog.php';

@@ -1,8 +1,8 @@
 <?php
 /**
  * Description of catalog
- *
- * @author jiaweiloo
+ *Class file of catalog
+ * @author Loo Jia Wei
  */
 class catalog {
     //put your code here

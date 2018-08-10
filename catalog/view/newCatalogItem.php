@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+
+Description of newCatalogItem.php
+description: Allow user to add Product into Catalog by inserting into catalog_list database.
+author: Loo Jia Wei
+
 -->
 <html>
     <head>

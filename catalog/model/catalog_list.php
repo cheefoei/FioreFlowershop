@@ -1,14 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of catalog_list
- *
+ *Class file of catalog_list
  * @author jiaweiloo
  */
 class catalog_list {

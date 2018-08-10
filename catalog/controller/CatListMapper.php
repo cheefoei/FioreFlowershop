@@ -1,9 +1,10 @@
 <?php
 
 /**
- * Description of CatListMapper
+ * This is the mapper that has the function relating cataloglist in database and all the view(.php file)
+ * in the mvc to access database.
  *
- * @author jiawe
+ * @author Loo Jia Wei
  */
 require_once '../connect_db.php';
 require_once '../model/catalog_list.php';

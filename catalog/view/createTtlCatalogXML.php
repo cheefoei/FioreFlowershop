@@ -5,9 +5,10 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 if (isset($_SESSION['staff'])) {
     /*
-     * To change this license header, choose License Headers in Project Properties.
-     * To change this template file, choose Tools | Templates
-     * and open the template in the editor.
+     * Description of createTtlCatalogXML.php
+     * description: Allow user to retrieve a statistics and report in the database related to catalog and product.
+     * author: Loo Jia Wei
+     * 
      */
     require_once '../controller/CatalogMaker.php';
     $catmaker = new CatalogMaker();

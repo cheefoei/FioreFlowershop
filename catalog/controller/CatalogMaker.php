@@ -1,9 +1,10 @@
 <?php
 
 /**
- * Description of CatalogMaker
- *
- * @author jiaweiloo
+ * Description of CatalogMaker.php
+ *All the functions from CatListMapper, CatalogMapper, and ProductMapper combine in this file to work
+ * as a Facade pattern.
+ * @author Loo Jia Wei
  */
 require_once 'CatalogMapper.php';
 require_once 'ProductMapper.php';

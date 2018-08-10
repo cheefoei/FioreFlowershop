@@ -1,5 +1,10 @@
 <?php
-
+ /*
+     * Description of createTtlProductXML.php
+     * description: Allow user to retrieve a statistics and report in the database related to product only.
+     * author: Loo Jia Wei
+     * 
+     */
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
