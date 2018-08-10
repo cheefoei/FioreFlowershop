@@ -1,3 +1,7 @@
+<!-- 
+Name: Lim Jun Kit
+ Group: G6
+-->
 <?php
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
 require_once '../JJcontroller/Facade.php';
@@ -32,17 +36,16 @@ require_once '../JJcontroller/Facade.php';
             <?php
             date_default_timezone_set("Asia/Kuala_Lumpur");
             $pickupDate = trim(date("Y-m-d"));
-          
+
             if (isset($_POST['update'])) {
-                 $date2 = $_POST['bday'];
+                $date2 = $_POST['bday'];
+            } else {
+                $date2 = $pickupDate;
             }
-            else{
-                 $date2 = $pickupDate;
-            }
-            
+
             $class = new Facade();
             $result = $class->RetrievePickup();
-            
+
             //$result=$class->getAllpickup();
             foreach ($result as $row) {
                 if ($row['status'] == "Pending" and $row['pickupDate'] == $date2) {
@@ -76,6 +79,8 @@ require_once '../JJcontroller/Facade.php';
             // print_r($result); //print whole array
             ?>
         </table>
-
+        <br/>
+        <a href="../JJview/StaffMainPage.php">Home</a>  
+        <br/>
     </body>
 </html>

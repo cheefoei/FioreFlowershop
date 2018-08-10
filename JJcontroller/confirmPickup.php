@@ -1,3 +1,7 @@
+<!-- 
+Name: Lim Jun Kit
+ Group: G6
+-->
 <?php
 
 //include 'C:\xampp\htdocs\Assignment\model\database.php';

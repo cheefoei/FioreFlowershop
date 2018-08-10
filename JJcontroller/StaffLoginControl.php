@@ -1,3 +1,7 @@
+<!-- 
+Name: Lim Jun Kit
+ Group: G6
+-->
 <?php
 
 require_once '../controller/connect_db.php';

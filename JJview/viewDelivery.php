@@ -1,3 +1,7 @@
+<!-- 
+Name: Lim Jun Kit
+ Group: G6
+-->
 <?php
 //include 'C:\xampp\htdocs\Assignment\model\database.php';
 require_once '../JJcontroller/Facade.php';
@@ -78,6 +82,8 @@ require_once '../JJcontroller/Facade.php';
             }
             ?>
         </table>
-
+        <br/>
+        <a href="../JJview/StaffMainPage.php">Home</a>  
+        <br/>
     </body>
 </html>
