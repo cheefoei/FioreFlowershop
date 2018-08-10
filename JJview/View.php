@@ -10,6 +10,7 @@ require_once '../JJcontroller/Facade.php';
         <title></title>
     </head>
     <body>
+       
         <table border="1">
             <tr>
                 <th>Order ID</th>
@@ -30,9 +31,11 @@ require_once '../JJcontroller/Facade.php';
             //$database->createconnection();
             $class = new Facade();
             $result = $class->RetrievePickup();
+            date_default_timezone_set("Asia/Kuala_Lumpur");
+            $pickupDate = trim(date("Y-m-d"));
             //$result=$class->getAllpickup();
             foreach ($result as $row) {
-                if ($row['status'] == "Pending") {
+                if ($row['status'] == "Pending" and $row['pickupDate']==$pickupDate) {
                     $orderDate = $row['orderDate'];
                     $orderID = $row['OrderID'];
                     $custID = $row['custID'];
