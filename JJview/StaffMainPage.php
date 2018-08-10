@@ -60,18 +60,10 @@ and open the template in the editor.
                 <div class="col-sm-6">
                     <div class="panel panel-primary">
                         <div class="panel-body" style="text-align: center">
-                            <a href="../catalog/view/createTtlCatalogXML.php">View Total Catalog Report</a>
+                            <a href="../catalog/view/CtlgAndProdMaintce.php">Go To Catalog Menu</a>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-body" style="text-align: center">
-                            <a href="../catalog/view/createTtlProductXML.php">View Total Product Report</a>
-                        </div>
-                    </div>
-                </div>
+                </div>               
 
                 <div class="col-sm-6">
                     <div class="panel panel-primary">
