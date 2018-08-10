@@ -17,6 +17,16 @@ Class ProductMapper {
         return $stmt;
     }
 
+    public function loadByProductType($type) {
+        $db = new connect_db();
+        $conn = $db->connectPDO();
+        // load one record from Database where id = $id
+        $query = "SELECT * FROM product WHERE product_type='".$type."'";
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        return $stmt;
+    }
+
     public function load($id) {
         $db = new connect_db();
         $conn = $db->connectPDO();
@@ -76,10 +86,10 @@ Class ProductMapper {
         $conn = $db->connectPDO();
         $query = "SELECT * FROM product ORDER BY product_id DESC LIMIT 1";
         $stmt = $conn->prepare($query);
-        $stmt->execute();        
+        $stmt->execute();
         return $stmt;
     }
-    
+
 }
 
 ?>

@@ -10,60 +10,71 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+    <link rel="stylesheet" href="css/style.css">
     <body>
-        <h1><u>Add Items into Catalog</u></h1>        
+
+
         <?php
         require_once '../model/catalog.php';
         require_once '../controller/CatalogMaker.php';
         session_start(); //to grab data from session
 
-        $catmaker = new CatalogMaker();
-        $cat = new catalog();
-//        $catalog = 0;
-        $lastCatList_id = 0;
-        $prodInTheCatalog = [];
-
-
-        $stmt = $catmaker->getAllcatalog();
-
-//        if (isset($_SESSION['red_catalog_id'])) {
-//            //Do stuff
-//            $catalog = $_SESSION['red_catalog_id'];
-//            getCtlgList($catalog);
-//            unset($_SESSION['red_catalog_id']);
-//        }
-
-        echo '<form action="newCatalogItem.php" method="POST">';
-        echo "<p>Catalog name:<select name = \"catalog\" id=\"catalog\">";
-        while ($row = $stmt->fetch()) {
-            // echo out the contents of each row into a table
-            echo '<option value="' . $row['catalog_id'];
+        if (isset($_SESSION['staff'])) {
+            $catmaker = new CatalogMaker();
+            $cat = new catalog();
+            $lastCatList_id = 0;
+            $prodInTheCatalog = [];
+            $stmt = $catmaker->getAllcatalog();
+            ?>
+            <ul>
+                <li><a href="CtlgAndProdMaintce.php">Catalog Menu</a></li>
+                <li><a href="createTtlCatalogXML.php">Catalog Statistic</a></li>
+                <li><a href="createTtlProductXML.php">Product Statistic</a></li>
+                <li><a href="getAllCatalog.php.php">View Products by Catalog</a></li>
+                <li style="float:right"> 
+                    <form action="../controller/logout.php" method="post">
+                        <fieldset>
+                            <button name="logout" type="submit">Logout</button>
+                        </fieldset>
+                    </form></li>
+            </ul>
+            <?php
+            echo '<h1><u>Add Items into Catalog</u></h1>        ';
+            echo '<form action="newCatalogItem.php" method="POST">';
+            echo "<p>Catalog name:<select name = \"catalog\" id=\"catalog\">";
+            while ($row = $stmt->fetch()) {
+                // echo out the contents of each row into a table
+                echo '<option value="' . $row['catalog_id'];
 //            if ($row['catalog_id'] == $catalog) {
 //                echo 'selected';
 //            }
-            echo '">' . $row['catalog_id'] . " - " . $row['name'] . '</option>';
-        }
-        echo "</select></p>";
-        echo '<button type="submit" name="add">Get Catalog Item</button></p></form>';
+                echo '">' . $row['catalog_id'] . " - " . $row['name'] . '</option>';
+            }
+            echo "</select></p>";
+            echo '<button type="submit" name="add">Get Catalog Item</button></p></form>';
 
-        if ((isset($_POST['catalog']))) {
-            $catalog = trim($_POST['catalog']);
-            $_SESSION['catalog_id'] = $catalog;
-            getCtlgList($catalog);
-        }
+            if ((isset($_POST['catalog']))) {
+                $catalog = trim($_POST['catalog']);
+                $_SESSION['catalog_id'] = $catalog;
+                getCtlgList($catalog);
+            }
 
-        if (isset($_POST['btnAddToCtlg'])) {
-            $newcatlist = new catalog_list();
-            $product_idToAdd = trim($_POST['product_idToAdd']);
-            //$lastCatList_id = (int)$lastCatList_id;
-            $lastCatList_id = (int) $_SESSION['lastCatList_id'];
-            $lastCatList_id++;
-            $newcatlist->catlist_id = $lastCatList_id;
-            $newcatlist->catalog_id = $_SESSION['catalog_id'];
-            $newcatlist->product_id = $product_idToAdd;
-            $catmaker->addCatList($newcatlist);
-            $catalog = $_SESSION['catalog_id'];
-            getCtlgList($catalog);
+            if (isset($_POST['btnAddToCtlg'])) {
+                $newcatlist = new catalog_list();
+                $product_idToAdd = trim($_POST['product_idToAdd']);
+                //$lastCatList_id = (int)$lastCatList_id;
+                $lastCatList_id = (int) $_SESSION['lastCatList_id'];
+                $lastCatList_id++;
+                $newcatlist->catlist_id = $lastCatList_id;
+                $newcatlist->catalog_id = $_SESSION['catalog_id'];
+                $newcatlist->product_id = $product_idToAdd;
+                $catmaker->addCatList($newcatlist);
+                $catalog = $_SESSION['catalog_id'];
+                getCtlgList($catalog);
+            }
+        } else {
+            echo '<font color="red">No privilege to access this page!</font><br/>';
+            echo '<a href="../../JJview/StaffLogin.php">Go to Staff Login</a>';
         }
 
         function getCtlgList($catalog_id) {
@@ -89,7 +100,7 @@ and open the template in the editor.
                 echo '<td>' . $row2['product_name'] . '</td>';
                 echo '<td>' . $row2['product_description'] . '</td>';
                 echo '<td>' . $row2['total_stock'] . '</td>';
-                echo '<td><a href="../controller/deleteCatListItem.php?id=' . $row['catlist_id'] .'">Delete</a></td>';
+                echo '<td><a href="../controller/deleteCatListItem.php?id=' . $row['catlist_id'] . '">Delete</a></td>';
                 echo "</tr>";
 
                 if ($count == $rows) {

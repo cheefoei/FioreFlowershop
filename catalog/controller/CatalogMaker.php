@@ -52,8 +52,12 @@ class CatalogMaker {
         return $this->prodmapper->loadAll();
     }
 
-    public function getProductByID($id) {       
+    public function getProductByID($id) {
         return $this->prodmapper->load($id);
+    }
+
+    public function getProductByProductType($type) {
+        return $this->prodmapper->loadByProductType($type);
     }
 
     public function addProduct($newproduct) {
@@ -68,25 +72,25 @@ class CatalogMaker {
         $this->prodmapper->delete($id);
     }
 
-    public function getProductLastRow() {       
+    public function getProductLastRow() {
         return $this->prodmapper->getLastRow();
     }
 
     //------------------------ Catlist Mapper------------------------------------
-    public function getAllCatList() {        
+    public function getAllCatList() {
         return $this->catlistmapper->loadAll();
     }
 
-    public function getCatListByID($id) {       
+    public function getCatListByID($id) {
         return $this->catlistmapper->load($id);
     }
 
-    public function getCatListByCatalogID($catalog_id) {       
+    public function getCatListByCatalogID($catalog_id) {
         return $this->catlistmapper->getCatList($catalog_id);
     }
-    
+
     public function addCatList($newcatlist) {
-       $this->catlistmapper->save($newcatlist);
+        $this->catlistmapper->save($newcatlist);
     }
 
     public function updateCatList($newcatlist) {
@@ -96,4 +100,5 @@ class CatalogMaker {
     public function deleteCastListByID($id) {
         $this->catlistmapper->delete($id);
     }
+
 }
