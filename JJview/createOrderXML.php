@@ -1,3 +1,7 @@
+<!-- 
+Name: Lim Jun Kit
+ Group: G6
+-->
 <?php
 include '../JJcontroller\database2.php';
 $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="Order2_XSL.xsl"?><Orders></Orders>');
