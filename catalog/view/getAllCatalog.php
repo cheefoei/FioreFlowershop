@@ -14,11 +14,6 @@ and open the template in the editor.
         <?php
         // put your code here
         require_once '../model/catalog.php';
-//        require_once '../controller/CatalogMapper.php';
-//
-//        $catmap = new CatalogMapper();
-//        $stmt = $catmap->loadAll();
-
         require_once '../controller/CatalogMaker.php';
 
         $catmaker = new CatalogMaker();
