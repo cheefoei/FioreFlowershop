@@ -20,15 +20,18 @@ require_once '../JJcontroller/Facade.php';
                 <th>Delivered Date</th>
                 <th>Delivered Time</th>
                 <th>Staff In-charged</th>
+                <th>Delivery Address</th>
                 <th>Status</th>
                 <th colspan="2">Action</th>
             </tr>
 
             <?php
+            date_default_timezone_set("Asia/Kuala_Lumpur");
+            $pickupDate = trim(date("Y-m-d"));
             $f = new Facade();
             $result = $f->RetrieveDelivery();
             foreach ($result as $row) {
-                if ($row['status'] == "Pending") {
+                if ($row['status'] == "Pending" and $row['deliveredDate']==$pickupDate ) {
                     $orderDate = $row['orderDate'];
                     $orderID = $row['orderID'];
                     $custID = $row['custID'];
@@ -38,6 +41,7 @@ require_once '../JJcontroller/Facade.php';
                     $staffID = $row['StaffID'];
                     $payment = $row['Payment'];
                     $paymentdate = $row['paymentDate'];
+                    $address = $row['deliveryAddress'];
                     $time = $row['payTime'];
 
 
@@ -53,6 +57,7 @@ require_once '../JJcontroller/Facade.php';
                     echo "<td>$DeliveredDate</td>";
                     echo "<td>$time</td>";
                     echo "<td>$staffID</td>";
+                    echo "<td>$address</td>";
                     echo "<td>$status</td>";
                     echo '<td><a href="ConfirmDelivery.php?update=' . $row['orderID'] . '">Confirm Delivered</a></td>';
 
