@@ -109,4 +109,9 @@ $datesSimulator->addPickup($pickup1);
 echo "<hr />";
 $datesSimulator->updatestatus();
 ?>
+<html>
+      <br/>
+      <a href="../JJview/StaffMainPage.php">Home</a>  
+        <br/>
+</html>
 
