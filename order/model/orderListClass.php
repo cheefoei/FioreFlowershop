@@ -14,7 +14,7 @@ class OrderList {
     private $product_id;
     private $quantity;
 
-    function __construct(int $order_id, int $product_id, int $quantity) {
+    function __construct( $order_id, $product_id, $quantity) {
         $this->product_id = $product_id;
         $this->quantity = $quantity;
         $this->order_id = $order_id;
