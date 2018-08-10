@@ -21,7 +21,6 @@ if (!isset($_SESSION['customer'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    session_start();
 
     if (isset($_SESSION['orderList'])) {
         $orderList = $_SESSION['orderList'];

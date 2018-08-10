@@ -1,4 +1,6 @@
 <?php
+@error_reporting(E_ALL ^ E_NOTICE);  
+@error_reporting(E_ALL | E_STRICT);
 include '../../header.php';
 require '../controller/manageOrder.php';
 require_once '../model/orderClass.php';
