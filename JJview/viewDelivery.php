@@ -82,6 +82,8 @@ require_once '../JJcontroller/Facade.php';
             }
             ?>
         </table>
-
+        <br/>
+        <a href="../JJview/StaffMainPage.php">Home</a>  
+        <br/>
     </body>
 </html>
