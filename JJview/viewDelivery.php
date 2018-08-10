@@ -9,6 +9,10 @@ require_once '../JJcontroller/Facade.php';
         <title></title>
     </head>
     <body>
+        <form action="viewDelivery.php" method="post">
+            <input type="date" name="bday">
+            <button class="btn" type="submit" name="update">Check Delivery</button>
+        </form>
         <table border="1">
             <tr>
                 <th>Order ID</th>
@@ -28,10 +32,18 @@ require_once '../JJcontroller/Facade.php';
             <?php
             date_default_timezone_set("Asia/Kuala_Lumpur");
             $pickupDate = trim(date("Y-m-d"));
+            date_default_timezone_set("Asia/Kuala_Lumpur");
+            $pickupDate = trim(date("Y-m-d"));
+
+            if (isset($_POST['update'])) {
+                $date2 = $_POST['bday'];
+            } else {
+                $date2 = $pickupDate;
+            }
             $f = new Facade();
             $result = $f->RetrieveDelivery();
             foreach ($result as $row) {
-                if ($row['status'] == "Pending" and $row['deliveredDate']==$pickupDate ) {
+                if ($row['status'] == "Pending" and $row['deliveredDate'] == $date2) {
                     $orderDate = $row['orderDate'];
                     $orderID = $row['orderID'];
                     $custID = $row['custID'];

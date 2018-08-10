@@ -19,63 +19,71 @@ session_start();
 
 
 if (isset($_POST['submit'])) {
-    $customer = $_SESSION['customer'];
-    $orderList = $_SESSION['orderList'];
-    $orderHelper = new manageOrder();
-
-    $order = new Order($customer->getId(), $_SESSION['total']);
-    $different = $order->getTotal_amount() - $customer->getMonthly_credit_limit();
-    $order->setStatus("unpaid");
-    $tempAmount = $order->getTotal_amount();
-    
-    if ($customer->getType() == "Corporate" && $different <= 0.00) {
-        print_r("enough credit");
-        $customer->setMonthly_credit_limit(abs($different));
-        $order->setStatus("paid");
-        $tempAmount = 0;
-    } elseif ($customer->getType() == "Corporate" && $different > 0.00) {
-        print_r("not enough credit");
-       $tempAmount = $different;
-        $customer->setMonthly_credit_limit(0);
-    }
-    $id = $orderHelper->addOrder($order);
-    
-    foreach ($orderList as $list) {
-        $orderItem = new OrderList($id, $list[1], $list[2]);
-        $orderHelper->addOrderList($orderItem);
-    }
-    $customerFullName = $customer->getFname() . " " . $customer->getLname();
-    
-    if (isset($_POST['checkOutType'])) {
-        if ($customer->getType() == "Corporate") {
-            $orderHelper->reduceCredit($customer->getMonthly_credit_limit(), $customer->getId());
-        }
-        $shipping = new Shipping;
-        if ($_POST['checkOutType'] == "delivery") {
-
-            $shipping->shipping("delivery");
-            $test = $shipping->getShippingMethod();
-            $test->addDelivery($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $customer->getAddress(), $_POST['date'], $tempAmount);
-            //$order->addDelivery ($custName, $custID, $orderID, $orderDate, $deliveryAddress, $deliveredDate);
-            echo '<script language="javascript">';
-            echo 'alert("Your order ' . date('Y-m-d h:i:s') . ' is estimated to be arrived at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '. Please prepare RM '.$tempAmount.'")';
-            echo '</script>';
-        } elseif ($_POST['checkOutType'] == "pickup") {
-            $shipping->shipping("pickup");
-            $test = $shipping->getShippingMethod();
-            $test->addPickUp($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $_POST['date'], $tempAmount);
-            echo '<script language="javascript">';
-            echo 'alert("You can ' . date('Y-m-d h:i:s') . ' pick up your order at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '. Please prepare RM '.$tempAmount.'")';
-            echo '</script>';
-        }
-        //print_r($_SERVER['HTTP_REFERER']);
-        unset($_SESSION['total']);
-        unset($_SESSION['orderList']);
-        $_SESSION['customer'] = $customer;
-        //$order->test();
-        echo '<script type="text/javascript">';
-        echo 'window.location.href = "order.php";';
+    if ($_POST['date'] < date('Y-m-d')) {
+        echo '<script language="javascript">';
+        echo 'alert("Date can only today onwards")';
         echo '</script>';
+    } else {
+
+
+        $customer = $_SESSION['customer'];
+        $orderList = $_SESSION['orderList'];
+        $orderHelper = new manageOrder();
+        $order = new Order($customer->getId(), $_SESSION['total']);
+        $different = $order->getTotal_amount() - $customer->getMonthly_credit_limit();
+        $order->setStatus("unpaid");
+        $tempAmount = $order->getTotal_amount();
+
+
+        if ($customer->getType() == "Corporate" && $different <= 0.00) {
+            print_r("enough credit");
+            $customer->setMonthly_credit_limit(abs($different));
+            $order->setStatus("paid");
+            $tempAmount = 0;
+        } elseif ($customer->getType() == "Corporate" && $different > 0.00) {
+            print_r("not enough credit");
+            $tempAmount = $different;
+            $customer->setMonthly_credit_limit(0);
+        }
+        $id = $orderHelper->addOrder($order);
+
+        foreach ($orderList as $list) {
+            $orderItem = new OrderList($id, $list[1], $list[2]);
+            $orderHelper->addOrderList($orderItem);
+        }
+        $customerFullName = $customer->getFname() . " " . $customer->getLname();
+
+        if (isset($_POST['checkOutType'])) {
+            if ($customer->getType() == "Corporate") {
+                $orderHelper->reduceCredit($customer->getMonthly_credit_limit(), $customer->getId());
+            }
+            $shipping = new Shipping;
+            if ($_POST['checkOutType'] == "delivery") {
+
+                $shipping->shipping("delivery");
+                $test = $shipping->getShippingMethod();
+                $test->addDelivery($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $_POST["address"], $_POST['date'], $tempAmount);
+                //$order->addDelivery ($custName, $custID, $orderID, $orderDate, $deliveryAddress, $deliveredDate);
+                echo '<script language="javascript">';
+                echo 'alert("Your order ' . date('Y-m-d h:i:s') . ' is estimated to be arrived at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '. Please prepare RM ' . $tempAmount . '")';
+                echo '</script>';
+            } elseif ($_POST['checkOutType'] == "pickup") {
+                $shipping->shipping("pickup");
+                $test = $shipping->getShippingMethod();
+                $test->addPickUp($customerFullName, $customer->getId(), $id, date('Y-m-d h:i:s'), $_POST['date'], $tempAmount);
+                echo '<script language="javascript">';
+                echo 'alert("You can ' . date('Y-m-d h:i:s') . ' pick up your order at ' . $_POST['date'] . ' on ' . date('h:i a', strtotime($_POST['time'])) . '. Please prepare RM ' . $tempAmount . '")';
+                echo '</script>';
+            }
+            //print_r($_SERVER['HTTP_REFERER']);
+            unset($_SESSION['total']);
+            unset($_SESSION['orderList']);
+            $_SESSION['customer'] = $customer;
+            //$order->test();
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "order.php";';
+            echo '</script>';
+        }
     }
 }
 ?>
@@ -88,20 +96,6 @@ if (isset($_POST['submit'])) {
             padding: 15px;
         }
     </style>
-    <script>
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
-        var yyyy = today.getFullYear();
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-
-        today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById("datefield").setAttribute("max", today);</script>
     <head>
 
         <meta charset="UTF-8">
@@ -135,6 +129,13 @@ if (isset($_POST['submit'])) {
                 <label class="control-label col-sm-2">Time</label>
                 <div class="col-sm-10">
                     <input type="time" name="time" required=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Delivery Address</label>
+                <div class="col-sm-10">
+                    <textarea rows="4" cols="50" name="address" required=""><?php echo $_SESSION['customer']->getAddress(); ?>
+                    </textarea>
                 </div>
             </div>
             <div class="form-group"> 
